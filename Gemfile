@@ -32,3 +32,5 @@ end
 
 
 gem "litestack", "~> 0.4.4"
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
