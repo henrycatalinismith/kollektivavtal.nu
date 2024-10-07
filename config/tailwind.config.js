@@ -7,10 +7,23 @@ module.exports = {
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
+
+  darkMode: 'selector',
   theme: {
     extend: {
+
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        // sans: 'var(--font-inter)',
+        // display: 'var(--font-mona-sans)',
+      },
+
+      fontSize: {
+        '2xs': '.6875rem',
+      },
+      opacity: {
+        2.5: '0.025',
+        7.5: '0.075',
+        15: '0.15',
       },
     },
   },
