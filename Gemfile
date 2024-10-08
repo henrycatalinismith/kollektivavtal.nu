@@ -30,7 +30,8 @@ group :development do
   # gem "spring"
 end
 
-
 gem "litestack", "~> 0.4.4"
-
+gem "sqlite-ulid", "~> 0.2.1"
 gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "redcarpet", "~> 3.6"
