@@ -1,5 +1,0 @@
-class HomeController < ApplicationController
-  def index
-    @blog_posts = Blog::Post.order(published_at: :desc)
-  end
-end
