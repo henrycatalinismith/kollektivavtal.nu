@@ -1,0 +1,43 @@
+body {
+  display: grid;
+  place-items: center;
+  min-height: 85vh;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.prototype.step {
+  max-width: 70ch;
+  text-align: center;
+}
+
+.prototype p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.next {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.prev {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+  background-color: #f4f4f4;
+  color: #333;
+  text-decoration: none;
+}
