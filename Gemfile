@@ -14,3 +14,5 @@ group :development, :test do
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
 end
+
+gem "redcarpet", "~> 3.6"
