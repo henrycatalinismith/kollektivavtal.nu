@@ -18,6 +18,11 @@ require "action_view/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if Rails.env.assets?
+  config.active_record.migration_error = false
+  config.active_record.dump_schema_after_migration = false
+end
+
 module KollektivavtalNu
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
