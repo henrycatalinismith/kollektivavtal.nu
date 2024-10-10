@@ -16,3 +16,4 @@ group :development, :test do
 end
 
 gem "redcarpet", "~> 3.6"
+gem "sqlite-ulid", "~> 0.2.1"
