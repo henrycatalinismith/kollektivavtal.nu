@@ -17,3 +17,5 @@ end
 
 gem "redcarpet", "~> 3.6"
 gem "sqlite-ulid", "~> 0.2.1"
+
+gem "bcrypt", "~> 3.1"
