@@ -188,9 +188,9 @@
             <br />
             Help is on the way.
           </p>
-          <form class="relative isolate mt-8 flex items-center pr-1">
+          <%= form_with url: "/contacts", html: {class: "relative isolate mt-8 flex items-center pr-1" } do |form| %>
             <label for=":S3:" class="sr-only">Email address</label>
-            <input disabled required="" type="email" autocomplete="email" id=":S3:" placeholder="Email address" class="peer w-0 flex-auto bg-transparent border-0 px-4 py-2.5 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-[0.8125rem]/6" name="email">
+            <input required="" type="email" autocomplete="email" id=":S3:" placeholder="Email address" class="peer w-0 flex-auto bg-transparent border-0 px-4 py-2.5 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-[0.8125rem]/6" name="email">
             <button class="group relative isolate flex-none rounded-md py-1.5 text-[0.8125rem]/6 font-semibold text-white pl-2.5 pr-[calc(9/16*1rem)]" type="submit">
               <span class="absolute inset-0 rounded-md bg-gradient-to-b from-white/80 to-white opacity-10 transition-opacity group-hover:opacity-15"></span>
               <span class="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-10"></span>Get updates
@@ -199,7 +199,7 @@
             </button>
             <div class="absolute inset-0 -z-10 rounded-lg transition peer-focus:ring-4 peer-focus:ring-sky-300/15"></div>
             <div class="absolute inset-0 -z-10 rounded-lg bg-white/2.5 ring-1 ring-white/15 transition peer-focus:ring-sky-300"></div>
-          </form>
+          <% end %>
           <%# 
                         <div class="mt-8 flex flex-wrap justify-center gap-x-1 gap-y-3 sm:gap-x-2 lg:justify-start">
                             <a class="flex-none group relative isolate flex items-center rounded-lg px-2 py-0.5 text-[0.8125rem]/6 font-medium text-white/30 transition-colors hover:text-sky-300 gap-x-3" href="#">

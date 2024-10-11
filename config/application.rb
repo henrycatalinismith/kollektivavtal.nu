@@ -23,6 +23,10 @@ if Rails.env.assets?
   config.active_record.dump_schema_after_migration = false
 end
 
+if ["development", "test"].include? ENV["RAILS_ENV"]
+  Dotenv.load
+end
+
 module KollektivavtalNu
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
