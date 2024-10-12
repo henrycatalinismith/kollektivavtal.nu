@@ -20,3 +20,5 @@ gem "dotenv", groups: [:development, :test]
 gem "redcarpet", "~> 3.6"
 gem "sendgrid-ruby"
 gem "sqlite-ulid", "~> 0.2.1"
+
+gem "importmap-rails", "~> 2.0"
