@@ -1,20 +1,25 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
+class User::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    if !Flipper.enabled?(:user_registrations_new, current_user)
+      raise ActionController::RoutingError.new("Not Found")
+    end
+    super
+  end
 
   # POST /resource
   # def create
   #   super
   # end
   def create
-    raise "lol"
+    if !Flipper.enabled?(:user_registrations_create, current_user)
+      raise ActionController::RoutingError.new("Not Found")
+    end
     super
   end
 

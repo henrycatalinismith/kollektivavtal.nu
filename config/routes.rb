@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   devise_for :users, {
     class_name: "User::Account",
     controllers: {
-      registrations: "users/registrations",
-      sessions: "users/sessions"
+      registrations: "user/registrations",
+      sessions: "user/sessions"
     },
     path: "",
     path_names: {
