@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
   def create
-    # raise "lol"
+    raise "lol"
     super
   end
 

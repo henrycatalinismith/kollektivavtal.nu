@@ -1,5 +1,6 @@
-class ContactsController < ApplicationController
+class MailingList::SubscriptionsController < ApplicationController
   def create
+    MailingList::Subscription.create!(email: params[:email])
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.marketing.contacts.put(
       request_body: {
