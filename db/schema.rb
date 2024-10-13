@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_10_184451) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_13_080601) do
   create_table "blog_posts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,19 +26,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_10_184451) do
   create_table "user_accounts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email_address", null: false
-    t.string "password_digest", null: false
-    t.index ["email_address"], name: "index_user_accounts_on_email_address", unique: true
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_user_accounts_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_user_accounts_on_reset_password_token", unique: true
   end
-
-  create_table "user_sessions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "account_id", null: false
-    t.string "ip_address"
-    t.string "user_agent"
-    t.index ["account_id"], name: "index_user_sessions_on_account_id"
-  end
-
-  add_foreign_key "user_sessions", "user_accounts", column: "account_id"
 end

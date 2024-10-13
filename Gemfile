@@ -24,3 +24,5 @@ gem "sendgrid-ruby"
 gem "sqlite-ulid", "~> 0.2.1"
 
 gem "cssbundling-rails"
+
+gem "devise", "~> 4.9"
