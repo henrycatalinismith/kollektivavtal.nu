@@ -10,7 +10,9 @@ class MailingList::SubscriptionsController < ApplicationController
             list_ids: [ENV["SENDGRID_LIST_ID"]],
             contacts: [{
               email: params[:email],
-              language: "en",
+              custom_fields: {
+                language: http_accept_language.preferred_language_from(["en", "sv"]) || "en",
+              }
             }]
           }
         )
