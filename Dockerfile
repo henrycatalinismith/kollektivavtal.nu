@@ -16,8 +16,13 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 sqlite3 && \
+    apt-get install --no-install-recommends -y openssh-client gnupg curl libjemalloc2 sqlite3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install --no-install-recommends -y nodejs yarn
 
 # Set production environment
 ENV RAILS_ENV="production" \
