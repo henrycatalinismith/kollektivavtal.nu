@@ -1,6 +1,4 @@
 class ContactsController < ApplicationController
-  allow_unauthenticated_access
-
   def create
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.marketing.contacts.put(
