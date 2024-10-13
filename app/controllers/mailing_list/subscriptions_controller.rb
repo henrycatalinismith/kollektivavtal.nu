@@ -9,7 +9,8 @@ class MailingList::SubscriptionsController < ApplicationController
           request_body: {
             list_ids: [ENV["SENDGRID_LIST_ID"]],
             contacts: [{
-              email: params[:email]
+              email: params[:email],
+              language: "en",
             }]
           }
         )
@@ -24,6 +25,9 @@ class MailingList::SubscriptionsController < ApplicationController
     MailingList::Subscription.create!(
       email: params[:email],
       sendgrid_status:,
+      ip_address: request.remote_ip,
+      user_agent: request.user_agent,
+      accept_language: request.headers["Accept-Language"],
     )
     flash[:notice] = "Signed up successfully!"
     redirect_to root_path

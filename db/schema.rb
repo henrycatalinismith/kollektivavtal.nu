@@ -44,6 +44,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_13_135757) do
     t.datetime "updated_at", null: false
     t.string "email"
     t.integer "sendgrid_status"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.string "accept_language"
   end
 
   create_table "user_accounts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
