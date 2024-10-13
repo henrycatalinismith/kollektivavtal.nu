@@ -18,4 +18,8 @@ Rails.application.routes.draw do
       # password: "password"
     }
   }
+
+  constraints CanAccessFlipperUI do
+    mount Flipper::UI.app(Flipper) => "/flipper"
+  end
 end

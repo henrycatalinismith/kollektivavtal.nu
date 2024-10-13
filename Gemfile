@@ -16,13 +16,14 @@ group :development, :test do
 end
 
 gem "bcrypt", "~> 3.1"
+gem "cssbundling-rails"
+gem "devise", "~> 4.9"
 gem "dotenv", groups: [:development, :test]
+gem "flipper", "~> 1.3"
+gem "flipper-ui", "~> 1.3"
+gem "flipper-active_record", "~> 1.3"
 gem "importmap-rails", "~> 2.0"
 gem "rails_admin", "~> 3.0"
 gem "redcarpet", "~> 3.6"
 gem "sendgrid-ruby"
 gem "sqlite-ulid", "~> 0.2.1"
-
-gem "cssbundling-rails"
-
-gem "devise", "~> 4.9"
