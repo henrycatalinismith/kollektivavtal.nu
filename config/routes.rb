@@ -6,4 +6,19 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   #resource :registration, only: %i[new create]
+
+  devise_for :users, {
+    class_name: "User::Account",
+    controllers: {
+      registrations: "users/registrations",
+      sessions: "users/sessions"
+    },
+    path: "",
+    path_names: {
+      sign_in: "login",
+      sign_out: "logout",
+      sign_up: "register",
+      # password: "password"
+    }
+  }
 end
