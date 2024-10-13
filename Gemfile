@@ -17,8 +17,10 @@ end
 
 gem "bcrypt", "~> 3.1"
 gem "dotenv", groups: [:development, :test]
+gem "importmap-rails", "~> 2.0"
+gem "rails_admin", "~> 3.0"
 gem "redcarpet", "~> 3.6"
 gem "sendgrid-ruby"
 gem "sqlite-ulid", "~> 0.2.1"
 
-gem "importmap-rails", "~> 2.0"
+gem "cssbundling-rails"
