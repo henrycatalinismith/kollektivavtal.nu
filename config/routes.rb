@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post "subscribe" => "mailing_list/subscriptions#create"
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get "created" => "mailing_list/subscriptions#created"
+
   devise_for :users, {
     class_name: "User::Account",
     controllers: {

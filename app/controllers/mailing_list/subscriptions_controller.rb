@@ -1,4 +1,9 @@
 class MailingList::SubscriptionsController < ApplicationController
+  # include RailsCloudflareTurnstile::ControllerHelpers
+
+  before_action :validate_cloudflare_turnstile, only: :create
+  rescue_from RailsCloudflareTurnstile::Forbidden, with: :redirect_home
+
   def create
     sendgrid_status = :sendgrid_pending
 
@@ -32,6 +37,14 @@ class MailingList::SubscriptionsController < ApplicationController
       accept_language: request.headers["Accept-Language"],
     )
     flash[:notice] = "Signed up successfully!"
+    redirect_to root_path
+  end
+
+  def created
+  end
+
+  def redirect_home
+    flash[:notice] = "Captcha required"
     redirect_to root_path
   end
 end
