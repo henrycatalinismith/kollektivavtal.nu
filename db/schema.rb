@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_15_071030) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_15_092257) do
   create_table "blog_posts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,4 +62,23 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_15_071030) do
     t.index ["email"], name: "index_user_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_user_accounts_on_reset_password_token", unique: true
   end
+
+  create_table "user_authorizations", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "account_id"
+    t.string "role_id"
+    t.index ["account_id"], name: "index_user_authorizations_on_account_id"
+    t.index ["role_id"], name: "index_user_authorizations_on_role_id"
+  end
+
+  create_table "user_roles", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "description", null: false
+  end
+
+  add_foreign_key "user_authorizations", "user_accounts", column: "account_id"
+  add_foreign_key "user_authorizations", "user_roles", column: "role_id"
 end
