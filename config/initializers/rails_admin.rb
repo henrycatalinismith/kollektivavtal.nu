@@ -1,17 +1,12 @@
 RailsAdmin.config do |config|
   config.asset_source = :importmap
 
-  ### Popular gems integration
-
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
-  # config.current_user_method(&:current_user)
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
   config.current_user_method(&:current_user)
+
+  config.parent_controller = "::AdminActionController"
 
   ## == CancanCan ==
   # config.authorize_with :cancancan
