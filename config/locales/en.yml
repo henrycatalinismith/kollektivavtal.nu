@@ -28,6 +28,11 @@
 #       enabled: "ON"
 
 en:
+  date: 
+    formats:
+      default: "%b %d, %Y"
+      short: "%b %d, %Y"
+
   home:
     index:
       title_1: Twenty First Century
