@@ -1,13 +1,16 @@
 class MailingList::SubscriptionsController < ApplicationController
-  # include RailsCloudflareTurnstile::ControllerHelpers
-
-  before_action :validate_cloudflare_turnstile, only: :create
-  rescue_from RailsCloudflareTurnstile::Forbidden, with: :redirect_home
 
   def create
     sendgrid_status = :sendgrid_pending
+    turnstile_status = :turnstile_pending
 
-    if Flipper.enabled?(:mailing_list_subscriptions_create_sendgrid, current_user)
+    if cloudflare_turnstile_ok?
+      turnstile_status = :turnstile_success
+    else
+      turnstile_status = :turnstile_failure
+    end
+
+    if turnstile_status == :turnstile_success and Flipper.enabled?(:mailing_list_subscriptions_create_sendgrid, current_user)
       begin
         sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
         response = sg.client.marketing.contacts.put(
@@ -35,16 +38,12 @@ class MailingList::SubscriptionsController < ApplicationController
       ip_address: request.remote_ip,
       user_agent: request.user_agent,
       accept_language: request.headers["Accept-Language"],
+      turnstile_status:,
     )
     flash[:notice] = "Signed up successfully!"
     redirect_to root_path
   end
 
   def created
-  end
-
-  def redirect_home
-    flash[:notice] = "Captcha required"
-    redirect_to root_path
   end
 end

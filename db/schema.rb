@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_15_092257) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_15_182140) do
   create_table "blog_posts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_15_092257) do
     t.string "ip_address"
     t.string "user_agent"
     t.string "accept_language"
+    t.integer "turnstile_status"
   end
 
   create_table "user_accounts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|

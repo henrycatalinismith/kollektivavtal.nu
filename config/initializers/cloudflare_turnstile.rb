@@ -4,11 +4,6 @@ end
 
 # https://developers.cloudflare.com/turnstile/troubleshooting/testing/
 RailsCloudflareTurnstile.configure do |c|
-
-  puts "Configuring Cloudflare Turnstile"
-  puts "Site Key: #{ENV["CLOUDFLARE_TURNSTILE_SITE_KEY"]}"
-  puts "Secret Key: #{ENV["CLOUDFLARE_TURNSTILE_SECRET_KEY"]}"
-
   c.site_key = ENV["CLOUDFLARE_TURNSTILE_SITE_KEY"] || "0x4AAAAAAAxgQdqTNQrVACX3"
   c.secret_key = ENV["CLOUDFLARE_TURNSTILE_SECRET_KEY"] || "0x4AAAAAAAxgQUGKv-qJFuivSTNTmngj0nY"
 
