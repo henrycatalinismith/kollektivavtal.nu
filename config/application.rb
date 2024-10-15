@@ -48,6 +48,8 @@ module KollektivavtalNu
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :sv]
     config.middleware.use HttpAcceptLanguage::Middleware
   end
 end
