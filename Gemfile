@@ -16,6 +16,7 @@ group :development, :test do
 end
 
 gem "bcrypt", "~> 3.1"
+gem "cancancan"
 gem "cssbundling-rails"
 gem "devise", "~> 4.9"
 gem "dotenv", groups: [:development, :test]
