@@ -177,23 +177,19 @@
             <img alt="kollektivavtal.nu" src="/kollektivavtal.png" class="max-w-[256px]" />
           </div>
           <h1 class="mt-14 font-display text-4xl/tight font-light text-white">
-            Twenty First Century
-            <span class="text-sky-300">Collective Power</span>
+            <%= t("home.index.title_1") %>
+            <span class="text-sky-300">
+              <%= t("home.index.title_2") %>
+            </span>
           </h1>
-          <p class="mt-4 text-sm/6 text-gray-300">
-            Union member in Sweden?
-            Wish there was a site with the info you and your colleagues need about collective bargaining under the Swedish model?
-            Need a tool to build negotiating leverage for your first contract?
-            <br />
-            <br />
-            Help is on the way.
-          </p>
+          <%= render_home_index_description_markdown(t("home.index.description")).html_safe %>
           <%= form_with url: "/subscribe", html: {class: "relative isolate mt-8 flex items-center pr-1" } do |form| %>
-            <label for=":S3:" class="sr-only">Email address</label>
-            <input required="" type="email" autocomplete="email" id=":S3:" placeholder="Email address" class="peer w-0 flex-auto bg-transparent border-0 px-4 py-2.5 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-[0.8125rem]/6" name="email">
+            <label for=":S3:" class="sr-only"><%= t("home.index.email_address") %></label>
+            <input required="" type="email" autocomplete="email" id=":S3:" placeholder="<%= t("home.index.email_address") %>" class="peer w-0 flex-auto bg-transparent border-0 px-4 py-2.5 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-[0.8125rem]/6" name="email">
             <button class="group relative isolate flex-none rounded-md py-1.5 text-[0.8125rem]/6 font-semibold text-white pl-2.5 pr-[calc(9/16*1rem)]" type="submit">
               <span class="absolute inset-0 rounded-md bg-gradient-to-b from-white/80 to-white opacity-10 transition-opacity group-hover:opacity-15"></span>
-              <span class="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-10"></span>Get updates
+              <span class="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-10"></span>
+              <%= t("home.index.subscribe_button") %>
               <!-- -->
               <span aria-hidden="true">→</span>
             </button>

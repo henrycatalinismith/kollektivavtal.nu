@@ -28,4 +28,13 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  home:
+    index:
+      title_1: Twenty First Century
+      title_2: Collective Power
+      description: |
+        Union member in Sweden? Wish there was a site with the info you and your colleagues need about collective bargaining under the Swedish model? Need a tool to build negotiating leverage for your first contract?
+
+        Help is on the way.
+      email_address: Email address
+      subscribe_button: Get updates
