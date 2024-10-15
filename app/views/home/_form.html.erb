@@ -1,0 +1,34 @@
+<%= form_with url: "/subscribe", html: {class: "" } do |form| %>
+  <label for=":S3:" class="block text-sm font-medium leading-6 text-gray-200 mt-8 mb-2"><%= t("home.index.email_address") %></label>
+  <div class="relative isolate flex items-center pr-1">
+  <input
+    required=""
+    type="email"
+    autocomplete="email"
+    id=":S3:"
+    placeholder="you@example.com"
+    class="peer w-0 flex-auto bg-transparent border-0 px-4 py-2.5 text-base text-white placeholder:text-gray-400 focus:outline-none sm:text-[0.8125rem]/6"
+    name="email"
+  />
+  <button class="group relative isolate flex-none rounded-md py-1.5 text-[0.8125rem]/6 font-semibold text-white pl-2.5 pr-[calc(9/16*1rem)]" type="submit">
+    <span class="absolute inset-0 rounded-md bg-gradient-to-b from-white/80 to-white opacity-10 transition-opacity group-hover:opacity-15"></span>
+    <span class="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-10"></span>
+    <%= t("home.index.subscribe_button") %>
+    <!-- -->
+    <span aria-hidden="true">→</span>
+  </button>
+  <div class="absolute inset-0 -z-10 rounded-lg transition peer-focus:ring-4 peer-focus:ring-sky-300/15"></div>
+  <div class="absolute inset-0 -z-10 rounded-lg bg-white/2.5 ring-1 ring-white/30 transition peer-focus:ring-sky-300"></div>
+  </div>
+  <div class="cloudflare-turnstile mt-4">
+  <%# cloudflare_turnstile %>
+  <div
+    class="cf-turnstile mt-4"
+    data-sitekey="<%= ENV["CLOUDFLARE_TURNSTILE_SITE_KEY"] %>"
+    data-size="flexible"
+    data-action="other"
+    data-theme="dark"
+    data-tabindex="0"
+  ></div>
+  </div>
+<% end %>
