@@ -1,11 +1,9 @@
-<%= I18n.l(Date.parse("2024-10-31")) %>
-
 <% @blog_posts.each do |post| %>
     <article id="<%= post.slug %>" class="scroll-mt-16" style="padding-bottom:0px">
       <div>
         <header class="relative mb-10 xl:mb-0">
           <div class="pointer-events-none absolute left-[max(-0.5rem,calc(50%-18.625rem))] top-0 z-50 flex h-4 items-center justify-end gap-x-2 lg:left-0 lg:right-[calc(max(2rem,50%-38rem)+40rem)] lg:min-w-[32rem] xl:h-8">
-            <a class="inline-flex" href="#pre-flight-checks">
+            <a class="inline-flex" href="#<%= post.slug %>">
               <time datetime="<%= post.published_at %>" class="hidden xl:pointer-events-auto xl:block xl:text-2xs/4 xl:font-medium xl:text-white/50">
                 <%= I18n.l(post.published_at, format: :short) %>
               </time>
@@ -16,7 +14,7 @@
             <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32">
               <div class="mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto">
                 <div class="flex">
-                  <a class="inline-flex" href="#pre-flight-checks">
+                  <a class="inline-flex" href="#<%= post.slug %>">
                     <time datetime="<%= post.published_at %>" class="text-2xs/4 font-medium text-gray-500 xl:hidden dark:text-white/50">
                       <%= I18n.l(post.published_at, format: :short) %>
                     </time>
@@ -34,7 +32,7 @@
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10 dark:ring-white/10"></div>
               </div>
               <h2>
-                <a class="display-block my-2 text-lg font-bold" href="#pre-flight-checks">
+                <a class="display-block my-2 text-lg font-bold" href="#<%= post.slug %>">
                   <%= post.title %>
                 </a>
               </h2>

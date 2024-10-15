@@ -43,3 +43,13 @@ en:
         Help is on the way.
       email_address: Email address
       subscribe_button: Get updates
+  
+  mailing_list:
+    subscriptions:
+      created:
+        title: You're subscribed!
+        body: |
+          Thanks for subscribing to the mailing list. We'll keep you updated on our progress.
+
+          We're also using mailing list signups to gauge interest in the project. So consider sharing this page with someone else who might be interested.
+        share: Share
