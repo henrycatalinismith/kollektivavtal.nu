@@ -22,7 +22,7 @@ class PageRender < Redcarpet::Render::HTML
   def header(text, header_level)
     case header_level
     when 1
-      %(<h1 class="text-3xl font-bold font-extralight mb-8 pb-8 border-b border-gray-300">#{text}</h1>)
+      %(<h1 class="text-3xl font-bold font-bold mb-8 pb-8 border-b border-gray-300">#{text}</h1>)
     when 2
       %(<h#{header_level} class="text-2xl font-bold font-bold mt-8 mb-6">#{text}</h#{header_level}>)
     when 3
