@@ -6,6 +6,7 @@ class Blog::PostsController < ApplicationController
     if @post.nil?
       raise ActionController::RoutingError.new("Not Found")
     end
+    @posts = Blog::Post.reverse_chronological
   end
 end
 

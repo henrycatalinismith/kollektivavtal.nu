@@ -44,6 +44,11 @@ en:
       email_address: Email address
       subscribe_button: Get updates
   
+  blog:
+    post:
+      show:
+        archive: News Archive
+  
   mailing_list:
     subscriptions:
       created:

@@ -1,0 +1,25 @@
+<div class="flex flex-col gap-2 h-min min-w-64 w-[400px] max-w-full">
+  <h3 class="text-xl font-bold">
+    <%= title %>
+  </h3>
+  <ol class="flex flex-col gap-1">
+
+    <% links.each do |link| %>
+      <% current = link[:href] == request.path %>
+      <li>
+        <a
+          href="<%= link[:href] %>"
+          <% if current %>aria-current<% end %>
+          class="py-2 flex flex-col">
+            <span class="text-blue-700 underline">
+              <%= link[:text] %>
+            </span>
+            <span class="text-gray-600">
+              <%= I18n.l(link[:date], format: :short) %>
+            </span>
+          </a>
+      </li>
+    <% end %>
+
+  </ol>
+</div>

@@ -26,8 +26,18 @@
     <% end %>
   />
 
+
+  <div class="prose w-full">
+    <%= render_blog_post(@post).html_safe %>
+  </div>
 </div>
 
-<div class="prose w-full">
-  <%= render_blog_post(@post).html_safe %>
+<div class="flex flex-col gap-5 h-min min-w-64 w-[400px]">
+  <%= render "ui/sidebar", title: t("blog.post.show.archive"), links: @posts.map {
+    |post| {
+      href: blog_post_path(post.slug),
+      text: blog_post_title(post),
+      date: post.published_at,
+    }
+  } %>
 </div>

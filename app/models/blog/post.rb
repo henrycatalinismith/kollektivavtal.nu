@@ -8,6 +8,9 @@ class Blog::Post < ApplicationRecord
   has_one_attached :image
   validates :image, presence: true
 
+  scope :chronological, -> { order(published_at: :asc) }
+  scope :reverse_chronological, -> { order(published_at: :desc) }
+
   def title
     if I18n.locale == :sv
       title_sv
