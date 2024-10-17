@@ -53,3 +53,10 @@ en:
 
           We're also using mailing list signups to gauge interest in the project. So consider sharing this page with someone else who might be interested.
         share: Share
+
+  admin:
+    actions:
+      mailing_list_create_sendgrid_subscription_job:
+        menu: Add to SendGrid
+      mailing_list_delete_sendgrid_subscription_job:
+        menu: Delete from Sendgrid

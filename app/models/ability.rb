@@ -22,6 +22,7 @@ class Ability
     end
 
     if user.role?("mailing_list_admin")
+      can :manage, MailingList::List
       can :manage, MailingList::Subscription
     end
   end
