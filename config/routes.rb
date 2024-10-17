@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   constraints CanAccessFlipperUI do
     mount Flipper::UI.app(Flipper) => "/flipper"
   end
+
+  get "/news/:slug/" => "blog/posts#show", as: :blog_post
 end

@@ -2,6 +2,8 @@ require "front_matter_parser"
 require "redcarpet"
 
 class PagesController < ApplicationController
+  layout "page"
+
   def show
     file = Rails.root.join("app/pages/privacy.en.md")
     text = File.read(file)
