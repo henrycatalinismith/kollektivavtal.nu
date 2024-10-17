@@ -24,9 +24,32 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+    member :mailing_list_create_sendgrid_subscription_job do
+      link_icon do "fa fa-envelope" end
+      visible do
+        bindings[:abstract_model].model.name == "MailingList::Subscription" and !bindings[:object].sendgrid_add_success?
+      end
+      controller do
+        proc do
+          MailingList::CreateSendgridSubscriptionJob.perform_later(@object.id)
+          redirect_to "/admin/mailing_list~subscription/#{@object.id}"
+        end
+      end
+    end
+
+    member :mailing_list_delete_sendgrid_subscription_job do
+      link_icon do "fa fa-envelope" end
+      visible do
+        bindings[:abstract_model].model.name == "MailingList::Subscription" and bindings[:object].sendgrid_add_success?
+      end
+      controller do
+        proc do
+          MailingList::DeleteSendgridSubscriptionJob.perform_later(@object.id)
+          redirect_to "/admin/mailing_list~subscription/#{@object.id}"
+        end
+      end
+    end
+
   end
 
   config.model "User::Account" do
@@ -75,19 +98,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model "MailingList::Subscription" do
-    configure :email do
-      sticky true
-      column_width 256
-    end
-    configure :sendgrid_status do
-      sticky true
-    end
-    configure :turnstile_status do
-      sticky true
-    end
-  end
-
   config.model "Media::Image" do
     field :name, :string
     field :image, :active_storage do
@@ -98,4 +108,5 @@ RailsAdmin.config do |config|
       # end
     end
   end
+
 end

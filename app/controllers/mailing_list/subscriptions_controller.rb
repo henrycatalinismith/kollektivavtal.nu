@@ -1,6 +1,7 @@
 class MailingList::SubscriptionsController < ApplicationController
 
   def create
+    list = MailingList::List.find_by(name: "kollektivavtal.nu")
     sendgrid_status = :sendgrid_pending
     turnstile_status = :turnstile_pending
 
@@ -15,7 +16,7 @@ class MailingList::SubscriptionsController < ApplicationController
         sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
         response = sg.client.marketing.contacts.put(
           request_body: {
-            list_ids: [ENV["SENDGRID_LIST_ID"]],
+            list_ids: [list.sendgrid_id],
             contacts: [{
               email: params[:email],
               custom_fields: {
@@ -26,9 +27,9 @@ class MailingList::SubscriptionsController < ApplicationController
         )
       rescue Exception => e
         Rails.logger.error e.message
-        sendgrid_status = :sendgrid_failure
+        sendgrid_status = :sendgrid_add_failure
       else
-        sendgrid_status = :sendgrid_success
+        sendgrid_status = :sendgrid_add_success
       end
     end
 
@@ -39,6 +40,7 @@ class MailingList::SubscriptionsController < ApplicationController
       user_agent: request.user_agent,
       accept_language: request.headers["Accept-Language"],
       turnstile_status:,
+      list:,
     )
     flash[:notice] = "Signed up successfully!"
     redirect_to root_path

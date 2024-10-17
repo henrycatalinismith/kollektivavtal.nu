@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_17_091952) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_17_093632) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -60,6 +60,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_091952) do
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
   end
 
+  create_table "mailing_list_lists", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "sendgrid_id", null: false
+    t.index ["name"], name: "index_mailing_list_lists_on_name", unique: true
+  end
+
   create_table "mailing_list_subscriptions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,6 +77,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_091952) do
     t.string "user_agent"
     t.string "accept_language"
     t.integer "turnstile_status"
+    t.string "list_id"
+    t.index ["list_id"], name: "index_mailing_list_subscriptions_on_list_id"
   end
 
   create_table "media_images", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -107,6 +117,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_091952) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "mailing_list_subscriptions", "mailing_list_lists", column: "list_id"
   add_foreign_key "user_authorizations", "user_accounts", column: "account_id"
   add_foreign_key "user_authorizations", "user_roles", column: "role_id"
 end
