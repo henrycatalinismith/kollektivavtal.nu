@@ -44,6 +44,11 @@ sv:
         Hjälpen är på väg.
       email_address: Mejladress
       subscribe_button: Få uppdateringar
+  
+  blog:
+    post:
+      show:
+        archive: Alla inlägg
 
   mailing_list:
     subscriptions:
