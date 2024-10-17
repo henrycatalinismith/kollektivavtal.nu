@@ -8,9 +8,23 @@ class MailingList::List < ApplicationRecord
       sticky true
       column_width 256
     end
+
     configure :sendgrid_id do
       label 'SendGrid ID'
       sticky true
     end
+
+    configure :segment_id_en do
+      label 'English Segment ID'
+    end
+
+    configure :segment_id_sv do
+      label 'Swedish Segment ID'
+    end
+
+    configure :segment_id_testers do
+      label 'Test Segment ID'
+    end
+
   end
 end

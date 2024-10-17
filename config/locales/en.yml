@@ -60,3 +60,11 @@ en:
         menu: Add to SendGrid
       mailing_list_delete_sendgrid_subscription_job:
         menu: Delete from Sendgrid
+      mailing_list_preview_english_email:
+        menu: Preview English
+      mailing_list_send_english_test_email_job:
+        menu: Test English
+      mailing_list_preview_swedish_email:
+        menu: Preview Swedish
+      mailing_list_send_swedish_test_email_job:
+        menu: Test Swedish
