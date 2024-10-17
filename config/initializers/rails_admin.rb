@@ -24,6 +24,32 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    member :user_account_grant_all_roles do
+      link_icon do "fa fa-person" end
+      visible do
+        bindings[:abstract_model].model.name == "User::Account"
+      end
+      controller do
+        proc do
+          User::GrantAllRolesToUserJob.perform_later(@object.id)
+          redirect_to "/admin/user~account/#{@object.id}"
+        end
+      end
+    end
+
+    member :user_role_grant_to_everyone do
+      link_icon do "fa fa-person" end
+      visible do
+        bindings[:abstract_model].model.name == "User::Role"
+      end
+      controller do
+        proc do
+          User::GrantRoleToEveryoneJob.perform_later(@object.id)
+          redirect_to "/admin/user~role/#{@object.id}"
+        end
+      end
+    end
+
     member :mailing_list_create_sendgrid_subscription_job do
       link_icon do "fa fa-envelope" end
       visible do

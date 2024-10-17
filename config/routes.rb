@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "created" => "mailing_list/subscriptions#created"
-  get "privacy" => "pages#show"
 
   devise_for :users, {
     class_name: "User::Account",
@@ -29,4 +28,6 @@ Rails.application.routes.draw do
 
   get "/news/" => "blog/posts#index", as: :blog_posts
   get "/news/:slug/" => "blog/posts#show", as: :blog_post
+
+  get "/policies/:slug/" => "policy/documents#show", as: :policy_document
 end
