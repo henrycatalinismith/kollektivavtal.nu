@@ -27,5 +27,6 @@ Rails.application.routes.draw do
     mount Flipper::UI.app(Flipper) => "/flipper"
   end
 
+  get "/news/" => "blog/posts#index", as: :blog_posts
   get "/news/:slug/" => "blog/posts#show", as: :blog_post
 end

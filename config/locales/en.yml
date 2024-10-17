@@ -59,6 +59,19 @@ en:
           We're also using mailing list signups to gauge interest in the project. So consider sharing this page with someone else who might be interested.
         share: Share
 
+  ui:
+    footer:
+      label: Footer
+      links:
+        privacy: Privacy Policy
+      mailing_list:
+        heading: Subscribe to our newsletter
+        description: We're moving fast. Don't miss out on the latest news.
+        label: Email address
+        placeholder: you@example.com
+        submit: Get updates
+
+
   admin:
     actions:
       mailing_list_create_sendgrid_subscription_job:
