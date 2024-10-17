@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_17_122054) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_17_185316) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -102,6 +102,25 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_122054) do
     t.string "name", null: false
   end
 
+  create_table "policy_documents", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_policy_documents_on_slug", unique: true
+  end
+
+  create_table "policy_revisions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "document_id"
+    t.string "title_en"
+    t.string "title_sv"
+    t.string "body_en"
+    t.string "body_sv"
+    t.index ["document_id", "created_at"], name: "index_policy_revisions_on_document_id_and_created_at"
+    t.index ["document_id"], name: "index_policy_revisions_on_document_id"
+  end
+
   create_table "user_accounts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,6 +153,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_122054) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
   add_foreign_key "mailing_list_subscriptions", "mailing_list_lists", column: "list_id"
+  add_foreign_key "policy_revisions", "policy_documents", column: "document_id"
   add_foreign_key "user_authorizations", "user_accounts", column: "account_id"
   add_foreign_key "user_authorizations", "user_roles", column: "role_id"
 end

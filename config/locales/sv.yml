@@ -59,3 +59,22 @@ sv:
 
           Vi använder även e-postlistan för att mäta intresset för projektet. Så dela denna sida med någon annan som kan vara intresserad.
         share: Dela
+
+  policy:
+    privacy: Integritetspolicy
+
+  ui:
+    navbar:
+      links:
+        blog: Nyheter
+
+    footer:
+      label: Sidfot
+      links:
+        privacy: Integritetspolicy
+      mailing_list:
+        heading: Prenumerera på vårt nyhetsbrev
+        description: Vi rör oss snabbt. Missa inte de senaste nyheterna.
+        label: E-postadress
+        placeholder: du@exempel.com
+        submit: Få uppdateringar

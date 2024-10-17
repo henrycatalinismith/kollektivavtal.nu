@@ -59,7 +59,14 @@ en:
           We're also using mailing list signups to gauge interest in the project. So consider sharing this page with someone else who might be interested.
         share: Share
 
+  policy:
+    privacy: Privacy Policy
+
   ui:
+    navbar:
+      links:
+        blog: News
+
     footer:
       label: Footer
       links:
@@ -70,7 +77,6 @@ en:
         label: Email address
         placeholder: you@example.com
         submit: Get updates
-
 
   admin:
     actions:
@@ -86,3 +92,7 @@ en:
         menu: Preview Swedish
       mailing_list_send_swedish_test_email_job:
         menu: Test Swedish
+      user_account_grant_all_roles:
+        menu: Grant All Roles
+      user_role_grant_to_everyone:
+        menu: Grant to Everyone
