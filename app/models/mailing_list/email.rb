@@ -8,9 +8,6 @@ class MailingList::Email < ApplicationRecord
   validates :markdown_en, presence: true
   validates :markdown_sv, presence: true
 
-  validates :text_en, presence: true
-  validates :text_sv, presence: true
-
   rails_admin do
     configure :sent_at do
       visible do
@@ -23,14 +20,6 @@ class MailingList::Email < ApplicationRecord
     end
 
     configure :markdown_sv, :text do
-      html_attributes rows: 20
-    end
-
-    configure :text_en, :text do
-      html_attributes rows: 20
-    end
-
-    configure :text_sv, :text do
       html_attributes rows: 20
     end
 
