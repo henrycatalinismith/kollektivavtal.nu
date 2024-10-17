@@ -50,6 +50,56 @@ RailsAdmin.config do |config|
       end
     end
 
+    member :mailing_list_preview_english_email do
+      link_icon do "fa fa-eye" end
+      visible do
+        bindings[:abstract_model].model.name == "MailingList::Email"
+      end
+      controller do
+        proc do
+          render partial: "mailing_list/emails/html", locals: { email: @object, language: :en }
+        end
+      end
+    end
+
+    member :mailing_list_preview_swedish_email do
+      link_icon do "fa fa-eye" end
+      visible do
+        bindings[:abstract_model].model.name == "MailingList::Email"
+      end
+      controller do
+        proc do
+          render partial: "mailing_list/emails/html", locals: { email: @object, language: :sv }
+        end
+      end
+    end
+
+    member :mailing_list_send_english_test_email_job do
+      link_icon do "fa fa-envelope" end
+      visible do
+        bindings[:abstract_model].model.name == "MailingList::Email"
+      end
+      controller do
+        proc do
+          MailingList::SendTestEmailJob.perform_later(@object.id, :en)
+          redirect_to "/admin/mailing_list~email/#{@object.id}"
+        end
+      end
+    end
+
+    member :mailing_list_send_swedish_test_email_job do
+      link_icon do "fa fa-envelope" end
+      visible do
+        bindings[:abstract_model].model.name == "MailingList::Email"
+      end
+      controller do
+        proc do
+          MailingList::SendTestEmailJob.perform_later(@object.id, :sv)
+          redirect_to "/admin/mailing_list~email/#{@object.id}"
+        end
+      end
+    end
+
   end
 
   config.model "User::Account" do
