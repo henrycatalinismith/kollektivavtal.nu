@@ -28,7 +28,20 @@
           <div class="lg:ml-96 lg:flex lg:w-full lg:justify-end lg:pl-32">
             <div class="flex flex-col gap-y-5 mx-auto max-w-lg lg:mx-0 lg:w-0 lg:max-w-xl lg:flex-auto typography" data-mdx-content="true">
               <div class="relative mt-8 overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-900 [&amp;+*]:mt-8">
-                <img alt="" loading="lazy" width="1728" height="936" decoding="async" data-nimg="1" style="color:transparent" sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 45vw, (min-width: 640px) 32rem, 95vw" src="<%= post.image %>">
+                <img
+                  alt=""
+                  loading="lazy"
+                  width="1728"
+                  height="936"
+                  decoding="async"
+                  style="color:transparent"
+                  sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 45vw, (min-width: 640px) 32rem, 95vw"
+                  <% if post.image.attached? %>
+                    src="<%= post.image.url %>"
+                  <% else %>
+                    src="https://placehold.co/512x277"
+                  <% end %>
+                />
                 <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10 dark:ring-white/10"></div>
               </div>
               <h2>
