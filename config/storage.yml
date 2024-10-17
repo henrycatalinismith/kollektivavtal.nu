@@ -1,0 +1,7 @@
+google:
+  service: GCS
+  credentials: <%= Rails.root.join("storage/keyfile.json") %>
+  project: "kollektivavtal"
+  bucket: "kollektivavtal"
+  public: true
+  # url: "https://kollektivavtal.storage.googleapis.com"

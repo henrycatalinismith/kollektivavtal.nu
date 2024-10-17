@@ -87,4 +87,15 @@ RailsAdmin.config do |config|
       sticky true
     end
   end
+
+  config.model "Media::Image" do
+    field :name, :string
+    field :image, :active_storage do
+      # pretty_value do
+        # if value
+          # bindings[:view].content_tag(:img, value.filename, src: value.url)
+        # end
+      # end
+    end
+  end
 end
