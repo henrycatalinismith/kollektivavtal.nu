@@ -1,4 +1,12 @@
 class Blog::Post < ApplicationRecord
+  validates :title_en, presence: true
+  validates :body_en, presence: true
+  validates :title_sv, presence: true
+  validates :body_sv, presence: true
+  validates :slug, presence: true
+
+  has_one_attached :image
+  validates :image, presence: true
 
   def title
     if I18n.locale == :sv
