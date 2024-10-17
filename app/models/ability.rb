@@ -9,6 +9,7 @@ class Ability
     return unless user.role?("admin")
     can :access, :rails_admin
     can :manage, :dashboard
+    can :manage, Media::Image
 
     if user.role?("blog_admin")
       can :manage, Blog::Post

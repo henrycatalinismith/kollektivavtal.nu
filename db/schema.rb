@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_15_182140) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_17_070646) do
+# Could not dump table "active_storage_attachments" because of following StandardError
+#   Unknown type 'uuid' for column 'record_id'
+
+
+  create_table "active_storage_blobs", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+# Could not dump table "active_storage_variant_records" because of following StandardError
+#   Unknown type 'uuid' for column 'blob_id'
+
+
   create_table "blog_posts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,6 +72,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_15_182140) do
     t.integer "turnstile_status"
   end
 
+  create_table "media_images", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+  end
+
   create_table "user_accounts", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,6 +106,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_15_182140) do
     t.string "description", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "user_authorizations", "user_accounts", column: "account_id"
   add_foreign_key "user_authorizations", "user_roles", column: "role_id"
 end
