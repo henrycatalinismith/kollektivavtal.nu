@@ -30,7 +30,7 @@
   </head>
 
   <body>
-    <%= yield %>
+   <%= content_for?(:body) ? yield(:body) : yield %>
     <% if notice %>
       <%= render partial: "ui/flash-message", locals: {
         text: notice

@@ -1,0 +1,33 @@
+<div class="flex flex-col gap-y-4">
+
+  <div class="flex flex-col gap-y-1">
+    <h1 class="font-bold text-4xl m-0">
+      <%= @post.title %>
+    </h1>
+
+    <time class="text-gray-500" datetime="<%= @post.published_at.strftime("%Y-%m-%d") %>">
+      <%= @post.published_at.strftime("%Y-%m-%d") %>
+    </time>
+  </div>
+
+  <img
+    alt=""
+    loading="lazy"
+    width="1728"
+    height="936"
+    decoding="async"
+    style="color:transparent"
+    sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 45vw, (min-width: 640px) 32rem, 95vw"
+    class="max-w-[65ch]"
+    <% if @post.image.attached? %>
+      src="<%= @post.image.url %>"
+    <% else %>
+      src="https://placehold.co/512x277"
+    <% end %>
+  />
+
+</div>
+
+<div class="prose w-full">
+  <%= render_blog_post(@post).html_safe %>
+</div>
