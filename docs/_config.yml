@@ -1,0 +1,23 @@
+title: kollektivavtal docs
+email: henry@catalinismith.com
+description: >-
+  Documentation for kollektivavtal.nu
+baseurl: ""
+url: "https://kollektivavtal.github.io"
+github_username:  kollektivavtal
+
+theme: just-the-docs
+plugins:
+  - jekyll-feed
+
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
