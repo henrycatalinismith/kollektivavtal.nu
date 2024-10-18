@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User::SessionsController < Devise::SessionsController
+  layout "page"
   # before_action :configure_sign_in_params, only: [:create]
 
   def after_sign_in_path_for(resource)
