@@ -74,7 +74,7 @@ sv:
         privacy: Integritetspolicy
       mailing_list:
         heading: Prenumerera på vårt nyhetsbrev
-        description: Vi rör oss snabbt. Missa inte de senaste nyheterna.
-        label: E-postadress
+        description: Det händer grejer. Missa inte de senaste nyheterna.
+        label: Mejladress
         placeholder: du@exempel.com
         submit: Få uppdateringar
