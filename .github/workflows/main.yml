@@ -12,10 +12,20 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
           bundler-cache: true
 
       - uses: actions/jekyll-build-pages@v1
         with:
           source: "./docs"
           destination: "./docs/_site"
+      
+      - run: bundle install
+      - run: bundle exec jekyll build
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: kollektivavtal/kollektivavtal.github.io
+          force_orphan: true
+          publish_branch: main
+          publish_dir: ./_site

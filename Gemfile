@@ -33,3 +33,7 @@ gem "rails_cloudflare_turnstile"
 gem "redcarpet", "~> 3.6"
 gem "sendgrid-ruby"
 gem "sqlite-ulid", "~> 0.2.1"
+
+gem "jekyll", "~> 4.3.4"
+gem "jekyll-feed"
+gem "just-the-docs"
