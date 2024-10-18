@@ -10,6 +10,7 @@
     </time>
   </div>
 
+  <div class="relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-900 [&+*]:mt-8">
   <img
     alt=""
     loading="lazy"
@@ -18,13 +19,14 @@
     decoding="async"
     style="color:transparent"
     sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 45vw, (min-width: 640px) 32rem, 95vw"
-    class="max-w-[65ch]"
     <% if @post.image.attached? %>
       src="<%= @post.image.url %>"
     <% else %>
       src="https://placehold.co/512x277"
     <% end %>
   />
+  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10 dark:ring-white/10"></div>
+  </div>
 
 
   <div class="prose w-full">
