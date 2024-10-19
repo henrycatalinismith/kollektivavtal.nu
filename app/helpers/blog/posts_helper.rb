@@ -13,15 +13,15 @@ module Blog::PostsHelper
 
   def blog_post_body(post)
     case I18n.locale
-      when :en then post.body_en
-      when :sv then post.body_sv
+    when :en then post.body_en
+    when :sv then post.body_sv
     end
   end
 
   def blog_post_title(post)
     case I18n.locale
-      when :en then post.title_en
-      when :sv then post.title_sv
+    when :en then post.title_en
+    when :sv then post.title_sv
     end
   end
 end
@@ -45,20 +45,20 @@ class BlogPostRender < Redcarpet::Render::HTML
 
   def header(text, header_level)
     case header_level
-      when 1
-        %(
+    when 1
+      %(
           <h1 class="text-lg mdtext-2xl font-bold">
             #{text}
           </h#{header_level}>
 
         )
-      else
-        %(
+    else
+      %(
           <h#{header_level} class="text-lg mdtext-2xl font-bold">
             #{text}
           </h#{header_level}>"
         )
-      end
+    end
   end
 
   def link(href, title, text)

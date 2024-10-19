@@ -1,5 +1,4 @@
 class MailingList::SubscriptionsController < ApplicationController
-
   def create
     email = params[:email]
     if email.match?(/.+@.+/)
@@ -15,7 +14,7 @@ class MailingList::SubscriptionsController < ApplicationController
 
       if turnstile_status == :turnstile_success and Flipper.enabled?(:mailing_list_subscriptions_create_sendgrid, current_user)
         begin
-          sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+          sg = SendGrid::API.new(api_key: ENV["SENDGRID_API_KEY"])
           response = sg.client.marketing.contacts.put(
             request_body: {
               list_ids: [list.sendgrid_id],

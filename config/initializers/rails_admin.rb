@@ -125,7 +125,6 @@ RailsAdmin.config do |config|
         end
       end
     end
-
   end
 
   config.model "User::Account" do
@@ -178,11 +177,10 @@ RailsAdmin.config do |config|
     field :name, :string
     field :image, :active_storage do
       # pretty_value do
-        # if value
-          # bindings[:view].content_tag(:img, value.filename, src: value.url)
-        # end
+      # if value
+      # bindings[:view].content_tag(:img, value.filename, src: value.url)
+      # end
       # end
     end
   end
-
 end

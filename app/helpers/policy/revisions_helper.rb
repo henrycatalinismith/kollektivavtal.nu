@@ -7,15 +7,15 @@ module Policy::RevisionsHelper
 
   def policy_revision_title(revision)
     case I18n.locale
-      when :en then revision.title_en
-      when :sv then revision.title_sv
+    when :en then revision.title_en
+    when :sv then revision.title_sv
     end
   end
 
   def policy_revision_body(revision)
     case I18n.locale
-      when :en then revision.body_en
-      when :sv then revision.body_sv
+    when :en then revision.body_en
+    when :sv then revision.body_sv
     end
   end
 end

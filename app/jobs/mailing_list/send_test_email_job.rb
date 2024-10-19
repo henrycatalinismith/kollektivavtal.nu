@@ -6,20 +6,20 @@ class MailingList::SendTestEmailJob < ApplicationJob
     @list = @email.list
 
     subject = case language
-      when :en then @email.subject_en
-      when :sv then @email.subject_sv
+    when :en then @email.subject_en
+    when :sv then @email.subject_sv
     end
 
     plain_content = case language
-      when :en then @email.markdown_en
-      when :sv then @email.markdown_sv
+    when :en then @email.markdown_en
+    when :sv then @email.markdown_sv
     end
 
     puts "Subject: #{subject}"
     puts "Markdown: #{plain_content}"
 
     html_content = ApplicationController.new.render_to_string(
-      partial: 'mailing_list/emails/html',
+      partial: "mailing_list/emails/html",
       locals: { email: @email, language: language }
     )
 
@@ -37,7 +37,7 @@ class MailingList::SendTestEmailJob < ApplicationJob
       },
     }
 
-    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    sg = SendGrid::API.new(api_key: ENV["SENDGRID_API_KEY"])
     response = sg.client.marketing.singlesends.post(request_body: singlesend)
 
     puts response.status_code

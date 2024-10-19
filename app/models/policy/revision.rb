@@ -36,7 +36,5 @@ class Policy::Revision < ApplicationRecord
     configure :body_sv, :text do
       html_attributes rows: 20
     end
-
   end
-
 end

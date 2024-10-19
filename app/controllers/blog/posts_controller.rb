@@ -14,4 +14,3 @@ class Blog::PostsController < ApplicationController
     @posts = Blog::Post.reverse_chronological
   end
 end
-

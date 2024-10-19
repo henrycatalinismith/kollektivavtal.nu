@@ -4,4 +4,3 @@ class Magazine::DocumentsController < ApplicationController
   def show
   end
 end
-

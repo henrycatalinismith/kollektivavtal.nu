@@ -1,5 +1,5 @@
 class MailingList::Subscription < ApplicationRecord
-  belongs_to :list, class_name: 'MailingList::List', foreign_key: :list_id
+  belongs_to :list, class_name: "MailingList::List", foreign_key: :list_id
 
   enum :sendgrid_status, {
     sendgrid_pending: 0,

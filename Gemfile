@@ -12,7 +12,8 @@ gem "thruster", require: false
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
-  gem "rubocop-rails-omakase", require: false
+  gem "rubocop"
+  gem "rubocop-rails", "~> 2.24"
 end
 
 gem "bcrypt", "~> 3.1"

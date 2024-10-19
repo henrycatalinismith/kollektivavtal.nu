@@ -10,7 +10,7 @@ class MailingList::DeleteSendgridSubscriptionJob < ApplicationJob
   def perform(subscription_id)
     @subscription = MailingList::Subscription.find(subscription_id)
 
-    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    sg = SendGrid::API.new(api_key: ENV["SENDGRID_API_KEY"])
 
     response = sg.client.marketing.contacts.search.post(request_body: {
       query: "email LIKE '#{@subscription.email}' AND CONTAINS(list_ids, '#{@subscription.list.sendgrid_id}')"
@@ -69,7 +69,7 @@ class MailingList::DeleteSendgridSubscriptionJob < ApplicationJob
       query_params: {
         contact_ids: [contact["id"]]
       }
-    ) 
+    )
 
     @subscription.sendgrid_delete_success!
   end
