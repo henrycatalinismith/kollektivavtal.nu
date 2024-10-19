@@ -1,5 +1,5 @@
 class MailingList::Email < ApplicationRecord
-  belongs_to :list, class_name: 'MailingList::List', foreign_key: :list_id
+  belongs_to :list, class_name: "MailingList::List", foreign_key: :list_id
   validates :list, presence: true
 
   validates :subject_en, presence: true
@@ -22,7 +22,5 @@ class MailingList::Email < ApplicationRecord
     configure :markdown_sv, :text do
       html_attributes rows: 20
     end
-
   end
-
 end

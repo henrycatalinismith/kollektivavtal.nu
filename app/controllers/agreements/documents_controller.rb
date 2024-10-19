@@ -4,4 +4,3 @@ class Agreements::DocumentsController < ApplicationController
   def show
   end
 end
-

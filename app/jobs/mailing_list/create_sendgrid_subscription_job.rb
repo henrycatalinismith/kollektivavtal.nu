@@ -13,7 +13,7 @@ class MailingList::CreateSendgridSubscriptionJob < ApplicationJob
     accept_language_parser = HttpAcceptLanguage::Parser.new(@subscription.accept_language)
     language = accept_language_parser.language_region_compatible_from(["en", "sv"]) || "en"
 
-    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    sg = SendGrid::API.new(api_key: ENV["SENDGRID_API_KEY"])
     response = sg.client.marketing.contacts.put(
       request_body: {
         list_ids: [@subscription.list.sendgrid_id],
