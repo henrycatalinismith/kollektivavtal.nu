@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   get "/news/:slug/" => "blog/posts#show", as: :blog_post
 
   get "/policies/:slug/" => "policy/documents#show", as: :policy_document
+  get "/agreements/public-service/" => "agreements/documents#show", as: :agreement_document
 end
