@@ -8,4 +8,7 @@ class HomeController < ApplicationController
       render "mailing_list/subscriptions/created"
     end
   end
+
+  def landing
+  end
 end
