@@ -17,7 +17,7 @@
         <span class="self-start pl-[6ch]">now</span>
       </div>
 
-      <ol class="px-8 font-light">
+      <ol class="px-8 font-light text-lg lg:text-xl">
         <li>Collective power</li>
         <li>Collective bargaining</li>
         <li>Collective gain</li>
@@ -40,7 +40,7 @@
       <span class="">simple</span>
     </h2>
 
-    <p class="text-xl md:text-4xl lg:text-2xl lg:max-w-[28ch] font-light">
+    <p class="text-lg lg:text-xl lg:max-w-[28ch] font-light">
       An information hub that is accessible to immigrants and the younger workforce alike.
       Your rights all presented in simple terms.
       The latest news of organising in your industry collected for you.
@@ -74,7 +74,7 @@
         { img: 'c3.webp', text: 'Join network, meetups, and seminars' }
       ] %>
       <% list.each do |item| %>
-        <li class="flex flex-col items-center gap-y-4 max-w-[16ch]">
+        <li class="flex flex-col items-center gap-y-4 max-w-[20ch] text-lg lg:text-xl">
           <img src="<%= item[:img] %>" class="h-16 landscape:sm:h-32 md:h-64 object-contain" />
           <span class="font-extralight"><%= item[:text] %></span>
         </li>
@@ -107,8 +107,8 @@
       ] %>
       <% list.each do |item| %>
         <li class="flex flex-col gap-y-4 py-4">
-          <span class="font-light md:text-lg"><%= item[:text] %></span>
-          <span class="text-xl md:text-2xl lowercase font-major"><%= item[:word] %></span>
+          <span class="font-light text-lg"><%= item[:text] %></span>
+          <span class="text-xl lg:text-xl lowercase font-major"><%= item[:word] %></span>
         </li>
       <% end %>
     </ol>
@@ -118,18 +118,18 @@
 
 <div class="bg-white min-h-svh flex items-center justify-center text-black relative py-8">
   <div class="w-full h-full min-h-lvh max-w-[64rem] border-red-100 relative flex flex-col justify-center gap-y-8 px-8">
-    <h2 class="lowercase font-major text-left text-lg flex flex-col font-bold sm:text-4xl">
+    <h2 class="lowercase font-major text-left text-lg flex flex-col font-bold md:text-4xl">
       <span class="pl-[1ch]">By the working class</span>
       <span class="">For the working class</span>
     </h2>
 
-    <ul class="sm:text-2xl font-light">
+    <ul class="text-lg sm:text-xl font-light">
       <li>No political affiliation</li>
       <li>No union affiliation</li>
       <li>No profit motive</li>
     </ul>
 
-    <p class="lowercase sm:text-2xl font-major flex flex-col">
+    <p class="lowercase sm:text-2xl font-bold font-major flex flex-col md:text-4xl">
       <span class="">Collective power for</span>
       <span class="">collective gain
     </p>
