@@ -11,6 +11,9 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}'
   ],
   theme: {
+      fontFamily: {
+        'major': ['"Major Mono Display", sans-serif'],
+      },
     extend: {
       fontSize: {
         '10xl': '10rem',
