@@ -11,13 +11,13 @@
         </h1>
       </div>
 
-      <div class="uppercase flex flex-col text-4xl xs:text-5xl md:text-6xl lg:text-8xl flex-grow self-center justify-center px-8 w-full max-w-[10ch]">
+      <div class="font-major text-gray-300 lowercase flex flex-col text-4xl xs:text-5xl md:text-6xl lg:text-8xl flex-grow self-center justify-center w-full max-w-[10ch]">
         <span class="self-start">The</span>
-        <span class="self-center">time is</span>
-        <span class="self-end">now</span>
+        <span class="self-start pl-[1ch]">time is</span>
+        <span class="self-start pl-[6ch]">now</span>
       </div>
 
-      <ol class="px-8">
+      <ol class="px-8 font-light">
         <li>Collective power</li>
         <li>Collective bargaining</li>
         <li>Collective gain</li>
@@ -35,12 +35,12 @@
 
   <div class="w-full h-full max-w-[64rem] max-h-[48rem] border-red-100 relative z-10 flex flex-col p-8 justify-between lg:flex-row lg:gap-x-8 lg:items-end">
 
-    <h2 class="text-5xl uppercase flex flex-col md:text-6xl min-w-max">
+    <h2 class="text-5xl lowercase font-major flex flex-col md:text-6xl min-w-max">
       <span class="">Plain and</span>
       <span class="">simple</span>
     </h2>
 
-    <p class="text-xl md:text-4xl lg:text-2xl lg:max-w-[28ch] text-justify">
+    <p class="text-xl md:text-4xl lg:text-2xl lg:max-w-[28ch] font-light">
       An information hub that is accessible to immigrants and the younger workforce alike.
       Your rights all presented in simple terms.
       The latest news of organising in your industry collected for you.
@@ -48,23 +48,26 @@
 
   </div>
 
-  <img src="/space.webp" class="absolute top-0 right-0 bottom-0 left-0 opacity-50 object-cover h-full w-full" />
+  <img src="/space.webp" class="absolute top-0 right-0 bottom-0 left-0 opacity-30 object-cover h-full w-full" />
 </div>
 
-<div class="bg-black min-h-svh flex items-center justify-center text-white relative uppercase">
+<div class="bg-black min-h-svh flex items-center justify-center text-white relative">
 
   <div class="
     w-full h-full max-w-[64rem] 
-    border-red-100 relative z-10 flex flex-col p-8 lg:gap-x-8 
-    gap-y-4
+    flex flex-col p-8 lg:gap-x-8 
+    py-0
+    gap-y-8
+    lg:gap-y-16
+    flex-grow
     justify-between
   ">
 
-    <h2 class="text-2xl sm:text-6xl lg:text-8xl">
+    <h2 class="text-xl lg:text-2xl text-center font-major lowercase">
       Small or big, choose your own capacity to engage
     </h2>
 
-    <ol class="flex flex-col justify-around text-center md:flex-row gap-y-4 items-center">
+    <ol class="flex flex-col justify-around text-center md:flex-row gap-y-8 items-center">
       <% list = [
         { img: 'c1.webp', text: 'Share resources with your colleagues' },
         { img: 'c2.webp', text: 'Start new clubs and organise at your workplace' },
@@ -73,7 +76,7 @@
       <% list.each do |item| %>
         <li class="flex flex-col items-center gap-y-4 max-w-[16ch]">
           <img src="<%= item[:img] %>" class="h-16 landscape:sm:h-32 md:h-64 object-contain" />
-          <%= item[:text] %>
+          <span class="font-extralight"><%= item[:text] %></span>
         </li>
       <% end %>
     </ol>
@@ -92,11 +95,11 @@
     md:flex-row md:items-center md:justify-between
   ">
 
-    <h2 class="text-6xl uppercase md:text-8xl">
+    <h2 class="text-6xl lowercase font-major md:text-8xl">
       Focus
     </h2>
 
-    <ol class="flex flex-col justify-around divide-y md:max-w-[37ch]">
+    <ol class="flex flex-col justify-around md:max-w-[37ch]">
       <% list = [
         { text: "What are unions? Which one should I join? What's in it for me?", word: "Start"},
         { text: "Pensions in Sweden, unemployment insurance, work environment laws.", word: "Learn" },
@@ -104,8 +107,8 @@
       ] %>
       <% list.each do |item| %>
         <li class="flex flex-col gap-y-4 py-4">
-          <span class="md:text-lg"><%= item[:text] %></span>
-          <span class="text-xl md:text-2xl uppercase"><%= item[:word] %></span>
+          <span class="font-light md:text-lg"><%= item[:text] %></span>
+          <span class="text-xl md:text-2xl lowercase font-major"><%= item[:word] %></span>
         </li>
       <% end %>
     </ol>
@@ -113,25 +116,30 @@
   </div>
 </div>
 
-<div class="bg-white h-svh flex items-center justify-center text-black relative">
-  <div class="w-full h-full min-h-lvh max-w-[64rem] border-red-100 relative flex flex-col justify-center items-center gap-y-8">
-    <h2 class="uppercase absolute top-0 right-0 bottom-0 left-0 text-xl flex flex-col justify-between p-8 items-center font-bold sm:text-4xl">
-      <span class="">By the working class</span>
+<div class="bg-white min-h-svh flex items-center justify-center text-black relative py-8">
+  <div class="w-full h-full min-h-lvh max-w-[64rem] border-red-100 relative flex flex-col justify-center gap-y-8 px-8">
+    <h2 class="lowercase font-major text-left text-lg flex flex-col font-bold sm:text-4xl">
+      <span class="pl-[1ch]">By the working class</span>
       <span class="">For the working class</span>
     </h2>
 
-    <ul class="uppercase sm:text-2xl">
+    <ul class="sm:text-2xl font-light">
       <li>No political affiliation</li>
       <li>No union affiliation</li>
       <li>No profit motive</li>
     </ul>
 
-    <p class="uppercase sm:text-2xl">
-      Collective power for collective gain
+    <p class="lowercase sm:text-2xl font-major flex flex-col">
+      <span class="">Collective power for</span>
+      <span class="">collective gain
     </p>
 
-    <p class="text-xl font-bold">
-      kollektivavtal.nu
-    </p>
+    <div class="flex flex-row gap-x-2 items-center self-start">
+      <img src="/starb.png" class="w-[20px]" />
+      <span class="text-xl font-bold">
+        kollektivavtal.nu
+      </span>
+    </div>
+
   </div>
 </div>
