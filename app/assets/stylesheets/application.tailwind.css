@@ -2,12 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .deck {
+    @apply bg-black flex flex-col;
   }
-}
 
-*/
+  .slot {
+    @apply xxs:grid xxs:place-content-center xxs:max-w-full xxs:overflow-x-hidden;
+  }
+
+  .slide {
+    @apply flex flex-col w-full xxs:p-4
+    xxs:mx-auto
+    xxs:landscape:aspect-[2/1] 
+    xxs:landscape:h-[100vw] 
+    xxs:landscape:max-w-screen-2xl 
+    xxs:landscape:max-h-[min(50vw,100vh)] 
+    xxs:portrait:aspect-[1/2] 
+    xxs:portrait:w-[100vw] 
+    xxs:portrait:max-w-[min(50vh,100vw)];
+  }
+
+  .slide-heading {
+    @apply xs:text-xl md:text-3xl lg:text-6xl font-extrabold  ;
+  }
+
+  .slide-subheading {
+    @apply xs:text-lg md:text-2xl lg:text-5xl;
+  }
+
+  .slide-text {
+    @apply font-light xs:text-lg;
+  }
+
+}
