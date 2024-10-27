@@ -1,23 +1,72 @@
-<div class="bg-black h-svh flex items-center justify-center text-white overflow-hidden">
+<div class="deck">
 
-  <div class="w-full h-full max-w-[64rem] max-h-[48rem] relative">
+  <div class="slot">
 
-    <div class="absolute top-0 right-0 bottom-0 left-0 flex flex-col z-20 py-8 ">
+    <div class="slide bg-black text-white">
 
-      <div class="flex flex-row gap-x-2 items-center self-start px-8">
-        <img src="/starw.png" class="w-[20px]" />
-        <h1 class="text-xl font-bold">
+      <div class="
+        absolute
+        top-0
+        right-0
+        bottom-0
+        left-0
+        bg-fixed
+      " style="
+        background-image: url('/planet.webp');
+        background-size: clamp(64px, 18vw, 256px);
+        background-position: top 1rem right 0.2rem;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+      "></div>
+
+      <div class="
+        flex
+        flex-col
+        gap-x-2
+        xxs:flex-row
+      ">
+        <img
+          class="
+            aspect-square
+            h-[25px]
+            w-[25px]
+          "
+          src="/starw.png"
+        />
+        <h1 class="font-bold">
           kollektivavtal.nu
         </h1>
       </div>
 
-      <div class="font-major text-gray-300 lowercase flex flex-col text-4xl xs:text-5xl md:text-6xl lg:text-8xl flex-grow self-center justify-center w-full max-w-[10ch]">
+      <div class="
+        font-major
+        lowercase
+        flex
+        flex-row
+        flex-wrap
+        gap-x-3
+        w-full
+        slide-heading
+        xxs:flex-col
+        xxs:w-full
+        xxs:max-w-[9ch]
+        xxs:justify-self-center
+        xxs:justify-center
+        xxs:self-center
+        xxs:flex-grow
+      ">
         <span class="self-start">The</span>
-        <span class="self-start pl-[1ch]">time is</span>
-        <span class="self-start pl-[6ch]">now</span>
+        <span class="self-start xxs:pl-[1ch]">time is</span>
+        <span class="self-start xxs:pl-[6ch]">now</span>
       </div>
 
-      <ol class="px-8 font-light text-lg lg:text-xl">
+      <ol class="
+        font-light
+        flex
+        flex-col
+        justify-end
+        slide-text
+      ">
         <li>Collective power</li>
         <li>Collective bargaining</li>
         <li>Collective gain</li>
@@ -25,121 +74,234 @@
 
     </div>
 
-    <img src="/planet.webp" class="absolute right-0 top-16 sm:top-0 z-10 w-16 xs:w-32 sm:w-48 md:w-64" />
-
   </div>
 
-</div>
+  <div class="slot relative bg-black">
 
-<div class="bg-black h-svh flex items-center justify-center text-white relative">
+    <div class="
+      absolute
+      top-0
+      right-0
+      bottom-0
+      left-0
+      bg-fixed
+      opacity-30
+    " style="
+      background-image: url('/space.webp');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-origin: content-box;
+    "></div>
 
-  <div class="w-full h-full max-w-[64rem] max-h-[48rem] border-red-100 relative z-10 flex flex-col p-8 justify-between lg:flex-row lg:gap-x-8 lg:items-end">
+    <div class="
+      slide
+      relative
+    text-white
+      xxs:landscape:grid
+      xxs:landscape:items-center
+      xxs:landscape:grid-cols-2
+      xxs:portrait:justify-evenly
+    ">
 
-    <h2 class="text-5xl lowercase font-major flex flex-col md:text-6xl min-w-max">
-      <span class="">Plain and</span>
-      <span class="">simple</span>
-    </h2>
 
-    <p class="text-lg lg:text-xl lg:max-w-[28ch] font-light">
-      An information hub that is accessible to immigrants and the younger workforce alike.
-      Your rights all presented in simple terms.
-      The latest news of organising in your industry collected for you.
-    </p>
+      <h2 class="
+        lowercase
+        font-major
+        flex
+        flex-row
+        flex-wrap
+        gap-x-3
+        xxs:landscape:flex-grow
+        slide-heading
+      ">
+        <span class="">Plain and</span>
+        <span class="">simple</span>
+      </h2>
 
-  </div>
+      <p class="
+        font-light
+        xxs:landscape:flex-grow
+        slide-text
+      ">
+        An information hub that is accessible to immigrants and the younger workforce alike.
+        Your rights all presented in simple terms.
+        The latest news of organising in your industry collected for you.
+      </p>
 
-  <img src="/space.webp" class="absolute top-0 right-0 bottom-0 left-0 opacity-30 object-cover h-full w-full" />
-</div>
-
-<div class="bg-black min-h-svh flex items-center justify-center text-white relative">
-
-  <div class="
-    w-full h-full max-w-[64rem] 
-    flex flex-col p-8 lg:gap-x-8 
-    py-0
-    gap-y-8
-    lg:gap-y-16
-    flex-grow
-    justify-between
-  ">
-
-    <h2 class="text-xl lg:text-2xl text-center font-major lowercase">
-      Small or big, choose your own capacity to engage
-    </h2>
-
-    <ol class="flex flex-col justify-around text-center md:flex-row gap-y-8 items-center">
-      <% list = [
-        { img: 'c1.webp', text: 'Share resources with your colleagues' },
-        { img: 'c2.webp', text: 'Start new clubs and organise at your workplace' },
-        { img: 'c3.webp', text: 'Join network, meetups, and seminars' }
-      ] %>
-      <% list.each do |item| %>
-        <li class="flex flex-col items-center gap-y-4 max-w-[20ch] text-lg lg:text-xl">
-          <img src="<%= item[:img] %>" class="h-16 landscape:sm:h-32 md:h-64 object-contain" />
-          <span class="font-extralight"><%= item[:text] %></span>
-        </li>
-      <% end %>
-    </ol>
-
-  </div>
-</div>
-
-<div class="bg-black min-h-svh flex items-center justify-center text-white relative ">
-
-  <div class="
-    w-full h-full max-w-[64rem] 
-    border-red-100 relative z-10 flex flex-col p-8
-    gap-y-4
-    justify-between
-    landscape:flex-row landscape:items-center
-    md:flex-row md:items-center md:justify-between
-  ">
-
-    <h2 class="text-6xl lowercase font-major md:text-8xl">
-      Focus
-    </h2>
-
-    <ol class="flex flex-col justify-around md:max-w-[37ch]">
-      <% list = [
-        { text: "What are unions? Which one should I join? What's in it for me?", word: "Start"},
-        { text: "Pensions in Sweden, unemployment insurance, work environment laws.", word: "Learn" },
-        { text: "How to organise, become a local representative, develop yourself and your workplace.", word: "Engage" }
-      ] %>
-      <% list.each do |item| %>
-        <li class="flex flex-col gap-y-4 py-4">
-          <span class="font-light text-lg"><%= item[:text] %></span>
-          <span class="text-xl lg:text-xl lowercase font-major"><%= item[:word] %></span>
-        </li>
-      <% end %>
-    </ol>
-
-  </div>
-</div>
-
-<div class="bg-white min-h-svh flex items-center justify-center text-black relative py-8">
-  <div class="w-full h-full min-h-lvh max-w-[64rem] border-red-100 relative flex flex-col justify-center gap-y-8 px-8">
-    <h2 class="lowercase font-major text-left text-lg flex flex-col font-bold md:text-4xl">
-      <span class="pl-[1ch]">By the working class</span>
-      <span class="">For the working class</span>
-    </h2>
-
-    <ul class="text-lg sm:text-xl font-light">
-      <li>No political affiliation</li>
-      <li>No union affiliation</li>
-      <li>No profit motive</li>
-    </ul>
-
-    <p class="lowercase sm:text-2xl font-bold font-major flex flex-col md:text-4xl">
-      <span class="">Collective power for</span>
-      <span class="">collective gain
-    </p>
-
-    <div class="flex flex-row gap-x-2 items-center self-start">
-      <img src="/starb.png" class="w-[20px]" />
-      <span class="text-xl font-bold">
-        kollektivavtal.nu
-      </span>
     </div>
 
   </div>
+
+  <div class="slot">
+    <div class="
+      slide
+      bg-black
+      text-white
+      xxs:flex
+      xxs:flex-col
+      xxs:landscape:justify-evenly
+    ">
+
+      <h2 class="
+        font-major
+        lowercase
+        xxs:landscape:text-center
+        slide-heading
+      ">
+        Small or big, choose your own capacity to engage
+      </h2>
+
+      <ol class="
+        flex
+        flex-col
+
+        xxs:portrait:flex-grow
+        xxs:justify-evenly
+        xxs:landscape:flex-row
+        xxs:landscape:w-full
+      ">
+        <% list = [
+          { img: "c1.webp", text: "Share resources with your colleagues" },
+          { img: "c2.webp", text: "Start new clubs and organise at your workplace" },
+          { img: "c3.webp", text: "Join network, meetups, and seminars" }
+        ] %>
+        <% list.each do |item| %>
+          <li class="
+            flex
+            flex-col
+            xxs:gap-y-4
+            xxs:portrait:text-center
+          ">
+            <img src="<%= item[:img] %>" class="
+              h-16
+              object-contain
+              self-start
+              xxs:self-center
+            " />
+            <span class="slide-text"><%= item[:text] %></span>
+          </li>
+        <% end %>
+      </ol>
+
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="
+      slide
+      bg-black
+      text-white
+      xxs:flex
+      xxs:landscape:flex-row
+      xxs:landscape:items-center
+      xxs:portrait:flex-col
+      xxs:portrait:justify-between
+    ">
+
+
+      <h2 class="
+        lowercase
+        font-major
+        slide-heading
+        xxs:landscape:flex-1
+      ">
+        Focus
+      </h2>
+
+      <ol class="
+        flex
+        flex-col
+        flex-grow
+        xxs:landscape:flex-1
+        xxs:landscape:h-full
+        xxs:landscape:justify-evenly
+        xxs:portrait:justify-evenly
+      ">
+        <% list = [
+          { text: "What are unions? Which one should I join? What's in it for me?", word: "Start"},
+          { text: "Pensions in Sweden, unemployment insurance, work environment laws.", word: "Learn" },
+          { text: "How to organise, become a local representative, develop yourself and your workplace.", word: "Engage" }
+        ] %>
+        <% list.each do |item| %>
+          <li class="
+            flex
+            flex-col
+            xxs:gap-y-4
+          ">
+            <h3 class="
+              lowercase
+              slide-subheading
+              font-major
+            "><%= item[:word] %></h3>
+            <span class="
+              slide-text
+            "><%= item[:text] %></span>
+          </li>
+        <% end %>
+      </ol>
+
+  
+
+
+    </div>
+  </div>
+
+  <div class="slot bg-white">
+    <div class="
+      slide
+      bg-white
+      text-black
+      xxs:flex
+      xxs:flex-col
+      xxs:justify-evenly
+    ">
+
+      <h2 class="
+        lowercase
+        font-major
+        font-bold
+        xxs:flex
+        xxs:flex-col
+        slide-heading
+      ">
+        <span class="pl-[1ch]">By the working class</span>
+        <span class="">For the working class</span>
+      </h2>
+
+      <ul class="
+        slide-text
+      ">
+        <li>No political affiliation</li>
+        <li>No union affiliation</li>
+        <li>No profit motive</li>
+      </ul>
+
+      <p class="
+        lowercase
+        font-bold
+        font-major
+        xxs:flex
+        xxs:flex-col
+        slide-subheading
+      ">
+        <span class="">Collective power for</span>
+        <span class="">collective gain
+      </p>
+
+      <div class="
+        flex
+        flex-col
+        xxs:flex-row
+        xxs:items-center
+        xxs:gap-x-2
+      ">
+        <img src="/starb.png" class="aspect-square w-[20px]" />
+        <span class="text-xl font-bold">
+          kollektivavtal.nu
+        </span>
+      </div>
+
+    </div>
+  </div>
+
 </div>
