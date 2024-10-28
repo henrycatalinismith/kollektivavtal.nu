@@ -17,10 +17,10 @@
     xxs:landscape:aspect-[2/1] 
     xxs:landscape:h-[100vw] 
     xxs:landscape:max-w-screen-2xl 
-    xxs:landscape:max-h-[min(50vw,100vh)] 
+    xxs:landscape:max-h-[min(50vw,100svh)] 
     xxs:portrait:aspect-[1/2] 
     xxs:portrait:w-[100vw] 
-    xxs:portrait:max-w-[min(50vh,100vw)];
+    xxs:portrait:max-w-[min(50svh,100vw)];
   }
 
   .slide-heading {

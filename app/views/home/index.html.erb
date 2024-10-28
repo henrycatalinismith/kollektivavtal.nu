@@ -89,7 +89,6 @@
     " style="
       background-image: url('/space.webp');
       background-position: center;
-      background-repeat: no-repeat;
       background-origin: content-box;
     "></div>
 
@@ -177,6 +176,7 @@
               object-contain
               self-start
               xxs:self-center
+              lg:h-32
             " />
             <span class="slide-text"><%= item[:text] %></span>
           </li>
@@ -259,10 +259,12 @@
       <h2 class="
         lowercase
         font-major
-        font-bold
         xxs:flex
         xxs:flex-col
-        slide-heading
+        md:text-3xl
+        lg:text-6xl
+        font-extrabold
+        whitespace-nowrap
       ">
         <span class="pl-[1ch]">By the working class</span>
         <span class="">For the working class</span>
@@ -283,6 +285,9 @@
         xxs:flex
         xxs:flex-col
         slide-subheading
+        md:text-2xl
+        lg:text-5xl
+        whitespace-nowrap
       ">
         <span class="">Collective power for</span>
         <span class="">collective gain
