@@ -35,6 +35,46 @@ en:
 
   home:
     index:
+      slide1:
+        line1: The
+        line2: time is
+        line3: now
+        power: Collective power
+        bargaining: Collective bargaining
+        gain: Collective gain
+      
+      slide2:
+        heading: Plain and Simple
+        text: An information hub that is accessible to immigrants and the younger workforce alike. Your rights all presented in simple terms. The latest news of organising in your industry collected for you. 
+
+      form:
+        heading: Join the movement
+        text: We'll send you email updates as the project progresses. 
+      
+      capacity:
+        heading: Small or big, choose your own capacity to engage 
+        resources: Share resources with your colleagues
+        organise: Start new clubs and organise at your workplace
+        network: Join network, meetups, and seminars
+
+      focus:
+        heading: Focus
+        subheading1: Start
+        text1: What are unions? Which one should I join? What's in it for me?"
+        subheading2: Learn
+        text2: Pensions in Sweden, unemployment insurance, work environment laws.
+        subheading3: Engage
+        text3: How to organise, become a local representative, develop yourself and your workplace.
+
+      footer:
+        heading1: By the working class
+        heading2: For the working class
+        no1: No political affiliation
+        no2: No union affiliation
+        no3: No profit motive
+        power: Collective power for
+        gain: collective gain
+
       title_1: Twenty First Century
       title_2: Collective Power
       description: |

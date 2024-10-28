@@ -36,6 +36,46 @@ sv:
 
   home:
     index:
+      slide1:
+        line1: Tiden
+        line2: är
+        line3: nu
+        power: Kollektiv makt
+        bargaining: Kollektiv förhandling
+        gain: Kollektiv vinst
+
+      slide2:
+        heading: Enkelt och tydligt
+        text: En informationscentral som är tillgänglig för invandrare och den yngre arbetskraften. Dina rättigheter presenteras på ett enkelt sätt. De senaste nyheterna om organisering i din bransch samlade för dig.
+
+      form:
+        heading: Gå med i rörelsen
+        text: Vi skickar e-postuppdateringar när projektet fortskrider.
+
+      capacity:
+        heading: Liten eller stor, välj din egen kapacitet att engagera
+        resources: Dela resurser med dina kollegor
+        organise: Bilda nya klubbar och organisera på din arbetsplats
+        network: Gå med i nätverk, träffar och seminarier
+
+      focus:
+        heading: Fokus
+        subheading1: Start
+        text1: Vad är en fackförening? Vilken ska jag gå med i? Vad finns det för mig?
+        subheading2: Lär dig
+        text2: Pensioner i Sverige, arbetslöshetsförsäkring, arbetsmiljölagar.
+        subheading3: Engagera dig
+        text3: Hur man organiserar, blir en lokal representant, utvecklar dig själv och din arbetsplats.
+
+      footer:
+        heading1: Av arbetarklassen
+        heading2: för arbetarklassen
+        no1: Ingen politisk anknytning
+        no2: Ingen anknytning till någon fackförening
+        no3: Ingen vinstmotiv
+        power: Kollektiv makt för 
+        gain: kollektiv vinst
+
       title_1: Twenty First Century
       title_2: Collective Power
       description: |
