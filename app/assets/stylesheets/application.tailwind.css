@@ -36,3 +36,18 @@
   }
 
 }
+
+@keyframes now {
+   0% { transform: scale(1.00); }
+  10% { transform: scale(1.00); }
+  12% { transform: scale(1.08) skew(0deg); }
+  14% { transform: scale(1.00) skew(30deg); }
+  26% { transform: scale(1.00) skew(0deg); }
+  28% { transform: scale(1.08) skew(-60deg); }
+  30% { transform: scale(1.00) skew(0deg); }
+  100% { transform: scale(1.00); }
+}
+
+.now {
+  animation: now 2048ms forwards 2048ms 2;
+}
