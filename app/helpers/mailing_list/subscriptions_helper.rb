@@ -8,6 +8,6 @@ end
 
 class SubscriptionCreatedRender < Redcarpet::Render::HTML
   def paragraph(text)
-    "<p class=\"mt-4 text-md text-gray-300 max-w-[20rem]\">#{text}</p>"
+    "<p class=\"slide-text landscape:max-w-[70%]\">#{text}</p>"
   end
 end
