@@ -1,14 +1,15 @@
 class HomeController < ApplicationController
   def index
+    if flash[:notice].present?
+      flash[:notice] = nil
+      @subscription_created = true
+    end
+    # @subscription_created = true
   end
 
   def landing
     @blog_posts = Blog::Post.order(published_at: :desc)
     # flash[:notice] = "Welcome to the blog!"
     # @blog_posts = []
-    if flash[:notice] == "Signed up successfully!"
-      flash[:notice] = nil
-      render "mailing_list/subscriptions/created"
-    end
   end
 end
