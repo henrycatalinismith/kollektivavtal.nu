@@ -471,7 +471,8 @@
         flex-col
         xxs:portrait:flex-grow
         xxs:justify-evenly
-        xxs:landscape:flex-row
+        xxs:landscape:grid
+        xxs:landscape:grid-cols-3
         xxs:landscape:w-full
       ">
         <% list = [
@@ -485,6 +486,7 @@
             flex-col
             xxs:gap-y-4
             xxs:portrait:text-center
+            xxs:landscape:text-center
           ">
             <img src="<%= item[:img] %>" class="
               h-16
