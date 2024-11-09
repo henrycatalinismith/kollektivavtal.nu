@@ -38,6 +38,8 @@ class Ability
     if user.role?("labour_market_admin")
       can :manage, LabourMarket::CollectiveAgreement
       can :manage, LabourMarket::CollectiveAgreementVersion
+      can :manage, LabourMarket::CollectiveAgreementSignature
+      can :manage, LabourMarket::Union
     end
   end
 end
