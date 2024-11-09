@@ -1,0 +1,96 @@
+<div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
+  <div class="lg:max-w-lg">
+    <nav aria-label="Breadcrumb">
+      <ol role="list" class="flex items-center space-x-2">
+
+        <li>
+          <div class="flex items-center text-sm">
+            <a href="#" class="font-medium text-gray-500 hover:text-gray-900">
+              Labour Market
+            </a>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="ml-2 h-5 w-5 flex-shrink-0 text-gray-300">
+              <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+            </svg>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-center text-sm">
+            <a href="/labour-market/collective-agreements" class="font-medium text-gray-500 hover:text-gray-900">
+              Collective Agreements
+            </a>
+          </div>
+        </li>
+
+      </ol>
+    </nav>
+
+    <div class="mt-4">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <%= @agreement.name_sv %>
+      </h1>
+    </div>
+
+    <section aria-labelledby="information-heading" class="mt-4">
+      <h2 id="information-heading" class="sr-only">Information</h2>
+
+      <div class="flex flex-col">
+
+      <div class="mt-4 space-y-6">
+        <div class="prose w-full">
+          <%= render_collective_agreement_description(@agreement).html_safe %>
+        </div>
+      </div>
+
+      <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
+        <% @agreement.versions.each do |version| %>
+          <div class="py-4">
+            <dt class="text-sm font-medium leading-6 text-gray-900">
+              <%= version.name_sv %>
+            </dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+              <a
+                href="<%= url_for(version.document) %>"
+                class="text-sky-600 dark:text-sky-500 underline overflow-hidden whitespace-nowrap text-ellipsis block max-w-full"
+              >
+                <%= version.document.filename.extension.upcase %>, <%= (version.document.byte_size / 1024).round(2) %> KB
+              </a>
+            </dd>
+          </div>
+        <% end %>
+      </dl>
+
+    </section>
+  </div>
+
+  <!-- Product image -->
+  <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
+    <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg max-w-sm">
+    
+      <img alt="" class="h-full w-full object-cover object-center"
+        <% if @agreement.image.attached? %>
+          src="<%= @agreement.image.url %>"
+        <% else %>
+          src="https://placehold.co/512x512"
+        <% end %>
+      />
+    </div>
+
+
+    <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
+
+
+      <div class="lg:px-4 py-4">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          Unions
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+          Unionen, Sveriges Ingenjörer
+        </dd>
+      </div>
+
+    </dl>
+
+  </div>
+
+</div>

@@ -9,6 +9,6 @@ class LabourMarket::CollectiveAgreementsController < ApplicationController
   end
 
   def show
-    @agreement = LabourMarket::CollectiveAgreement.find(params[:slug])
+    @agreement = LabourMarket::CollectiveAgreement.find_by_slug(params[:agreement])
   end
 end
