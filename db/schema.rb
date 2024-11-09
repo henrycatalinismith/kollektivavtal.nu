@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_09_195011) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_09_202826) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -64,9 +64,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_09_195011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "agreement_id"
-    t.string "union_id"
+    t.string "organisation_id"
     t.index ["agreement_id"], name: "idx_on_agreement_id_8b6eb5de39"
-    t.index ["union_id"], name: "idx_on_union_id_16c6dd4da6"
+    t.index ["organisation_id"], name: "idx_on_organisation_id_b8f9e0871d"
   end
 
   create_table "labour_market_collective_agreement_versions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -88,14 +88,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_09_195011) do
     t.index ["slug"], name: "index_labour_market_collective_agreements_on_slug", unique: true
   end
 
-  create_table "labour_market_unions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+  create_table "labour_market_organisations", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
     t.string "slug"
     t.text "description_en"
     t.string "website"
-    t.index ["slug"], name: "index_labour_market_unions_on_slug", unique: true
+    t.index ["slug"], name: "index_labour_market_organisations_on_slug", unique: true
   end
 
   create_table "mailing_list_emails", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -190,7 +190,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_09_195011) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "labour_market_collective_agreement_signatures", "labour_market_collective_agreements", column: "agreement_id"
-  add_foreign_key "labour_market_collective_agreement_signatures", "labour_market_unions", column: "union_id"
+  add_foreign_key "labour_market_collective_agreement_signatures", "labour_market_organisations", column: "organisation_id"
   add_foreign_key "labour_market_collective_agreement_versions", "labour_market_collective_agreements", column: "agreement_id"
   add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
   add_foreign_key "mailing_list_subscriptions", "mailing_list_lists", column: "list_id"

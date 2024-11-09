@@ -39,7 +39,7 @@ class Ability
       can :manage, LabourMarket::CollectiveAgreement
       can :manage, LabourMarket::CollectiveAgreementVersion
       can :manage, LabourMarket::CollectiveAgreementSignature
-      can :manage, LabourMarket::Union
+      can :manage, LabourMarket::Organisation
     end
   end
 end
