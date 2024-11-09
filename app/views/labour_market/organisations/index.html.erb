@@ -2,16 +2,24 @@
   <div class="lg:max-w-lg flex flex-col">
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-      Collective Agreements
+      <% if @organisation_type == :national_union %>
+        National Unions
+      <% elsif @organisation_type == :employer_association %>
+        Employer Associations
+      <% end %>
     </h1>
 
     <ol class="list-disc mt-4 ml-4">
-      <% @agreements.each do |agreement| %>
+      <% @organisations.each do |organisation| %>
         <li>
           <a
             class="text-sky-600 underline"
-            href="<%= collective_agreement_path(agreement) %>"
-          ><%= agreement.name %></a>
+            <% if @organisation_type == :national_union %>
+              href="<%= national_union_path(organisation) %>"
+            <% elsif @organisation_type == :employer_association %>
+              href="<%= employer_association_path(organisation) %>"
+            <% end %>
+          ><%= organisation.name %></a>
         </li>
       <% end %>
     </ol>

@@ -1,12 +1,21 @@
 <div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
   <div class="lg:max-w-lg flex flex-col">
 
-    <%= render partial: "ui/breadcrumbs", locals: {
-      links: [
-        { href: "/labour-market", text: "Labour Market" },
-        { href: "/labour-market/unions", text: "Unions" },
-      ]
-    } %>
+    <% if @organisation.national_union? %>
+      <%= render partial: "ui/breadcrumbs", locals: {
+        links: [
+          { href: labour_market_path, text: "Labour Market" },
+          { href: national_unions_path, text: "National Unions" },
+        ]
+      } %>
+    <% elsif @organisation.employer_association? %>
+      <%= render partial: "ui/breadcrumbs", locals: {
+        links: [
+          { href: labour_market_path, text: "Labour Market" },
+          { href: employer_associations_path, text: "Employer Associations" },
+        ]
+      } %>
+    <% end %>
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
       <%= @organisation.name %>
