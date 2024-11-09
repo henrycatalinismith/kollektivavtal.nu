@@ -1,20 +1,22 @@
-<div class="flex flex-col gap-y-4">
+<div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
+  <div class="lg:max-w-lg">
 
-  <div class="flex flex-col gap-y-1">
-    <h1 class="font-bold text-4xl m-0">
-      Collective Agreements
-    </h1>
+    <div class="mt-4">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Collective Agreements
+      </h1>
+    </div>
+
+    <ol>
+      <% @agreements.each do |agreement| %>
+        <li>
+          <a class="text-underline text-blue-600" href="/labour-market/collective-agreements/<%= agreement.slug %>">
+            <%= agreement.name %>
+          </a>
+        </li>
+      <% end %>
+    </ol>
+
   </div>
-
-
-  <ol>
-    <% @agreements.each do |agreement| %>
-      <li>
-        <a class="text-underline text-blue-600" href="/labour-market/collective-agreements/<%= agreement.slug %>">
-          <%= agreement.name_sv %>
-        </a>
-      </li>
-    <% end %>
-  </ol>
 
 </div>
