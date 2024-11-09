@@ -7,6 +7,11 @@ class LabourMarket::Organisation < ApplicationRecord
   has_many :signatures, class_name: "LabourMarket::CollectiveAgreementSignature", dependent: :destroy
   has_many :agreements, through: :signatures
 
+  enum organisation_type: {
+    national_union: 0,
+    employer_association: 1,
+  }
+
   rails_admin do
     configure :name do
       sticky true

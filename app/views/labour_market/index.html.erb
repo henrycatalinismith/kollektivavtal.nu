@@ -2,16 +2,22 @@
   <div class="lg:max-w-lg flex flex-col">
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-      Collective Agreements
+      Labour Market
     </h1>
 
+    <% links = [
+      { href: national_unions_path, text: "National Unions" },
+      { href: collective_agreements_path, text: "Collective Agreements" },
+      { href: employer_associations_path, text: "Employer Associations" },
+    ] %>
+
     <ol class="list-disc mt-4 ml-4">
-      <% @agreements.each do |agreement| %>
+      <% links.each do |link| %>
         <li>
           <a
             class="text-sky-600 underline"
-            href="<%= collective_agreement_path(agreement) %>"
-          ><%= agreement.name %></a>
+            href="<%= link[:href] %>"
+          ><%= link[:text] %></a>
         </li>
       <% end %>
     </ol>
