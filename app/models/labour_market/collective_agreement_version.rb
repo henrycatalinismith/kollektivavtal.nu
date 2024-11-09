@@ -1,8 +1,24 @@
 class LabourMarket::CollectiveAgreementVersion < ApplicationRecord
-  validates :name_sv, presence: true
-  validates :slug, presence: true
+  validates :signing_year, presence: true
+  validates :expiry_year, presence: true
   has_one_attached :document
-  scope :chronological, -> { order(created_at: :asc) }
-  scope :reverse_chronological, -> { order(created_at: :desc) }
+  scope :chronological, -> { order(signing_year: :asc) }
+  scope :reverse_chronological, -> { order(signing_year: :desc) }
   belongs_to :agreement, class_name: "LabourMarket::CollectiveAgreement"
+
+  def name
+    "#{agreement.name} #{signing_year} - #{expiry_year}"
+  end
+
+  rails_admin do
+    # configure :signing_year do
+    #   sticky true
+    #   column_width 32
+    # end
+    # configure :expiry_year do
+    #   sticky true
+    #   column_width 32
+    # end
+  end
+
 end
