@@ -38,6 +38,6 @@ Rails.application.routes.draw do
 
   get "/labour-market/collective-agreements" => "labour_market/collective_agreements#index", as: :collective_agreements
   get "/labour-market/collective-agreements/:agreement" => "labour_market/collective_agreements#show", as: :collective_agreement
-  get "/labour-market/unions/:union" => "labour_market/unions#show", as: :union
+  get "/labour-market/unions/:organisation" => "labour_market/organisations#show", as: :union
   # get "/labour-market/collective-agreements/:agreement/:version" => "labour_market/collective_agreement_versions#show", as: :collective_agreement_version
 end

@@ -6,7 +6,7 @@ class LabourMarket::CollectiveAgreement < ApplicationRecord
   has_many :versions, class_name: "LabourMarket::CollectiveAgreementVersion", dependent: :destroy, inverse_of: :agreement
   has_one_attached :image
   has_many :signatures, class_name: "LabourMarket::CollectiveAgreementSignature", dependent: :destroy, inverse_of: :agreement
-  has_many :signatories, through: :signatures, source: :union
+  has_many :signatories, through: :signatures, source: :organisation
 
   rails_admin do
     configure :name do

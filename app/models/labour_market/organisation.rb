@@ -1,4 +1,4 @@
-class LabourMarket::Union < ApplicationRecord
+class LabourMarket::Organisation < ApplicationRecord
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
   scope :chronological, -> { order(created_at: :asc) }
