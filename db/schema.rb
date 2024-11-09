@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_09_162411) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_09_184412) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -75,6 +75,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_09_162411) do
     t.datetime "updated_at", null: false
     t.string "name_sv", null: false
     t.string "slug"
+    t.text "description_en"
     t.index ["slug"], name: "index_labour_market_collective_agreements_on_slug", unique: true
   end
 

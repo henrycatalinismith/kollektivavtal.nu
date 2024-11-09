@@ -9,9 +9,8 @@
 
   <ol>
     <% @agreements.each do |agreement| %>
-      <% version = agreement.latest_version %>
       <li>
-        <a class="text-underline text-blue-600" href="/labour-market/collective-agreements/<%= agreement.slug %>/<%= version.slug %>">
+        <a class="text-underline text-blue-600" href="/labour-market/collective-agreements/<%= agreement.slug %>">
           <%= agreement.name_sv %>
         </a>
       </li>
