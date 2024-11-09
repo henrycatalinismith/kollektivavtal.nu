@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_17_185316) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_09_162411) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -58,6 +58,24 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_185316) do
     t.string "key", null: false
     t.text "value"
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
+  end
+
+  create_table "labour_market_collective_agreement_versions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "agreement_id"
+    t.string "name_sv", null: false
+    t.string "slug"
+    t.index ["agreement_id", "slug"], name: "idx_on_agreement_id_slug_96d8908d0d", unique: true
+    t.index ["agreement_id"], name: "idx_on_agreement_id_258c645326"
+  end
+
+  create_table "labour_market_collective_agreements", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name_sv", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_labour_market_collective_agreements_on_slug", unique: true
   end
 
   create_table "mailing_list_emails", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -151,6 +169,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_17_185316) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "labour_market_collective_agreement_versions", "labour_market_collective_agreements", column: "agreement_id"
   add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
   add_foreign_key "mailing_list_subscriptions", "mailing_list_lists", column: "list_id"
   add_foreign_key "policy_revisions", "policy_documents", column: "document_id"

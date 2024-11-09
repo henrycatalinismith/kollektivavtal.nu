@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   get "/policies/:slug/" => "policy/documents#show", as: :policy_document
   get "/agreements/public-service/" => "agreements/documents#show", as: :agreement_document
   get "/opinion/unions-are-good-actually" => "magazine/documents#show", as: :magazine_document
+
+  get "/labour-market/collective-agreements" => "labour_market/collective_agreements#index", as: :collective_agreements
+  get "/labour-market/collective-agreements/:agreement/:version" => "labour_market/collective_agreement_versions#show", as: :collective_agreement_version
 end
