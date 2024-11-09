@@ -34,5 +34,10 @@ class Ability
       can :manage, Policy::Document
       can :manage, Policy::Revision
     end
+
+    if user.role?("labour_market_admin")
+      can :manage, LabourMarket::CollectiveAgreement
+      can :manage, LabourMarket::CollectiveAgreementVersion
+    end
   end
 end
