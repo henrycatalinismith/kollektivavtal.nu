@@ -37,8 +37,8 @@ Rails.application.routes.draw do
   get "/opinion/unions-are-good-actually" => "magazine/documents#show", as: :magazine_document
 
   get "/labour-market" => "labour_market#index", as: :labour_market
-  get "/labour-market/collective-agreements" => "labour_market/collective_agreements#index", as: :collective_agreements
-  get "/labour-market/collective-agreements/:agreement" => "labour_market/collective_agreements#show", as: :collective_agreement
+  get "/labour-market/collective-agreements" => "labour_market/agreements#index", as: :collective_agreements
+  get "/labour-market/collective-agreements/:agreement" => "labour_market/agreements#show", as: :collective_agreement
 
   get "/labour-market/national-unions" => "labour_market/organisations#index",
     as: :national_unions,

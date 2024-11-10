@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_09_212819) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_10_070836) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -60,32 +60,32 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_09_212819) do
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
   end
 
-  create_table "labour_market_collective_agreement_signatures", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+  create_table "labour_market_agreement_memberships", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "agreement_id"
     t.string "organisation_id"
-    t.index ["agreement_id"], name: "idx_on_agreement_id_8b6eb5de39"
-    t.index ["organisation_id"], name: "idx_on_organisation_id_b8f9e0871d"
+    t.index ["agreement_id"], name: "index_labour_market_agreement_memberships_on_agreement_id"
+    t.index ["organisation_id"], name: "index_labour_market_agreement_memberships_on_organisation_id"
   end
 
-  create_table "labour_market_collective_agreement_versions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+  create_table "labour_market_agreement_versions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "agreement_id"
     t.integer "signing_year"
     t.integer "expiry_year"
-    t.index ["agreement_id", "signing_year"], name: "idx_on_agreement_id_signing_year_9c13f65301"
-    t.index ["agreement_id"], name: "idx_on_agreement_id_258c645326"
+    t.index ["agreement_id", "signing_year"], name: "idx_on_agreement_id_signing_year_666f2c94c5"
+    t.index ["agreement_id"], name: "index_labour_market_agreement_versions_on_agreement_id"
   end
 
-  create_table "labour_market_collective_agreements", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+  create_table "labour_market_agreements", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
     t.string "slug"
     t.text "description_en"
-    t.index ["slug"], name: "index_labour_market_collective_agreements_on_slug", unique: true
+    t.index ["slug"], name: "index_labour_market_agreements_on_slug", unique: true
   end
 
   create_table "labour_market_organisations", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -192,9 +192,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_09_212819) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "labour_market_collective_agreement_signatures", "labour_market_collective_agreements", column: "agreement_id"
-  add_foreign_key "labour_market_collective_agreement_signatures", "labour_market_organisations", column: "organisation_id"
-  add_foreign_key "labour_market_collective_agreement_versions", "labour_market_collective_agreements", column: "agreement_id"
+  add_foreign_key "labour_market_agreement_memberships", "labour_market_agreements", column: "agreement_id"
+  add_foreign_key "labour_market_agreement_memberships", "labour_market_organisations", column: "organisation_id"
+  add_foreign_key "labour_market_agreement_versions", "labour_market_agreements", column: "agreement_id"
   add_foreign_key "labour_market_organisations", "labour_market_organisations", column: "parent_id"
   add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
   add_foreign_key "mailing_list_subscriptions", "mailing_list_lists", column: "list_id"
