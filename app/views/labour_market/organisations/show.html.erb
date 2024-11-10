@@ -4,22 +4,22 @@
     <% if @organisation.national_union? %>
       <%= render partial: "ui/breadcrumbs", locals: {
         links: [
-          { href: labour_market_path, text: "Labour Market" },
-          { href: national_unions_path, text: "National Unions" },
+          { href: labour_market_path, text: t("labour_market.root") },
+          { href: national_unions_path, text: t("labour_market.national_unions") },
         ]
       } %>
     <% elsif @organisation.employer_association? %>
       <%= render partial: "ui/breadcrumbs", locals: {
         links: [
-          { href: labour_market_path, text: "Labour Market" },
-          { href: employer_associations_path, text: "Employer Associations" },
+          { href: labour_market_path, text: t("labour_market.root") },
+          { href: employer_associations_path, text: t("labour_market.employer_associations") },
         ]
       } %>
     <% elsif @organisation.local_union? %>
       <%= render partial: "ui/breadcrumbs", locals: {
         links: [
-          { href: labour_market_path, text: "Labour Market" },
-          { href: local_unions_path, text: "Local Unions" },
+          { href: labour_market_path, text: t("labour_market.root") },
+          { href: local_unions_path, text: t("labour_market.local_unions") },
         ]
       } %>
     <% end %>
@@ -64,7 +64,7 @@
     <% if @organisation.national_union? or @organisation.employer_association? %>
       <section class="flex flex-col gap-y-4 mt-16">
         <h2 class="text-xl font-semibold text-gray-900">
-          Collective Agreements
+          <%= t("labour_market.collective_agreement") %>
         </h2>
         <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
           <% @organisation.agreements.each do |agreement| %>
@@ -90,7 +90,7 @@
     <% if @organisation.national_union? and @organisation.members.count > 0 %>
       <section class="flex flex-col gap-y-4 mt-16">
         <h2 class="text-xl font-semibold text-gray-900">
-          Local Unions
+          <%= t("labour_market.local_unions") %>
         </h2>
         <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
           <% @organisation.members.each do |local_union| %>
@@ -144,7 +144,7 @@
       <% if @organisation.website.present? %>
         <div class="lg:px-4 py-4">
           <dt class="text-sm font-medium leading-6 text-gray-900">
-            Website
+            <%= t("website") %>
           </dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
             <a href="<%= @organisation.website %>" class="text-sky-600 underline"><%= @organisation.website %></a>
