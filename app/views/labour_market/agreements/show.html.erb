@@ -113,6 +113,17 @@
         </div>
       <% end %>
 
+      <% if current_user and current_user.role?("labour_market_admin") %>
+        <div class="lg:px-4 py-4">
+          <dt class="text-sm font-medium leading-6 text-gray-900">
+            Labour Market Admin
+          </dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+            <%= link_to "Edit #{@agreement.name}", rails_admin.edit_path(model_name: 'labour_market~agreement', id: @agreement.id), class: "text-sky-600 underline" %>
+          </dd>
+        </div>
+      <% end %>
+
     </dl>
 
   </div>
