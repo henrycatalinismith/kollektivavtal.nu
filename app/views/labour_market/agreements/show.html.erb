@@ -19,7 +19,7 @@
 
       <div class="mt-4 space-y-6">
         <div class="prose w-full">
-          <%= render_collective_agreement_description(@agreement).html_safe %>
+          <%= render_agreement_description(@agreement).html_safe %>
         </div>
       </div>
 
@@ -66,7 +66,7 @@
         </dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
           <ol class="flex flex-row gap-x-1 flex-wrap">
-            <%- @agreement.signatories.employer_association.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= employer_association_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
+            <%- @agreement.members.employer_association.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= employer_association_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
           </ol>
         </dd>
       </div>
@@ -77,7 +77,7 @@
         </dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
           <ol class="flex flex-row gap-x-1 flex-wrap">
-            <%- @agreement.signatories.national_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= national_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
+            <%- @agreement.members.national_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= national_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
           </ol>
         </dd>
       </div>
