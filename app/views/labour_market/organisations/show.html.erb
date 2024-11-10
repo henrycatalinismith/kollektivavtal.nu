@@ -15,6 +15,13 @@
           { href: employer_associations_path, text: "Employer Associations" },
         ]
       } %>
+    <% elsif @organisation.local_union? %>
+      <%= render partial: "ui/breadcrumbs", locals: {
+        links: [
+          { href: labour_market_path, text: "Labour Market" },
+          { href: local_unions_path, text: "Local Unions" },
+        ]
+      } %>
     <% end %>
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
@@ -28,36 +35,62 @@
       </div>
     </section>
 
-    <section class="flex flex-col gap-y-4 mt-16">
-      <h2 class="text-xl font-semibold text-gray-900">
-        Collective Agreements
-      </h2>
-      <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
-        <% @organisation.agreements.each do |agreement| %>
+    <% if @organisation.national_union? or @organisation.employer_association? %>
+      <section class="flex flex-col gap-y-4 mt-16">
+        <h2 class="text-xl font-semibold text-gray-900">
+          Collective Agreements
+        </h2>
+        <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
+          <% @organisation.agreements.each do |agreement| %>
+            <li class="flex">
+              <div class="mr-4 shrink-0">
+                <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
+                  <% if agreement.image.attached? %>
+                    src="<%= agreement.image.url %>"
+                  <% else %>
+                    src="https://placehold.co/64x64"
+                  <% end %>
+                />
+              </div>
+              <div>
+                <a class="text-lg text-sky-600 underline" href="<%= collective_agreement_path(agreement) %>">
+                  <%= agreement.name %>
+                </a>
+                <p class="truncate text-ellipsis">
+                  <%= agreement.description_en.truncate(100) %>
+                </p>
+              </div>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
 
-          <li class="flex">
-            <div class="mr-4 shrink-0">
-              <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
-                <% if agreement.image.attached? %>
-                  src="<%= agreement.image.url %>"
-                <% else %>
-                  src="https://placehold.co/64x64"
-                <% end %>
-              />
-            </div>
-            <div>
-              <a class="text-lg font-bold text-sky-600 underline" href="<%= collective_agreement_path(agreement) %>">
-                <%= agreement.name %>
+    <% if @organisation.national_union? and @organisation.children.count > 0 %>
+      <section class="flex flex-col gap-y-4 mt-16">
+        <h2 class="text-xl font-semibold text-gray-900">
+          Local Unions
+        </h2>
+        <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
+          <% @organisation.children.each do |local_union| %>
+            <li class="flex items-center">
+              <div class="mr-4 shrink-0">
+                <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
+                  <% if local_union.logo.attached? %>
+                    src="<%= local_union.logo.url %>"
+                  <% else %>
+                    src="https://placehold.co/64x64"
+                  <% end %>
+                />
+              </div>
+              <a class="text-lg text-sky-600 underline" href="<%= local_union_path(local_union) %>">
+                <%= local_union.name %>
               </a>
-              <p class="truncate text-ellipsis">
-                <%= agreement.description_en.truncate(100) %>
-              </p>
-            </div>
-          </li>
-
-        <% end %>
-      </ol>
-    </section>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
 
   </div>
 
@@ -74,6 +107,16 @@
 
      <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
 
+      <% if @organisation.local_union? and @organisation.parent.present? %>
+       <div class="lg:px-4 py-4">
+          <dt class="text-sm font-medium leading-6 text-gray-900">
+            National Union
+          </dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+            <a href="<%= national_union_path(@organisation.parent) %>" class="text-sky-600 underline"><%= @organisation.parent.name %></a>
+          </dd>
+        </div>
+      <% end %>
 
       <% if @organisation.website.present? %>
         <div class="lg:px-4 py-4">

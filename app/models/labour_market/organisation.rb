@@ -7,9 +7,13 @@ class LabourMarket::Organisation < ApplicationRecord
   has_many :signatures, class_name: "LabourMarket::CollectiveAgreementSignature", dependent: :destroy
   has_many :agreements, through: :signatures
 
+  belongs_to :parent, class_name: "LabourMarket::Organisation", optional: true
+  has_many :children, class_name: "LabourMarket::Organisation", foreign_key: :parent_id
+
   enum organisation_type: {
     national_union: 0,
     employer_association: 1,
+    local_union: 2,
   }
 
   rails_admin do

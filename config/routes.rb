@@ -54,5 +54,12 @@ Rails.application.routes.draw do
     as: :employer_association,
     defaults: { organisation_type: :employer_association }
 
+  get "/labour-market/local-unions" => "labour_market/organisations#index",
+    as: :local_unions,
+    defaults: { organisation_type: :local_union }
+  get "/labour-market/local-unions/:organisation" => "labour_market/organisations#show",
+    as: :local_union,
+    defaults: { organisation_type: :local_union }
+
   # get "/labour-market/collective-agreements/:agreement/:version" => "labour_market/collective_agreement_versions#show", as: :collective_agreement_version
 end
