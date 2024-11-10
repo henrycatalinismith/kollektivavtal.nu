@@ -30,12 +30,14 @@
               <%= version.name %>
             </dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-              <a
-                href="<%= rails_blob_url(version.document) %>"
-                class="text-sky-600 dark:text-sky-500 underline overflow-hidden whitespace-nowrap text-ellipsis block max-w-full"
-              >
-                <%= version.document.filename.extension.upcase %>, <%= (version.document.byte_size / 1024).round(2) %> KB
-              </a>
+              <% if version.document.attached? %>
+                <a
+                  href="<%= rails_blob_url(version.document) %>"
+                  class="text-sky-600 dark:text-sky-500 underline overflow-hidden whitespace-nowrap text-ellipsis block max-w-full"
+                >
+                  <%= version.document.filename.extension.upcase %>, <%= (version.document.byte_size / 1024).round(2) %> KB
+                </a>
+              <% end %>
             </dd>
           </div>
         <% end %>

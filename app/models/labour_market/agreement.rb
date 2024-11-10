@@ -13,6 +13,12 @@ class LabourMarket::Agreement < ApplicationRecord
       sticky true
       column_width 256
     end
+
+    create do
+      configure :memberships do hide end
+      configure :members do hide end
+      configure :versions do hide end
+    end
   end
 
   def to_param
