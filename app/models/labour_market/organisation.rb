@@ -17,6 +17,19 @@ class LabourMarket::Organisation < ApplicationRecord
     local_union: 2,
   }
 
+  include Translatable
+  translates :name
+  translates :description
+
+  before_create :set_default_names
+  def set_default_names
+    if self.name_sv.blank? and self.name_en.present?
+      self.name_sv = self.name_en
+    elsif self.name_en.blank? and self.name_sv.present?
+      self.name_en = self.name_sv
+    end
+  end
+
   rails_admin do
     configure :name do
       sticky true
@@ -24,12 +37,24 @@ class LabourMarket::Organisation < ApplicationRecord
     end
 
     create do
-      configure :agreements do hide end
-      configure :agreement_memberships do hide end
-      configure :parent_memberships do hide end
-      configure :child_memberships do hide end
-      configure :parents do hide end
-      configure :members do hide end
+      field :name_en
+      field :name_sv
+      field :slug
+      field :description_en
+      field :description_sv
+      field :organisation_type
+      field :website
+      field :logo
+    end
+
+    edit do
+      field :name_en
+      field :name_sv
+      field :description_en
+      field :description_sv
+      field :organisation_type
+      field :website
+      field :logo
     end
   end
 

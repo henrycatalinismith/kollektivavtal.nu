@@ -8,6 +8,19 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :memberships, class_name: "LabourMarket::AgreementMembership", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :memberships, source: :organisation
 
+  include Translatable
+  translates :name
+  translates :description
+
+  before_create :set_default_names
+  def set_default_names
+    if self.name_sv.blank? and self.name_en.present?
+      self.name_sv = self.name_en
+    elsif self.name_en.blank? and self.name_sv.present?
+      self.name_en = self.name_sv
+    end
+  end
+
   rails_admin do
     configure :name do
       sticky true
@@ -15,9 +28,21 @@ class LabourMarket::Agreement < ApplicationRecord
     end
 
     create do
-      configure :memberships do hide end
-      configure :members do hide end
-      configure :versions do hide end
+      field :name_en
+      field :name_sv
+      field :slug
+      field :description_en
+      field :description_sv
+      field :image
+    end
+
+    edit do
+      field :name_en
+      field :name_sv
+      field :slug
+      field :description_en
+      field :description_sv
+      field :image
     end
   end
 
