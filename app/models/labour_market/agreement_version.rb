@@ -7,6 +7,7 @@ class LabourMarket::AgreementVersion < ApplicationRecord
   belongs_to :agreement, class_name: "LabourMarket::Agreement"
 
   def name
+    return if agreement.blank?
     "#{agreement.name} #{signing_year} - #{expiry_year}"
   end
 

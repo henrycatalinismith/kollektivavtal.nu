@@ -6,9 +6,10 @@ class LabourMarket::Organisation < ApplicationRecord
   has_one_attached :logo
   has_many :agreement_memberships, class_name: "LabourMarket::AgreementMembership", dependent: :destroy
   has_many :agreements, through: :agreement_memberships
-
-  belongs_to :parent, class_name: "LabourMarket::Organisation", optional: true
-  has_many :children, class_name: "LabourMarket::Organisation", foreign_key: :parent_id
+  has_many :parent_memberships, class_name: "LabourMarket::OrganisationMembership", foreign_key: :parent_id
+  has_many :child_memberships, class_name: "LabourMarket::OrganisationMembership", foreign_key: :child_id
+  has_many :parents, through: :child_memberships, source: :parent
+  has_many :members, through: :parent_memberships, source: :child
 
   enum organisation_type: {
     national_union: 0,

@@ -40,6 +40,7 @@ class Ability
       can :manage, LabourMarket::AgreementMembership
       can :manage, LabourMarket::AgreementVersion
       can :manage, LabourMarket::Organisation
+      can :manage, LabourMarket::OrganisationMembership
     end
   end
 end
