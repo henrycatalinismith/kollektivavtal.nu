@@ -35,14 +35,14 @@
       </div>
     </section>
 
-    <% if @organisation.national_union? or @organisation.employer_association? %>
+    <% if @organisation.local_union? and @organisation.agreements.count > 0 %>
       <section class="flex flex-col gap-y-4 mt-16">
         <h2 class="text-xl font-semibold text-gray-900">
-          Collective Agreements
+          Collective Agreement
         </h2>
         <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
-          <% @organisation.agreements.each do |agreement| %>
-            <li class="flex">
+          <% @organisation.agreements.first(1).each do |agreement| %>
+            <li class="flex items-center">
               <div class="mr-4 shrink-0">
                 <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
                   <% if agreement.image.attached? %>
@@ -52,27 +52,48 @@
                   <% end %>
                 />
               </div>
-              <div>
-                <a class="text-lg text-sky-600 underline" href="<%= collective_agreement_path(agreement) %>">
-                  <%= agreement.name %>
-                </a>
-                <p class="truncate text-ellipsis">
-                  <%= agreement.description_en.truncate(100) %>
-                </p>
-              </div>
+              <a class="text-lg text-sky-600 underline" href="<%= collective_agreement_path(agreement) %>">
+                <%= agreement.name %>
+              </a>
             </li>
           <% end %>
         </ol>
       </section>
     <% end %>
 
-    <% if @organisation.national_union? and @organisation.children.count > 0 %>
+    <% if @organisation.national_union? or @organisation.employer_association? %>
+      <section class="flex flex-col gap-y-4 mt-16">
+        <h2 class="text-xl font-semibold text-gray-900">
+          Collective Agreements
+        </h2>
+        <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
+          <% @organisation.agreements.each do |agreement| %>
+            <li class="flex items-center">
+              <div class="mr-4 shrink-0">
+                <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
+                  <% if agreement.image.attached? %>
+                    src="<%= agreement.image.url %>"
+                  <% else %>
+                    src="https://placehold.co/64x64"
+                  <% end %>
+                />
+              </div>
+              <a class="text-lg text-sky-600 underline" href="<%= collective_agreement_path(agreement) %>">
+                <%= agreement.name %>
+              </a>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
+
+    <% if @organisation.national_union? and @organisation.members.count > 0 %>
       <section class="flex flex-col gap-y-4 mt-16">
         <h2 class="text-xl font-semibold text-gray-900">
           Local Unions
         </h2>
         <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
-          <% @organisation.children.each do |local_union| %>
+          <% @organisation.members.each do |local_union| %>
             <li class="flex items-center">
               <div class="mr-4 shrink-0">
                 <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
@@ -107,13 +128,13 @@
 
      <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
 
-      <% if @organisation.local_union? and @organisation.parent.present? %>
+      <% if @organisation.local_union? and @organisation.parents %>
        <div class="lg:px-4 py-4">
           <dt class="text-sm font-medium leading-6 text-gray-900">
             National Union
           </dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <a href="<%= national_union_path(@organisation.parent) %>" class="text-sky-600 underline"><%= @organisation.parent.name %></a>
+            <a href="<%= national_union_path(@organisation.parents.first) %>" class="text-sky-600 underline"><%= @organisation.parents.first.name %></a>
           </dd>
         </div>
       <% end %>

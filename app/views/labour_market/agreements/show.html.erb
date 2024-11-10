@@ -41,6 +41,32 @@
         <% end %>
       </dl>
 
+      <% if @agreement.members.local_union.count > 0 %>
+        <section class="flex flex-col gap-y-4 mt-16">
+          <h2 class="text-xl font-semibold text-gray-900">
+            Local Unions
+          </h2>
+          <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
+            <% @agreement.members.local_union.each do |local_union| %>
+              <li class="flex items-center">
+                <div class="mr-4 shrink-0">
+                  <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
+                    <% if local_union.logo.attached? %>
+                      src="<%= local_union.logo.url %>"
+                    <% else %>
+                      src="https://placehold.co/64x64"
+                    <% end %>
+                  />
+                </div>
+                <a class="text-lg text-sky-600 underline" href="<%= local_union_path(local_union) %>">
+                  <%= local_union.name %>
+                </a>
+              </li>
+            <% end %>
+          </ol>
+        </section>
+      <% end %>
+
     </section>
   </div>
 
