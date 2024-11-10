@@ -117,6 +117,7 @@ en:
     navbar:
       links:
         blog: News
+        labour_market: Labour Market
 
     footer:
       label: Footer
