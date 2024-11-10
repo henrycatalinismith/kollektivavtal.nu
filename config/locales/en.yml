@@ -104,6 +104,7 @@ en:
   
   labour_market:
     root: Labour Market
+    national_union: National Union
     national_unions: National Unions
     local_unions: Local Unions
     collective_agreement: Collective Agreement

@@ -106,6 +106,7 @@ sv:
   
   labour_market:
     root: Arbetsmarknad
+    national_union: Fackförbund
     national_unions: Fackförbund
     local_unions: Lokala Fackklubber
     collective_agreement: Kollektivavtal

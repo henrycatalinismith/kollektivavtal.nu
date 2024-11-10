@@ -133,7 +133,7 @@
       <% if @organisation.local_union? and @organisation.parents %>
        <div class="lg:px-4 py-4">
           <dt class="text-sm font-medium leading-6 text-gray-900">
-            National Union
+            <%= t("labour_market.national_union") %>
           </dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
             <a href="<%= national_union_path(@organisation.parents.first) %>" class="text-sky-600 underline"><%= @organisation.parents.first.name %></a>
