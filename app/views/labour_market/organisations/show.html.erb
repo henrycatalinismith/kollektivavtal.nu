@@ -120,6 +120,8 @@
       <img alt="" class="h-full w-full object-cover object-center"
         <% if @organisation.logo.attached? %>
           src="<%= @organisation.logo.url %>"
+        <% elsif @organisation.local_union? and @organisation.parents and @organisation.parents.first.logo.attached? %>
+          src="<%= @organisation.parents.first.logo.url %>"
         <% else %>
           src="https://placehold.co/512x512"
         <% end %>
