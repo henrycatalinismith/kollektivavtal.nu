@@ -6,6 +6,8 @@
         National Unions
       <% elsif @organisation_type == :employer_association %>
         Employer Associations
+      <% elsif @organisation_type == :local_union %>
+        Local Unions
       <% end %>
     </h1>
 
@@ -18,6 +20,8 @@
               href="<%= national_union_path(organisation) %>"
             <% elsif @organisation_type == :employer_association %>
               href="<%= employer_association_path(organisation) %>"
+            <% elsif @organisation_type == :local_union %>
+              href="<%= local_union_path(organisation) %>"
             <% end %>
           ><%= organisation.name %></a>
         </li>
