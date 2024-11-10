@@ -3,11 +3,11 @@
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
       <% if @organisation_type == :national_union %>
-        National Unions
+        <%= t("labour_market.national_unions") %>
       <% elsif @organisation_type == :employer_association %>
-        Employer Associations
+        <%= t("labour_market.employer_associations") %>
       <% elsif @organisation_type == :local_union %>
-        Local Unions
+        <%= t("labour_market.local_unions") %>
       <% end %>
     </h1>
 

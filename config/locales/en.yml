@@ -101,6 +101,16 @@ en:
 
   policy:
     privacy: Privacy Policy
+  
+  labour_market:
+    root: Labour Market
+    national_unions: National Unions
+    local_unions: Local Unions
+    collective_agreement: Collective Agreement
+    collective_agreements: Collective Agreements
+    employer_associations: Employer Associations
+  
+  website: Website
 
   ui:
     navbar:

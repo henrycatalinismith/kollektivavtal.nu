@@ -2,14 +2,14 @@
   <div class="lg:max-w-lg flex flex-col">
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-      Labour Market
+      <%= t("labour_market.root") %>
     </h1>
 
     <% links = [
-      { href: national_unions_path, text: "National Unions" },
-      { href: local_unions_path, text: "Local Unions" },
-      { href: collective_agreements_path, text: "Collective Agreements" },
-      { href: employer_associations_path, text: "Employer Associations" },
+      { href: national_unions_path, text: t("labour_market.national_unions") },
+      { href: local_unions_path, text: t("labour_market.local_unions") },
+      { href: collective_agreements_path, text: t("labour_market.collective_agreements") },
+      { href: employer_associations_path, text: t("labour_market.employer_associations") },
     ] %>
 
     <ol class="list-disc mt-4 ml-4">
