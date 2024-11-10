@@ -119,6 +119,7 @@ sv:
     navbar:
       links:
         blog: Nyheter
+        labour_market: Arbetsmarknad
 
     footer:
       label: Sidfot
