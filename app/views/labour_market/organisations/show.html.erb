@@ -61,10 +61,10 @@
       </section>
     <% end %>
 
-    <% if @organisation.national_union? or @organisation.employer_association? %>
+    <% if @organisation.national_union? or @organisation.employer_association? and @organisation.agreements.count > 0 %>
       <section class="flex flex-col gap-y-4 mt-16">
         <h2 class="text-xl font-semibold text-gray-900">
-          <%= t("labour_market.collective_agreement") %>
+          <%= t("labour_market.collective_agreements") %>
         </h2>
         <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
           <% @organisation.agreements.each do |agreement| %>
