@@ -11,7 +11,6 @@
             <feGaussianBlur in="SourceGraphic" stdDeviation=".5"></feGaussianBlur>
           </filter>
         </defs>
-        <path stroke="white" stroke-opacity="0.2" stroke-dasharray="1" stroke-dashoffset="1" pathLength="1" fill="transparent" d="M 247,103L261,86L307,104L357,36" class="invisible" style="stroke-dashoffset: 0px; visibility: visible;"></path>
         <g class="opacity-0" style="opacity: 1;">
           <circle cx="247" cy="103" r="1" style="transform-origin: 15.4375rem 6.4375rem 0px; opacity: 1; transform: scale(var(--motion-scale));"></circle>
         </g>
@@ -369,7 +368,7 @@
         <%= t("home.index.form.heading") %>
       </h2>
 
-      <span class="slide-text landscape:max-w-lg
+      <div class="slide-text landscape:max-w-lg
         landscape:col-start-1
         landscape:col-end-1
         landscape:row-start-2
@@ -384,9 +383,30 @@
         landscape:xl:col-end-3
         landscape:xl:row-start-1
         landscape:xl:row-end-1
+        flex
+        landscape:flex-col
+        landscape:gap-y-8
+        portrait:flex-col-reverse
+        portrait:gap-y-8
       ">
         <%= t("home.index.form.text") %>
-      </span>
+        <ol class="flex flex-col gap-y-2">
+          <% @social_media_accounts.each do |account| %>
+            <li>
+              <a class="flex flex-row gap-x-2 items-center hover:underline fill-slate-300 text-slate-300" href="<%= account.url %>" target="_blank">
+                <% if account.facebook? %>
+                  <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-6 h-6" } %>
+                <% elsif account.linkedin? %>
+                  <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-6 h-6" } %>
+                <% end %>
+                <span class="font-major">
+                  <%= account.name %>
+                </span>
+              </a>
+            </li>
+          <% end %>
+        </ol>
+      </div>
 
       <%= form_with url: "/subscribe", html: {class: "
         w-full
@@ -444,6 +464,7 @@
         </div>
 
       <% end %>
+
     </div>
   </div>
 
