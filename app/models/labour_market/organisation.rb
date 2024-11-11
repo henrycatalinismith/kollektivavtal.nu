@@ -36,6 +36,10 @@ class LabourMarket::Organisation < ApplicationRecord
       column_width 256
     end
 
+    list do
+      sort_by :created_at
+    end
+
     create do
       field :name_en
       field :name_sv
