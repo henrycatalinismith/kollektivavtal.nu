@@ -42,5 +42,9 @@ class Ability
       can :manage, LabourMarket::Organisation
       can :manage, LabourMarket::OrganisationMembership
     end
+
+    if user.role?("social_media_admin")
+      can :manage, SocialMedia::Account
+    end
   end
 end

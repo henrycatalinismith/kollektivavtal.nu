@@ -7,17 +7,25 @@ links = [
 <footer class="bg-white border-t border-gray-100 py-6">
   <div class="mx-auto max-w-5xl overflow-hidden px-6 py-20 sm:py-24 flex flex-col gap-y-16 sm:flex-row sm:justify-between sm:px-4 lg:px-0">
 
-    <nav aria-label="<%= t("ui.footer.label") %>">
-      <ul class="columns-2 sm:flex sm:justify-center sm:space-x-12 flex flex-col gap-y-6">
-        <% links.each do |link| %>
+    <div class="space-y-8">
+      <img src="/starb.png" class="max-w-[18px]" alt="">
+      <p class="text-balance text-sm/6 text-gray-600">
+        Twenty First Century Collective Power
+      </p>
+      <ol class="flex gap-x-6">
+        <% @social_media_accounts.each do |account| %>
           <li>
-            <a href="<%= link[:href] %>" class="text-sm leading-6 text-gray-600 hover:text-gray-900">
-              <%= link[:text] %>
+            <a class="fill-gray-600 hover:fill-gray-800" href="<%= account.url %>" target="_blank" aria-label="<%= account.name %>">
+              <% if account.facebook? %>
+                <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-6 h-6" } %>
+              <% elsif account.linkedin? %>
+                <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-6 h-6" } %>
+              <% end %>
             </a>
           </li>
         <% end %>
-      </ul>
-    </nav>
+      </ol>
+    </div>
 
     <div class="">
       <h3 class="text-sm font-semibold leading-6 text-gray-900">
@@ -46,6 +54,19 @@ links = [
           </button>
         </div>
       <% end %>
+
+      <nav aria-label="<%= t("ui.footer.label") %>" class="mt-8">
+        <ul class="columns-2 sm:flex sm:justify-center sm:space-x-12 flex flex-col gap-y-6">
+          <% links.each do |link| %>
+            <li>
+              <a href="<%= link[:href] %>" class="text-sm leading-6 text-gray-600 hover:text-gray-900">
+                <%= link[:text] %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+
     </div>
 
   </div>
