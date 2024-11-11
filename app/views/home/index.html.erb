@@ -370,6 +370,13 @@
                     classes: "w-8 h-8",
                     x_classes: "fill-black"
                   } %>
+                <% elsif account.mastodon? %>
+                  <%= render partial: "social_media/accounts/mastodon", locals: { classes: "w-8 h-8" } %>
+                <% elsif account.bluesky? %>
+                  <%= render partial: "social_media/accounts/bluesky", locals: {
+                    classes: "w-8 h-8",
+                    butteryfly_classes: "fill-black",
+                  } %>
                 <% end %>
               </a>
             </li>
