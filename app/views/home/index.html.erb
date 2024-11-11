@@ -359,6 +359,10 @@
               <a class="fill-slate-300 hover:fill-slate-600" href="<%= account.url %>" target="_blank" aria-label="<%= account.name %>">
                 <% if account.facebook? %>
                   <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-8 h-8" } %>
+                <% elsif account.tiktok? %>
+                  <%= render partial: "social_media/accounts/tiktok", locals: { classes: "w-8 h-8" } %>
+                <% elsif account.instagram? %>
+                  <%= render partial: "social_media/accounts/instagram", locals: { classes: "w-8 h-8" } %>
                 <% elsif account.linkedin? %>
                   <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-8 h-8" } %>
                 <% elsif account.x? %>

@@ -18,6 +18,10 @@ links = [
             <a class="fill-gray-600 hover:fill-gray-800" href="<%= account.url %>" target="_blank" aria-label="<%= account.name %>">
               <% if account.facebook? %>
                 <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-6 h-6" } %>
+              <% elsif account.instagram? %>
+                <%= render partial: "social_media/accounts/instagram", locals: { classes: "w-6 h-6" } %>
+              <% elsif account.tiktok? %>
+                <%= render partial: "social_media/accounts/tiktok", locals: { classes: "w-6 h-6" } %>
               <% elsif account.linkedin? %>
                 <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-6 h-6" } %>
               <% elsif account.x? %>
