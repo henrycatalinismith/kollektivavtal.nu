@@ -351,9 +351,10 @@
       landscape:xl:grid-rows-1
       gap-y-8
       landscape:gap-x-8
+      relative
     ">
 
-        <ol class="flex flex-row gap-x-2">
+        <ol class="flex flex-row gap-x-2 absolute bottom-0 w-full justify-center">
           <% @social_media_accounts.each do |account| %>
             <li>
               <a class="fill-slate-300 hover:fill-slate-600" href="<%= account.url %>" target="_blank" aria-label="<%= account.name %>">

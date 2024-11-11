@@ -163,16 +163,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model "Blog::Post" do
-    configure :body_en, :text
-    configure :body_sv, :text
-
-    configure :title_en do
-      sticky true
-      column_width 256
-    end
-  end
-
   config.model "Media::Image" do
     field :name, :string
     field :image, :active_storage do

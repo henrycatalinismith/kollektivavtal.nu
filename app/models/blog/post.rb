@@ -26,4 +26,14 @@ class Blog::Post < ApplicationRecord
       body_en
     end
   end
+
+  rails_admin do
+    configure :body_en, :text
+    configure :body_sv, :text
+
+    configure :title_en do
+      sticky true
+      column_width 256
+    end
+  end
 end
