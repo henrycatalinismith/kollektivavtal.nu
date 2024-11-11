@@ -7,6 +7,8 @@ class SocialMedia::Account < ApplicationRecord
     x: 2,
     instagram: 3,
     tiktok: 4,
+    mastodon: 5,
+    bluesky: 6,
   }
 
   rails_admin do

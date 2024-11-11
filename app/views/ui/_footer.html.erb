@@ -29,6 +29,13 @@ links = [
                   classes: "w-6 h-6",
                   x_classes: "fill-white"
                 } %>
+              <% elsif account.mastodon? %>
+                <%= render partial: "social_media/accounts/mastodon", locals: { classes: "w-6 h-6" } %>
+              <% elsif account.bluesky? %>
+                <%= render partial: "social_media/accounts/bluesky", locals: {
+                  classes: "w-6 h-6",
+                  butteryfly_classes: "fill-white",
+                } %>
               <% end %>
             </a>
           </li>
