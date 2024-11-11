@@ -353,6 +353,25 @@
       landscape:gap-x-8
     ">
 
+        <ol class="flex flex-row gap-x-2">
+          <% @social_media_accounts.each do |account| %>
+            <li>
+              <a class="fill-slate-300 hover:fill-slate-600" href="<%= account.url %>" target="_blank" aria-label="<%= account.name %>">
+                <% if account.facebook? %>
+                  <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-8 h-8" } %>
+                <% elsif account.linkedin? %>
+                  <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-8 h-8" } %>
+                <% elsif account.x? %>
+                  <%= render partial: "social_media/accounts/x", locals: {
+                    classes: "w-8 h-8",
+                    x_classes: "fill-black"
+                  } %>
+                <% end %>
+              </a>
+            </li>
+          <% end %>
+        </ol>
+
       <h2 class="
         font-major
         lowercase
@@ -383,29 +402,9 @@
         landscape:xl:col-end-3
         landscape:xl:row-start-1
         landscape:xl:row-end-1
-        flex
-        landscape:flex-col
-        landscape:gap-y-8
-        portrait:flex-col-reverse
-        portrait:gap-y-8
       ">
         <%= t("home.index.form.text") %>
-        <ol class="flex flex-col gap-y-2">
-          <% @social_media_accounts.each do |account| %>
-            <li>
-              <a class="flex flex-row gap-x-2 items-center hover:underline fill-slate-300 text-slate-300" href="<%= account.url %>" target="_blank">
-                <% if account.facebook? %>
-                  <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-6 h-6" } %>
-                <% elsif account.linkedin? %>
-                  <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-6 h-6" } %>
-                <% end %>
-                <span class="font-major">
-                  <%= account.name %>
-                </span>
-              </a>
-            </li>
-          <% end %>
-        </ol>
+        
       </div>
 
       <%= form_with url: "/subscribe", html: {class: "

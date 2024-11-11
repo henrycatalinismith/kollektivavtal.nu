@@ -20,6 +20,11 @@ links = [
                 <%= render partial: "social_media/accounts/facebook", locals: { classes: "w-6 h-6" } %>
               <% elsif account.linkedin? %>
                 <%= render partial: "social_media/accounts/linkedin", locals: { classes: "w-6 h-6" } %>
+              <% elsif account.x? %>
+                <%= render partial: "social_media/accounts/x", locals: {
+                  classes: "w-6 h-6",
+                  x_classes: "fill-white"
+                } %>
               <% end %>
             </a>
           </li>
