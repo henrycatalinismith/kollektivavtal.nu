@@ -3,7 +3,9 @@ class LabourMarket::OrganisationsController < ApplicationController
 
   def index
     @organisation_type = params[:organisation_type]
-    @organisations = LabourMarket::Organisation.where(organisation_type: params[:organisation_type])
+    @organisations = LabourMarket::Organisation
+      .where(organisation_type: params[:organisation_type])
+      .order(I18n.locale == :sv ? :name_sv : :name_en)
   end
 
   def show
