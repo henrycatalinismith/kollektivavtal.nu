@@ -5,6 +5,8 @@ class SocialMedia::Account < ApplicationRecord
     facebook: 0,
     linkedin: 1,
     x: 2,
+    instagram: 3,
+    tiktok: 4,
   }
 
   rails_admin do
