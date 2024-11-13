@@ -11,22 +11,30 @@
       <% end %>
     </h1>
 
-    <ol class="list-disc mt-4 ml-4">
-      <% @organisations.each do |organisation| %>
-        <li>
-          <a
-            class="text-sky-600 underline"
-            <% if @organisation_type == :national_union %>
-              href="<%= national_union_path(organisation) %>"
-            <% elsif @organisation_type == :employer_association %>
-              href="<%= employer_association_path(organisation) %>"
-            <% elsif @organisation_type == :local_union %>
-              href="<%= local_union_path(organisation) %>"
-            <% end %>
-          ><%= organisation.name %></a>
-        </li>
-      <% end %>
-    </ol>
+    <% @letters.each do |letter| %>
+      <section>
+        <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mt-4">
+          <%= letter %>
+        </h2>
+          
+        <ol class="list-disc mt-4 ml-4">
+          <% @organisations.filter { |organisation| organisation.name.upcase.start_with?(letter) }.each do |organisation| %>
+            <li>
+              <a
+                class="text-sky-600 underline"
+                <% if @organisation_type == :national_union %>
+                  href="<%= national_union_path(organisation) %>"
+                <% elsif @organisation_type == :employer_association %>
+                  href="<%= employer_association_path(organisation) %>"
+                <% elsif @organisation_type == :local_union %>
+                  href="<%= local_union_path(organisation) %>"
+                <% end %>
+              ><%= organisation.name %></a>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
 
   </div>
 
