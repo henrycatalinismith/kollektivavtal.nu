@@ -104,8 +104,8 @@ en:
   
   labour_market:
     root: Labour Market
-    national_union: National Union
-    national_unions: National Unions
+    central_union: Central Union
+    central_unions: Central Unions
     local_unions: Local Unions
     collective_agreement: Collective Agreement
     collective_agreements: Collective Agreements
