@@ -23,25 +23,35 @@
         </div>
       </div>
 
-      <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
-        <% @agreement.versions.reverse_chronological.each do |version| %>
-          <div class="py-4">
-            <dt class="text-sm font-medium leading-6 text-gray-900">
-              <%= version.name %>
-            </dt>
-            <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-              <% if version.document.attached? %>
-                <a
-                  href="<%= rails_blob_url(version.document) %>"
-                  class="text-sky-600 dark:text-sky-500 underline overflow-hidden whitespace-nowrap text-ellipsis block max-w-full"
-                >
-                  <%= version.document.filename.extension.upcase %>, <%= (version.document.byte_size / 1024).round(2) %> KB
+      <table class="min-w-full divide-y divide-gray-300 mt-8">
+        <tbody class="divide-y divide-gray-200 bg-white">
+
+          <% @agreement.versions.reverse_chronological.each do |version| %>
+            <tr class="py-4">
+              <td class="w-16">
+                <%= image_tag version.document.preview(resize_to_limit: [64, 64]) %>
+              </td>
+              <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                <a href="<%= rails_blob_url(version.document) %>" class="font-medium text-gray-900 hover:underline hover:text-sky-600">
+                  <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+                  <%= version.name %>
+                  <span class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+                    <% if version.document.attached? %>
+                      <a
+                        href="<%= rails_blob_url(version.document) %>"
+                        class="text-sky-600 dark:text-sky-500 underline overflow-hidden whitespace-nowrap text-ellipsis block max-w-full"
+                      >
+                        <%= version.document.filename.extension.upcase %>, <%= (version.document.byte_size / 1024).round(2) %> KB
+                      </a>
+                    <% end %>
+                  </span>
                 </a>
-              <% end %>
-            </dd>
-          </div>
-        <% end %>
-      </dl>
+              </td>
+            </tr>
+          <% end %>
+
+        </tbody>
+      </table>
 
       <% if @agreement.members.local_union.count > 0 %>
         <section class="flex flex-col gap-y-4 mt-16">
@@ -73,17 +83,20 @@
   </div>
 
   <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
-    <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg max-w-sm">
-    
-      <img alt="" class="h-full w-full object-cover object-center"
-        <% if @agreement.image.attached? %>
-          src="<%= @agreement.image.url %>"
-        <% else %>
-          src="https://placehold.co/512x512"
-        <% end %>
-      />
-    </div>
 
+    <% image_version = @agreement.versions.reverse_chronological.find { |v| v.document.attached? } %>
+    <% if image_version.present? %>
+      <div class="aspect-square overflow-hidden rounded-lg max-w-sm max-h-sm bg-slate-100 p-2">
+        <%= image_tag(
+          image_version.document.preview(resize_to_limit: [512, 512]),
+          class: "h-full w-full object-contain object-center"
+        ) %>
+      </div>
+    <% else %>
+      <div class="aspect-square overflow-hidden rounded-lg max-w-sm max-h-sm">
+        <img src="https://placehold.co/512x512" alt="" />
+      </div>
+    <% end %>
 
     <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
 
