@@ -40,24 +40,30 @@
         <h2 class="text-xl font-semibold text-gray-900">
           Collective Agreement
         </h2>
-        <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
-          <% @organisation.agreements.first(1).each do |agreement| %>
-            <li class="flex items-center">
-              <div class="mr-4 shrink-0">
-                <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
-                  <% if agreement.image.attached? %>
-                    src="<%= agreement.image.url %>"
+
+        <table class="min-w-full divide-y divide-gray-300">
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <% @organisation.agreements.first(1).each do |agreement| %>
+              <tr class="py-4">
+                <td class="w-16">
+                  <% image_version = agreement.versions.reverse_chronological.find { |v| v.document.attached? } %>
+                  <% if image_version.present? %>
+                    <%= image_tag image_version.document.preview(resize_to_limit: [64, 64]) %>
                   <% else %>
-                    src="https://placehold.co/64x64"
+                    <%= image_tag "https://placehold.co/64x64" %>
                   <% end %>
-                />
-              </div>
-              <a class="text-lg text-sky-600 underline" href="<%= collective_agreement_path(agreement) %>">
-                <%= agreement.name %>
-              </a>
-            </li>
-          <% end %>
-        </ol>
+                </td>
+                <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                  <a href="<%= collective_agreement_path(agreement) %>" class="font-medium text-sky-600 underline">
+                    <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+                    <%= agreement.name %>
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
       </section>
     <% end %>
 
@@ -69,7 +75,6 @@
 
         <table class="min-w-full divide-y divide-gray-300">
           <tbody class="divide-y divide-gray-200 bg-white">
-
             <% @organisation.agreements.each do |agreement| %>
               <tr class="py-4">
                 <td class="w-16">
@@ -88,7 +93,6 @@
                 </td>
               </tr>
             <% end %>
-
           </tbody>
         </table>
 
@@ -100,24 +104,51 @@
         <h2 class="text-xl font-semibold text-gray-900">
           <%= t("labour_market.local_unions") %>
         </h2>
-        <ol class="divide-y divide-gray-100 max-w-full overflow-hidden">
-          <% @organisation.members.each do |local_union| %>
-            <li class="flex items-center">
-              <div class="mr-4 shrink-0">
-                <img alt="" class="h-full w-full object-cover object-center max-w-[64px] max-h-[64px]"
-                  <% if local_union.logo.attached? %>
-                    src="<%= local_union.logo.url %>"
-                  <% else %>
-                    src="https://placehold.co/64x64"
-                  <% end %>
-                />
-              </div>
-              <a class="text-lg text-sky-600 underline" href="<%= local_union_path(local_union) %>">
-                <%= local_union.name %>
-              </a>
-            </li>
-          <% end %>
-        </ol>
+
+
+        <table class="min-w-full divide-y divide-gray-300">
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <% @organisation.members.each do |organisation| %>
+              <tr class="">
+                <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                  <div class="flex items-center">
+                    <div class="size-11 shrink-0">
+                      <div class="size-11 rounded-lg bg-slate-100">
+                        <img
+                          class="size-11"
+                          <% if organisation.logo.attached? %>
+                            src="<%= organisation.logo.url %>"
+                          <% else %>
+                            src="https://placehold.co/64x64"
+                          <% end %>
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <div class="font-medium text-gray-900">
+                        <a href="<%= organisation_path(organisation) %>" class="underline text-sky-600">
+                          <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+                          <%= organisation.name %>
+                        </a>
+                      </div>
+                      <div class="mt-1 text-gray-500">
+                        <!-- -->
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <!--
+                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                    <div class="text-gray-900"></div>
+                    <div class="mt-1 text-gray-500"></div>
+                  </td>
+                -->
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+       
       </section>
     <% end %>
 
