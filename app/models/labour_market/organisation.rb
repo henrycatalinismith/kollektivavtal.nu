@@ -12,7 +12,7 @@ class LabourMarket::Organisation < ApplicationRecord
   has_many :members, through: :parent_memberships, source: :child
 
   enum organisation_type: {
-    national_union: 0,
+    central_union: 0,
     employer_association: 1,
     local_union: 2,
   }

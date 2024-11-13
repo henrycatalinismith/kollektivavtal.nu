@@ -40,12 +40,12 @@ Rails.application.routes.draw do
   get "/labour-market/collective-agreements" => "labour_market/agreements#index", as: :collective_agreements
   get "/labour-market/collective-agreements/:agreement" => "labour_market/agreements#show", as: :collective_agreement
 
-  get "/labour-market/national-unions" => "labour_market/organisations#index",
-    as: :national_unions,
-    defaults: { organisation_type: :national_union }
-  get "/labour-market/national-unions/:organisation" => "labour_market/organisations#show",
-    as: :national_union,
-    defaults: { organisation_type: :national_union }
+  get "/labour-market/central-unions" => "labour_market/organisations#index",
+    as: :central_unions,
+    defaults: { organisation_type: :central_union }
+  get "/labour-market/central-unions/:organisation" => "labour_market/organisations#show",
+    as: :central_union,
+    defaults: { organisation_type: :central_union }
 
   get "/labour-market/employer-associations" => "labour_market/organisations#index",
     as: :employer_associations,

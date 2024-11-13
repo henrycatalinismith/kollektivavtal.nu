@@ -100,14 +100,14 @@
         </div>
       <% end %>
 
-      <% if @agreement.members.national_union.count > 0 %>
+      <% if @agreement.members.central_union.count > 0 %>
         <div class="lg:px-4 py-4">
           <dt class="text-sm font-medium leading-6 text-gray-900">
-            <%= t("labour_market.national_unions") %>
+            <%= t("labour_market.central_unions") %>
           </dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
             <ol class="flex flex-row gap-x-1 flex-wrap">
-              <%- @agreement.members.national_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= national_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
+              <%- @agreement.members.central_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
             </ol>
           </dd>
         </div>
