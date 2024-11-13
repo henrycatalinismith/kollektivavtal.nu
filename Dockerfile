@@ -16,7 +16,7 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y openssh-client gnupg curl libjemalloc2 sqlite3 imagemagick libvips && \
+    apt-get install --no-install-recommends -y openssh-client gnupg curl libjemalloc2 sqlite3 imagemagick libvips libcairo2 libcairo2-dev libgirepository1.0-dev libpoppler-glib-dev poppler-utils && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 
