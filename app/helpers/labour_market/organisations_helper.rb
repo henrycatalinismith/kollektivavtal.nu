@@ -1,4 +1,10 @@
 module LabourMarket::OrganisationsHelper
+  def organisation_path(organisation)
+    return national_union_path(organisation) if organisation.national_union? 
+    return employer_association_path(organisation) if organisation.employer_association? 
+    return local_union_path(organisation) if organisation.local_union? 
+  end
+
   def render_organisation_description(union)
     renderer = OrganisationDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
