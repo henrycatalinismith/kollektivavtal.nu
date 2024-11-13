@@ -19,7 +19,9 @@
 
       <div class="mt-4 space-y-6">
         <div class="prose w-full">
-          <%= render_agreement_description(@agreement).html_safe %>
+          <% if @agreement.description.present? %>
+            <%= render_agreement_description(@agreement).html_safe %>
+          <% end %>
         </div>
       </div>
 
