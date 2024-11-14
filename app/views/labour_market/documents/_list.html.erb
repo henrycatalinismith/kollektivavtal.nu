@@ -1,0 +1,30 @@
+<table class="min-w-full divide-y divide-gray-300">
+  <thead>
+    <tr>
+      <th scope="col" class="sr-only">Thumbnail</th>
+      <th scope="col" class="sr-only">Name</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200 bg-white">
+
+    <% documents.each do |document| %>
+      <tr class="py-4">
+        <td class="w-16 py-4">
+          <div class="aspect-[707/1000] max-h-[64px] rounded-lg bg-slate-100 overflow-hidden border-slate-200 border-2">
+            <%= image_tag document.file.preview(resize_to_limit: [64, 64]), alt: "", class: "object-contain object-center w-full h-full" %>
+          </div>
+        </td>
+        <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+          <a href="<%= rails_blob_url(document.file) %>" class="font-medium flex flex-col">
+            <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+            <span class="underline text-sky-600"><%= document.name %></span>
+            <span class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+              <%= document.file.filename.extension.upcase %>, <%= (document.file.byte_size / 1024).round(2) %> KB
+            </span>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
