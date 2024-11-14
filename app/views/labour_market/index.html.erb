@@ -1,9 +1,79 @@
 <div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
-  <div class="lg:max-w-lg flex flex-col">
+  <div class="">
 
     <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
       <%= t("labour_market.root") %>
     </h1>
+
+      <%= render :layout => "labour_market/index/section", locals: {
+        heading: t("labour_market.collective_agreements"),
+        subheading: "Employment terms negotiated at a sector level between employer organisations and central unions.",
+      }  do %>
+
+        <%= render :layout => "labour_market/index/section-grid" do %>
+          <% @highlighted_collective_agreements.each do |agreement| %>
+            <% file = main_attachment(agreement) %>
+            <%= render partial: "labour_market/index/section-card", locals: {
+              img: file.preview(resize_to_limit: [512, 512]).url,
+              href: collective_agreement_path(agreement),
+              label: agreement.name,
+            } %>
+          <% end %>
+        <% end %>
+
+        <%= render partial: "labour_market/index/section-link", locals: {
+          href: collective_agreements_path,
+          text: "More Collective Agreements &rarr;",
+        } %>
+
+      <% end %>
+
+      <%= render :layout => "labour_market/index/section", locals: {
+        heading: t("labour_market.local_unions"),
+        subheading: "Employee organisations representing workers within individual companies.",
+      }  do %>
+
+        <%= render :layout => "labour_market/index/section-grid" do %>
+          <% @highlighted_local_unions.each do |organisation| %>
+            <% logo = organisation_logo(organisation) %>
+            <%= render partial: "labour_market/index/section-card", locals: {
+              img: logo.url,
+              href: organisation_path(organisation),
+              label: organisation.name,
+            } %>
+          <% end %>
+        <% end %>
+
+        <%= render partial: "labour_market/index/section-link", locals: {
+          href: local_unions_path,
+          text: "More Local Unions &rarr;",
+        } %>
+
+      <% end %>
+
+      <%= render :layout => "labour_market/index/section", locals: {
+        heading: t("labour_market.central_unions"),
+        subheading: "National organisations that represent workers and negotiate collective agreements in particular industries and sectors.",
+      }  do %>
+
+        <%= render :layout => "labour_market/index/section-grid" do %>
+          <% @highlighted_central_unions.each do |organisation| %>
+            <% logo = organisation_logo(organisation) %>
+            <%= render partial: "labour_market/index/section-card", locals: {
+              img: logo.url,
+              href: organisation_path(organisation),
+            label: organisation.name,
+          } %>
+        <% end %>
+
+      <% end %>
+
+      <%= render partial: "labour_market/index/section-link", locals: {
+        href: central_unions_path,
+        text: "More Central Unions &rarr;",
+      } %>
+
+    <% end %>
 
     <% links = [
       { href: central_unions_path, text: t("labour_market.central_unions") },
@@ -12,23 +82,6 @@
       { href: employer_associations_path, text: t("labour_market.employer_associations") },
     ] %>
 
-    <ol class="list-disc mt-4 ml-4">
-      <% links.each do |link| %>
-        <li>
-          <a
-            class="text-sky-600 underline"
-            href="<%= link[:href] %>"
-          ><%= link[:text] %></a>
-        </li>
-      <% end %>
-    </ol>
-
-  </div>
-
-  <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
-    <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg max-w-sm">
-      <img alt="" class="h-full w-full object-cover object-center" src="https://placehold.co/512x512" />
-    </div>
   </div>
 
 </div>
