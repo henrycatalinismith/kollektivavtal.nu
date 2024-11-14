@@ -13,8 +13,9 @@
             <div class="size-11 rounded-lg bg-slate-100 overflow-hidden border-slate-200 border-2">
               <img
                 class="size-11"
-                <% if organisation.logo.attached? %>
-                  src="<%= organisation.logo.url %>"
+                <% logo = organisation_logo(organisation) %>
+                <% if logo.present? %>
+                  src="<%= logo.url %>"
                 <% else %>
                   src="https://placehold.co/64x64"
                 <% end %>
