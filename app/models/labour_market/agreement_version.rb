@@ -1,8 +1,6 @@
 class LabourMarket::AgreementVersion < ApplicationRecord
   validates :signing_year, presence: true
   validates :expiry_year, presence: true
-  has_one_attached :document
-  has_one_attached :image
   scope :chronological, -> { order(signing_year: :asc) }
   scope :reverse_chronological, -> { order(signing_year: :desc) }
   belongs_to :agreement, class_name: "LabourMarket::Agreement"
