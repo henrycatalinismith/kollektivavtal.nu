@@ -77,10 +77,11 @@
   </div>
 
   <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
+    <% logo = organisation_logo(@organisation) %>
     <%= render partial: "ui/profile-pic", locals: {
       div: "",
       img: "object-cover",
-      src: @organisation.logo.attached? ? @organisation.logo.url : "https://placehold.co/512x512",
+      src: logo.present? ? logo.url : "https://placehold.co/512x512",
       alt: "",
     } %>
 

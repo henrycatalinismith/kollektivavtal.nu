@@ -5,6 +5,17 @@ module LabourMarket::OrganisationsHelper
     return local_union_path(organisation) if organisation.local_union? 
   end
 
+  def organisation_logo(organisation)
+    if organisation.logo.attached?
+      return organisation.logo
+    end
+    parent_with_logo = organisation.parents.find { |parent| parent.logo.attached? }
+    if parent_with_logo.present?
+      puts "Parent with logo: #{parent_with_logo.name}"
+      return parent_with_logo.logo
+    end
+  end
+
   def render_organisation_description(union)
     renderer = OrganisationDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
