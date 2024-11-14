@@ -1,4 +1,11 @@
 module LabourMarket::AgreementsHelper
+  def main_attachment(agreement)
+    return nil if agreement.documents.empty?
+    main_document = agreement.documents.where(main_document: true).find { |d| d.file.attached? }
+    return nil if main_document.nil?
+    return main_document.file
+  end
+
   def render_agreement_description(agreement)
     renderer = AgreementDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)

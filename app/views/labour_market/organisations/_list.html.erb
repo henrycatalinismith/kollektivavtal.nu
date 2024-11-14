@@ -1,0 +1,38 @@
+<table class="min-w-full divide-y divide-gray-300">
+  <thead>
+    <tr>
+      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 sr-only">Name</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200 bg-white">
+
+    <% organisations.each do |organisation| %>
+      <tr class="">
+        <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+          <div class="flex items-center">
+            <div class="size-11 rounded-lg bg-slate-100 overflow-hidden border-slate-200 border-2">
+              <img
+                class="size-11"
+                <% if organisation.logo.attached? %>
+                  src="<%= organisation.logo.url %>"
+                <% else %>
+                  src="https://placehold.co/64x64"
+                <% end %>
+                alt=""
+              />
+            </div>
+            <div class="ml-4">
+              <div class="font-medium text-gray-900">
+                <a href="<%= organisation_path(organisation) %>" class="underline text-sky-600">
+                  <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+                  <%= organisation.name %>
+                </a>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
