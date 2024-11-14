@@ -87,7 +87,7 @@
 
     <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
 
-      <% if @organisation.local_union? and @organisation.parents %>
+      <% if @organisation.local_union? and !@organisation.parents.empty? %>
        <div class="lg:px-4 py-4">
           <dt class="text-sm font-medium leading-6 text-gray-900">
             <%= t("labour_market.central_union") %>
