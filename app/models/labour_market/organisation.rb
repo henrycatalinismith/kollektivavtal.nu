@@ -54,6 +54,7 @@ class LabourMarket::Organisation < ApplicationRecord
     edit do
       field :name_en
       field :name_sv
+      field :slug
       field :description_en
       field :description_sv
       field :organisation_type
