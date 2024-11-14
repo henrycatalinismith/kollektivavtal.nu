@@ -1,6 +1,5 @@
 class LabourMarket::Agreement < ApplicationRecord
-  validates :name, presence: true
-  validates :slug, presence: true, uniqueness: true
+  #validates :slug, presence: true, uniqueness: true
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_many :versions, class_name: "LabourMarket::AgreementVersion", dependent: :destroy, inverse_of: :agreement
@@ -21,6 +20,13 @@ class LabourMarket::Agreement < ApplicationRecord
     end
   end
 
+  before_create :set_slug
+  def set_slug
+    if self.slug.blank?
+      self.slug = self.name_sv.parameterize
+    end
+  end
+
   rails_admin do
     configure :name do
       sticky true
@@ -33,7 +39,6 @@ class LabourMarket::Agreement < ApplicationRecord
       field :slug
       field :description_en
       field :description_sv
-      field :image
     end
 
     edit do
@@ -42,7 +47,6 @@ class LabourMarket::Agreement < ApplicationRecord
       field :slug
       field :description_en
       field :description_sv
-      field :image
     end
   end
 
