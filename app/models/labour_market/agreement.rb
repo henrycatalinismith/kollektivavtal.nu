@@ -4,7 +4,7 @@ class LabourMarket::Agreement < ApplicationRecord
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_many :versions, class_name: "LabourMarket::AgreementVersion", dependent: :destroy, inverse_of: :agreement
-  has_one_attached :image
+  has_many :documents, through: :versions, source: :documents
   has_many :memberships, class_name: "LabourMarket::AgreementMembership", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :memberships, source: :organisation
 

@@ -46,9 +46,9 @@
             <% @organisation.agreements.first(1).each do |agreement| %>
               <tr class="py-4">
                 <td class="w-16">
-                  <% image_version = agreement.versions.reverse_chronological.find { |v| v.document.attached? } %>
-                  <% if image_version.present? %>
-                    <%= image_tag image_version.document.preview(resize_to_limit: [64, 64]) %>
+                  <% main_document = agreement.documents.where(main_document: true).find { |d| d.file.attached? } %>
+                  <% if main_document.present? %>
+                    <%= image_tag main_document.file.preview(resize_to_limit: [64, 64]) %>
                   <% else %>
                     <%= image_tag "https://placehold.co/64x64" %>
                   <% end %>
@@ -78,9 +78,9 @@
             <% @organisation.agreements.each do |agreement| %>
               <tr class="py-4">
                 <td class="w-16">
-                  <% image_version = agreement.versions.reverse_chronological.find { |v| v.document.attached? } %>
-                  <% if image_version.present? %>
-                    <%= image_tag image_version.document.preview(resize_to_limit: [64, 64]) %>
+                  <% main_document = agreement.documents.where(main_document: true).find { |d| d.file.attached? } %>
+                  <% if main_document.present? %>
+                    <%= image_tag main_document.file.preview(resize_to_limit: [64, 64]) %>
                   <% else %>
                     <%= image_tag "https://placehold.co/64x64" %>
                   <% end %>
