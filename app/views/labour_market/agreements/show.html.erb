@@ -32,26 +32,10 @@
           <%= version.name %>
         </h2>
 
-        <table class="min-w-full divide-y divide-gray-300">
-          <tbody class="divide-y divide-gray-200 bg-white">
-            <% version.documents.each do |document| %>
-              <tr class="py-4">
-                <td class="w-16">
-                  <%= image_tag document.file.preview(resize_to_limit: [64, 64]) %>
-                </td>
-                <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
-                  <a href="<%= rails_blob_url(document.file) %>" class="font-medium flex flex-col">
-                    <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
-                    <span class="underline text-sky-600"><%= document.name %></span>
-                    <span class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-                      <%= document.file.filename.extension.upcase %>, <%= (document.file.byte_size / 1024).round(2) %> KB
-                    </span>
-                  </a>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render partial: "labour_market/documents/list", locals: {
+          documents: version.documents
+        } %>
+
       </section>
     <% end %>
 
@@ -74,18 +58,12 @@
   <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
 
     <% main_document = @agreement.documents.where(main_document: true).find { |d| d.file.attached? } %>
-    <% if main_document.present? %>
-      <div class="aspect-square overflow-hidden rounded-lg max-w-sm max-h-sm bg-slate-100 p-2">
-        <%= image_tag(
-          main_document.file.preview(resize_to_limit: [512, 512]),
-          class: "h-full w-full object-contain object-center"
-        ) %>
-      </div>
-    <% else %>
-      <div class="aspect-square overflow-hidden rounded-lg max-w-sm max-h-sm">
-        <img src="https://placehold.co/512x512" alt="" />
-      </div>
-    <% end %>
+    <%= render partial: "ui/profile-pic", locals: {
+      div: "p-2",
+      img: "object-contain",
+      src: main_document.present? ? main_document.file.preview(resize_to_limit: [512, 512]).url : "https://placehold.co/512x512",
+      alt: "",
+    } %>
 
     <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
 
