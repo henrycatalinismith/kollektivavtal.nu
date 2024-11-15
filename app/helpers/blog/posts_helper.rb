@@ -6,9 +6,38 @@ module Blog::PostsHelper
   end
 
   def render_blog_post(post)
-    renderer = BlogPostRender.new(published_at: post.published_at)
-    redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
-    redcarpet.render(blog_post_body(post))
+    body = blog_post_body(post)
+    
+    begin
+      blob = JSON.parse(body)
+    rescue JSON::ParserError
+      renderer = BlogPostRender.new(published_at: post.published_at)
+      redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
+      return redcarpet.render(blog_post_body(post))
+    end
+
+    return blob["blocks"].map do |block|
+      case block["type"]
+      when "header"
+        %(
+          <h#{block["data"]["level"]} class="text-lg md"text-2xl font-bold">
+            #{block["data"]["text"]}
+          </h#{block["data"]["level"]}>
+        )
+      when "paragraph"
+        %(
+          <p class="text-base md:text-lg">
+            #{block["data"]["text"]}
+          </p>
+        )
+      when "list"
+        %(
+          <ul class="list-disc list-inside">
+            #{block["data"]["items"].map { |item| "<li>#{item}</li>" }.join}
+          </ul>
+        )
+      end
+    end.join
   end
 
   def blog_post_body(post)
