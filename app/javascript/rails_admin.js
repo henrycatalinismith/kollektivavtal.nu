@@ -2,9 +2,13 @@ import "rails_admin/src/rails_admin/base";
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
+import Checklist from '@editorjs/checklist';
+import Link from '@editorjs/link';
+import Quote from '@editorjs/quote';
+import Code from '@editorjs/code';
+import Hyperlink from 'editorjs-hyperlink';
 
 console.log("⭐️ kollektivavtal.nu admin")
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const editorContainers = document.querySelectorAll(".editorjs-container");
@@ -30,6 +34,26 @@ document.addEventListener("DOMContentLoaded", () => {
             class: List,
             inlineToolbar: true,
           },
+          checklist: {
+            class: Checklist,
+            inlineToolbar: true,
+          },
+          link: {
+            class: Link,
+            inlineToolbar: true,
+          },
+          quote: {
+            class: Quote,
+            inlineToolbar: true,
+          },
+          code: {
+            class: Code,
+            inlineToolbar: true,
+          },
+          hyperlink: {
+            class: Hyperlink,
+          },
+
         },
         data: editorData,
         onChange: async () => {

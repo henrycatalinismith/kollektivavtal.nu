@@ -36,6 +36,30 @@ module Blog::PostsHelper
             #{block["data"]["items"].map { |item| "<li>#{item}</li>" }.join}
           </ul>
         )
+      when "checklist"
+        puts block["data"]["items"].inspect
+        %(
+          <ul class="list-disc list-inside">
+            #{block["data"]["items"].map { |item|
+              "<li>
+                <input type=\"checkbox\" #{item['checked'] ? 'checked' : ''} disabled>
+                #{item['text']}</li>"
+            }.join}
+          </ul>
+        )
+      when "quote"
+        %(
+          <blockquote class="text-lg md:text-2xl font-bold">
+            #{block["data"]["text"]}
+            <cite class="text-sm md:text-lg">
+              #{block["data"]["caption"]}
+            </cite>
+          </blockquote>
+        )
+      when "code"
+        %(
+          <pre class="bg-gray-100 text-black p-4 rounded-md"><code class="text-sm md:text-lg">#{block["data"]["code"]}</code></pre>
+        )
       end
     end.join
   end
