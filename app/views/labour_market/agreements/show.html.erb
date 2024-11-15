@@ -57,11 +57,11 @@
 
   <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
 
-    <% main_document = @agreement.documents.where(main_document: true).find { |d| d.file.attached? } %>
+    <% file = main_attachment(@agreement) %>
     <%= render partial: "ui/profile-pic", locals: {
       div: "p-2",
       img: "object-contain",
-      src: main_document.present? ? main_document.file.preview(resize_to_limit: [512, 512]).url : "https://placehold.co/512x512",
+      src: file.present? ? file.preview(resize_to_limit: [512, 512]).url : "https://placehold.co/512x512",
       alt: "",
     } %>
 
