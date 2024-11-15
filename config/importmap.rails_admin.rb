@@ -1,3 +1,4 @@
+
 pin "rails_admin", preload: true
 pin "rails_admin/src/rails_admin/base", to: "https://ga.jspm.io/npm:rails_admin@3.2.1/src/rails_admin/base.js"
 pin "@hotwired/turbo", to: "https://ga.jspm.io/npm:@hotwired/turbo@7.3.0/dist/turbo.es2017-esm.js"
@@ -9,3 +10,7 @@ pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.3.3/dist/js/bootstrap.e
 pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js"
 pin "jquery-ui/", to: "https://ga.jspm.io/npm:jquery-ui@1.13.3/"
+pin "@editorjs/editorjs", to: "https://ga.jspm.io/npm:@editorjs/editorjs@2.27.0/dist/editorjs.mjs"
+pin "@editorjs/header", to: "https://ga.jspm.io/npm:@editorjs/header@2.7.0/dist/bundle.js"
+pin "@editorjs/list", to: "https://ga.jspm.io/npm:@editorjs/list@1.8.0/dist/bundle.js"
+

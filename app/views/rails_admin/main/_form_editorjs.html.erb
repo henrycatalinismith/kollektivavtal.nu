@@ -1,0 +1,13 @@
+<!--<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+<script src="/rails_admin.js"></script>-->
+<div
+   class="editorjs-container"
+   id="editorjs-<%= field.method_name %>"
+   data-editorjs-value="<%= Base64.strict_encode64(field.value.to_json) %>"
+   data-target="blog_post[<%= field.name %>]"
+></div>
+<input
+  type="hidden"
+  name="blog_post[<%= field.name %>]"
+  value="<%= field.value %>"
+/>

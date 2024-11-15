@@ -173,4 +173,23 @@ RailsAdmin.config do |config|
       # end
     end
   end
+
+  module RailsAdmin
+    module Config
+      module Fields
+        module Types
+          class EditorJsField < RailsAdmin::Config::Fields::Base
+            RailsAdmin::Config::Fields::Types::register(self)
+
+            def partial
+              :form_editorjs
+            end
+          end
+        end
+      end
+    end
+  end
+
+
+  RailsAdmin::Config::Fields::Types.register(:editorjs, RailsAdmin::Config::Fields::Types::EditorJsField)
 end

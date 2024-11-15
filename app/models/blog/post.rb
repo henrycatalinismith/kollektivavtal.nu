@@ -35,5 +35,11 @@ class Blog::Post < ApplicationRecord
       sticky true
       column_width 256
     end
+
+    edit do
+      configure :body_en, :editorjs do
+        label "Body (en)"
+      end
+    end
   end
 end
