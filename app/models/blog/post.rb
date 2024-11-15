@@ -40,6 +40,9 @@ class Blog::Post < ApplicationRecord
       configure :body_en, :editorjs do
         label "Body (en)"
       end
+      configure :body_sv, :editorjs do
+        label "Body (sv)"
+      end
     end
   end
 end
