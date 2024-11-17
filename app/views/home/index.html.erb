@@ -416,11 +416,9 @@
         landscape:xl:row-end-1
       ">
         <%= t("home.index.form.text") %>
-        
       </div>
 
-      <%= form_with url: "/subscribe", html: {class: "
-        w-full
+      <div class="w-full
         flex
         flex-col
         gap-y-8
@@ -437,44 +435,25 @@
         portrait:col-start-1
         portrait:col-end-3
         portrait:row-start-2
-        portrait:row-end-2
-      " } do |form| %>
-        <div class="flex flex-row gap-y-4">
-          <div class="flex-grow flex flex-row rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-            <div class="flex-grow pl-3 pb-1.5 pt-2.5 ">
-              <label for="email" class="block text-xs font-medium text-gray-200">
-                <%= t("ui.footer.mailing_list.label") %>
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                class="block bg-transparent w-full border-0 p-0 text-gray-200 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                required
-                placeholder="<%= t("ui.footer.mailing_list.placeholder") %>"
-              />
-            </div>
-            <button class="mr-2 mt-2 mb-2 group relative isolate flex-none rounded-md py-1.5 text-[0.8125rem]/6 font-semibold text-white pl-2.5 pr-[calc(9/16*1rem)]" type="submit">
-              <span class="absolute inset-0 rounded-md bg-gradient-to-b from-white/80 to-white opacity-10 transition-opacity group-hover:opacity-15"></span>
-              <span class="absolute inset-0 rounded-md opacity-7.5 shadow-[inset_0_1px_1px_white] transition-opacity group-hover:opacity-10"></span>
-              <%= t("home.index.subscribe_button") %>
-              <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
+        portrait:row-end-2">
+        <div id="custom-substack-embed"></div>
+      </div>
 
-        <div class="cloudflare-turnstile">
-          <div
-            class="cf-turnstile"
-            data-sitekey="<%= ENV["CLOUDFLARE_TURNSTILE_SITE_KEY"] %>"
-            data-size="flexible"
-            data-action="other"
-            data-theme="dark"
-            data-tabindex="0"
-          ></div>
-        </div>
-
-      <% end %>
+      <script>
+        window.CustomSubstackWidget = {
+          substackUrl: "kollektivavtal.substack.com",
+          placeholder: "example@gmail.com",
+          buttonText: "Subscribe",
+          theme: "custom",
+          colors: {
+            primary: "#FFFFFF",
+            input: "#000000",
+            email: "#FFFFFF",
+            text: "#000000",
+          },
+        };
+      </script>
+      <script src="https://substackapi.com/widget.js" async></script>
 
     </div>
   </div>
