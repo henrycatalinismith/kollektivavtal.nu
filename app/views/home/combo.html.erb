@@ -1,0 +1,43 @@
+<div class="flex flex-col">
+
+  <%= render :layout => "labour_market/index/section", locals: {
+    heading: "Latest posts",
+    subheading: "Employment terms negotiated at a sector level between employer organisations and central unions.",
+  }  do %>
+
+    <div id="substack-feed-embed"></div>
+    <script>
+      window.SubstackFeedWidget = {
+        substackUrl: "netincome.substack.com",
+        posts: 2,
+        layout: "center"
+      };
+    </script>
+    <script src="https://substackapi.com/embeds/feed.js" async></script>
+
+  <% end %>
+
+  <%= render :layout => "labour_market/index/section", locals: {
+    heading: t("labour_market.collective_agreements"),
+    subheading: "Employment terms negotiated at a sector level between employer organisations and central unions.",
+  }  do %>
+
+    <%= render :layout => "labour_market/index/section-grid" do %>
+      <% @highlighted_collective_agreements.each do |agreement| %>
+        <% file = main_attachment(agreement) %>
+        <%= render partial: "labour_market/index/section-card", locals: {
+          img: file.preview(resize_to_limit: [512, 512]).url,
+          href: collective_agreement_path(agreement),
+          label: agreement.name,
+        } %>
+      <% end %>
+    <% end %>
+
+    <%= render partial: "labour_market/index/section-link", locals: {
+      href: collective_agreements_path,
+      text: "More Collective Agreements &rarr;",
+    } %>
+
+  <% end %>
+
+</div>
