@@ -12,4 +12,18 @@ class HomeController < ApplicationController
     # flash[:notice] = "Welcome to the blog!"
     # @blog_posts = []
   end
+
+  layout "page", only: [:combo]
+  def combo
+    collective_agreement_slugs = [
+      "tekniktjansteavtalet",
+      "motorbranschavtalet",
+      "it-avtalet",
+      "industriavtalet",
+    ]
+
+    @highlighted_collective_agreements = LabourMarket::Agreement
+      .where(slug: collective_agreement_slugs)
+      .sort_by { |a| collective_agreement_slugs.index(a.slug) }
+  end
 end

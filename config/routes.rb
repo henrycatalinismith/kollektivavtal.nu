@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   root "home#index"
   get "/landing" => "home#landing"
+  get "/combo" => "home#combo"
   get "/subscribed" => "mailing_list/subscriptions#created"
 
   post "subscribe" => "mailing_list/subscriptions#create"
