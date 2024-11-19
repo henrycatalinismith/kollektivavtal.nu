@@ -1,15 +1,15 @@
-<div class="flex flex-col">
+<div class="flex flex-col w-full">
 
   <%= render :layout => "labour_market/index/section", locals: {
-    heading: "Latest posts",
-    subheading: "Employment terms negotiated at a sector level between employer organisations and central unions.",
+    heading: "kollektivavtal.nu",
+    subheading: "Twenty First Century Collective Power",
   }  do %>
 
-    <div id="substack-feed-embed"></div>
+    <div class="mt-16" id="substack-feed-embed"></div>
     <script>
       window.SubstackFeedWidget = {
-        substackUrl: "netincome.substack.com",
-        posts: 2,
+        substackUrl: "everythingisamazing.substack.com",
+        posts: 4,
         layout: "center"
       };
     </script>
@@ -26,7 +26,9 @@
       <% @highlighted_collective_agreements.each do |agreement| %>
         <% file = main_attachment(agreement) %>
         <%= render partial: "labour_market/index/section-card", locals: {
+          article: "",
           img: file.preview(resize_to_limit: [512, 512]).url,
+          img_class: "",
           href: collective_agreement_path(agreement),
           label: agreement.name,
         } %>

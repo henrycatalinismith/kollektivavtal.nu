@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     # @blog_posts = []
   end
 
-  layout "page", only: [:combo]
+  layout "blank", only: [:combo]
   def combo
     collective_agreement_slugs = [
       "tekniktjansteavtalet",
