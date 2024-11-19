@@ -19,6 +19,7 @@ class HomeController < ApplicationController
       "tekniktjansteavtalet",
       "industriavtalet",
       "it-avtalet",
+      "motorbranschavtalet",
     ]
 
     @highlighted_collective_agreements = LabourMarket::Agreement
