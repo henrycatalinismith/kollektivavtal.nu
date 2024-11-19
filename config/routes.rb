@@ -37,30 +37,18 @@ Rails.application.routes.draw do
   get "/agreements/public-service/" => "agreements/documents#show", as: :agreement_document
   get "/opinion/unions-are-good-actually" => "magazine/documents#show", as: :magazine_document
 
-  get "/labour-market" => "labour_market#index", as: :labour_market
-  get "/labour-market/collective-agreements" => "labour_market/agreements#index", as: :collective_agreements
-  get "/labour-market/collective-agreements/:agreement" => "labour_market/agreements#show", as: :collective_agreement
+  localized do
+    get "labour-market" => "labour_market#index", as: :labour_market
 
-  get "/labour-market/central-unions" => "labour_market/organisations#index",
-    as: :central_unions,
-    defaults: { organisation_type: :central_union }
-  get "/labour-market/central-unions/:organisation" => "labour_market/organisations#show",
-    as: :central_union,
-    defaults: { organisation_type: :central_union }
+    scope module: "labour_market" do
+      resources :agreements,
+        only: [:index, :show],
+        as: :collective_agreements
+      resources :organisations,
+        only: [:index, :show],
+        as: :central_unions,
+        defaults: { organisation_type: :central_union }
+    end
+  end
 
-  get "/labour-market/employer-associations" => "labour_market/organisations#index",
-    as: :employer_associations,
-    defaults: { organisation_type: :employer_association }
-  get "/labour-market/employer-associations/:organisation" => "labour_market/organisations#show",
-    as: :employer_association,
-    defaults: { organisation_type: :employer_association }
-
-  get "/labour-market/local-unions" => "labour_market/organisations#index",
-    as: :local_unions,
-    defaults: { organisation_type: :local_union }
-  get "/labour-market/local-unions/:organisation" => "labour_market/organisations#show",
-    as: :local_union,
-    defaults: { organisation_type: :local_union }
-
-  # get "/labour-market/collective-agreements/:agreement/:version" => "labour_market/collective_agreement_versions#show", as: :collective_agreement_version
 end

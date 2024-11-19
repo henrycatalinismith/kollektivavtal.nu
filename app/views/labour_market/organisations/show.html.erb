@@ -61,19 +61,6 @@
       </section>
     <% end %>
 
-    <% if @organisation.central_union? and @organisation.members.count > 0 %>
-      <section class="flex flex-col gap-y-4 mt-16">
-        <h2 class="text-xl font-semibold text-gray-900">
-          <%= t("labour_market.local_unions") %>
-        </h2>
-
-        <%= render partial: "labour_market/organisations/list", locals: {
-          organisations: @organisation.members
-        } %>
-
-      </section>
-    <% end %>
-
   </div>
 
   <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">

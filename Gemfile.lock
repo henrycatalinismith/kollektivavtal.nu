@@ -408,6 +408,9 @@ GEM
     retriable (3.1.2)
     rexml (3.3.8)
     rouge (4.4.0)
+    route_translator (14.2.0)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
     rubocop (1.67.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -528,6 +531,7 @@ DEPENDENCIES
   rails_admin (~> 3.0)
   rails_cloudflare_turnstile
   redcarpet (~> 3.6)
+  route_translator (~> 14.2)
   rubocop
   rubocop-rails (~> 2.24)
   sendgrid-ruby

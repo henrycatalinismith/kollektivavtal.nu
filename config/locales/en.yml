@@ -104,11 +104,15 @@ en:
   
   labour_market:
     root: Labour Market
-    central_union: Central Union
-    central_unions: Central Unions
+    central_union: Union
+    central_unions: Unions
+    central_unions_subheading: National organisations that represent workers and negotiate collective agreements in particular industries and sectors.
+    central_unions_more: More unions &rarr;
     local_unions: Local Unions
     collective_agreement: Collective Agreement
     collective_agreements: Collective Agreements
+    collective_agreements_subheading: Employment terms negotiated at a sector level between employer organisations and central unions.
+    collective_agreements_more: More collective agreements &rarr;
     employer_associations: Employer Associations
   
   website: Website
@@ -150,3 +154,8 @@ en:
         menu: Grant All Roles
       user_role_grant_to_everyone:
         menu: Grant to Everyone
+
+  routes:
+    labour-market: "labour-market"
+    agreements: "collective-agreements"
+    organisations: "unions"

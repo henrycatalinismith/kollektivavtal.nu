@@ -39,19 +39,6 @@
       </section>
     <% end %>
 
-      <% if @agreement.members.local_union.count > 0 %>
-        <section class="flex flex-col gap-y-4 mt-16">
-          <h2 class="text-xl font-semibold text-gray-900">
-            <%= t("labour_market.local_unions") %>
-          </h2>
-
-          <%= render partial: "labour_market/organisations/list", locals: {
-            organisations: @agreement.members.local_union
-          } %>
-
-        </section>
-      <% end %>
-
     </section>
   </div>
 
@@ -66,19 +53,6 @@
     } %>
 
     <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
-
-      <% if @agreement.members.employer_association.count > 0 %>
-        <div class="lg:px-4 py-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            <%= t("labour_market.employer_associations") %>
-          </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <ol class="flex flex-row gap-x-1 flex-wrap">
-              <%- @agreement.members.employer_association.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= employer_association_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
-            </ol>
-          </dd>
-        </div>
-      <% end %>
 
       <% if @agreement.members.central_union.count > 0 %>
         <div class="lg:px-4 py-4">
