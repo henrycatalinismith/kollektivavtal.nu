@@ -1,0 +1,26 @@
+<div class="grid grid-cols-1 sm:px-1 lg:px-0 gap-16 gap-y-32 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+
+  <% agreements.each do |agreement| %>
+    <article class="group relative bg-white rounded-lg overflow-hidden">
+      <div class="flex flex-col">
+        <a href="<%= collective_agreement_path(agreement) %>" class="aspect-[707/1000] rounded-lg bg-slate-100 overflow-hidden border-slate-200 border-2">
+          <% file = main_attachment(agreement) %>
+          <% if file.present? %>
+            <%= image_tag file.preview(resize_to_limit: [300, 300]), class: "object-cover object-center w-full h-full"  %>
+          <% else %>
+            <%= image_tag "https://placehold.co/64x64" %>
+          <% end %>
+        </a>
+        <div class="mt-4">
+          <h3 class="text-lg font-medium text-gray-900">
+            <a href="<%= collective_agreement_path(agreement) %>" class="hover:underline hover:text-sky-600">
+              <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+              <%= agreement.name %>
+            </a>
+          </h3>
+        </div>
+      </div>
+    </article>
+  <% end %>
+
+</div>

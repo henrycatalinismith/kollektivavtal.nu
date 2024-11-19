@@ -14,7 +14,9 @@
           <% @highlighted_collective_agreements.each do |agreement| %>
             <% file = main_attachment(agreement) %>
             <%= render partial: "labour_market/index/section-card", locals: {
+              article: "aspect-[707/1000]",
               img: file.preview(resize_to_limit: [512, 512]).url,
+              img_class: "object-cover",
               href: collective_agreement_path(agreement),
               label: agreement.name,
             } %>
@@ -37,7 +39,9 @@
           <% @highlighted_central_unions.each do |organisation| %>
             <% logo = organisation_logo(organisation) %>
             <%= render partial: "labour_market/index/section-card", locals: {
+              article: "aspect-square",
               img: logo.url,
+              img_class: "object-contain",
               href: organisation_path(organisation),
             label: organisation.name,
           } %>

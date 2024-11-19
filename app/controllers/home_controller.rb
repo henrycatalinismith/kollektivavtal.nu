@@ -17,9 +17,8 @@ class HomeController < ApplicationController
   def combo
     collective_agreement_slugs = [
       "tekniktjansteavtalet",
-      "motorbranschavtalet",
-      "it-avtalet",
       "industriavtalet",
+      "it-avtalet",
     ]
 
     @highlighted_collective_agreements = LabourMarket::Agreement

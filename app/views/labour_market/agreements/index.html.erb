@@ -1,18 +1,15 @@
-<div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
-  <div class="lg:max-w-lg flex flex-col">
+<div class="w-full lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] justify-start">
+  <div class="flex flex-col">
 
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-      <%= t("labour_market.collective_agreements") %>
-    </h1>
+    <%= render partial: "ui/heading-plus-subheading", locals: {
+      heading: t("labour_market.collective_agreements"),
+      subheading: t("labour_market.collective_agreements_subheading")
+    } %>
 
     <div class="mt-8 flow-root">
-      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <%= render partial: "labour_market/agreements/list", locals: {
-            agreements: @agreements
-          } %>
-        </div>
-      </div>
+      <%= render partial: "labour_market/agreements/grid", locals: {
+        agreements: @agreements
+      } %>
     </div>
 
   </div>

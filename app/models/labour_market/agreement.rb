@@ -1,5 +1,5 @@
 class LabourMarket::Agreement < ApplicationRecord
-  #validates :slug, presence: true, uniqueness: true
+  scope :lexicographical, -> { order(name_sv: :asc) }
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_many :versions, class_name: "LabourMarket::AgreementVersion", dependent: :destroy, inverse_of: :agreement
