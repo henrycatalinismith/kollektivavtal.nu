@@ -132,6 +132,8 @@ en:
 
   admin:
     actions:
+      add_2023:
+        menu: "2023-2025"
       mailing_list_create_sendgrid_subscription_job:
         menu: Add to SendGrid
       mailing_list_delete_sendgrid_subscription_job:

@@ -125,6 +125,22 @@ RailsAdmin.config do |config|
         end
       end
     end
+
+    member :add_2023 do
+      link_icon do "fa fa-plus" end
+      visible do
+        bindings[:abstract_model].model.name == "LabourMarket::Agreement"
+      end
+      controller do
+        proc do
+          version = @object.versions.create(
+            signing_year: "2023",
+            expiry_year: "2025",
+          )
+          redirect_to "/admin/labour_market~agreement_version/#{version.id}"
+        end
+      end
+    end
   end
 
   config.model "User::Account" do
@@ -192,4 +208,6 @@ RailsAdmin.config do |config|
 
 
   RailsAdmin::Config::Fields::Types.register(:editorjs, RailsAdmin::Config::Fields::Types::EditorJsField)
+
+
 end
