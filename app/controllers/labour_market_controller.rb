@@ -7,7 +7,6 @@ class LabourMarketController < ApplicationController
     collective_agreement_slugs = [
       "tekniktjansteavtalet",
       "motorbranschavtalet",
-      "it-avtalet",
       "industriavtalet",
     ]
 
@@ -19,7 +18,6 @@ class LabourMarketController < ApplicationController
       "if-metall",
       "unionen",
       "kommunal",
-      "sveriges-ingenjorer",
     ]
 
     @highlighted_central_unions = LabourMarket::Organisation
