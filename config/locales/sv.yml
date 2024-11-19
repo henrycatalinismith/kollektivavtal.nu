@@ -108,9 +108,13 @@ sv:
     root: Arbetsmarknad
     central_union: Fackförbund
     central_unions: Fackförbund
+    central_unions_subheading: Nationella organisationer som representerar arbetstagare och förhandlar kollektivavtal inom särskilda branscher och sektorer.
+    central_unions_more: Flera fackförbund &rarr;
     local_unions: Lokala Fackklubber
     collective_agreement: Kollektivavtal
     collective_agreements: Kollektivavtal
+    collective_agreements_subheading: Avtal som reglerar arbetsvillkor och löner för arbetstagare i en viss bransch eller sektor.
+    collective_agreements_more: Flera kollektivavtal &rarr;
     employer_associations: Arbetsgivarorganisationer
 
   website: Hemsida
@@ -131,3 +135,8 @@ sv:
         label: Mejladress
         placeholder: du@exempel.com
         submit: Få uppdateringar
+
+  routes:
+    labour-market: "arbetsmarknad"
+    agreements: "kollektivavtal"
+    organisations: "fackforbund"

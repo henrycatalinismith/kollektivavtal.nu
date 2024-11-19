@@ -1,5 +1,6 @@
 class LabourMarket::OrganisationsController < ApplicationController
   layout "page"
+  around_action :set_locale_from_url
 
   def index
     @organisation_type = params[:organisation_type]
@@ -10,7 +11,8 @@ class LabourMarket::OrganisationsController < ApplicationController
   end
 
   def show
+    puts params.inspect
     @organisation_type = params[:organisation_type]
-    @organisation = LabourMarket::Organisation.find_by_slug(params[:organisation])
+    @organisation = LabourMarket::Organisation.find_by_slug(params[:id])
   end
 end

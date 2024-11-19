@@ -43,3 +43,5 @@ gem "stackprof"
 gem "jekyll", "~> 4.3.4"
 gem "jekyll-feed"
 gem "just-the-docs"
+
+gem "route_translator", "~> 14.2"

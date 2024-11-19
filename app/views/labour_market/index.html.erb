@@ -7,7 +7,7 @@
 
       <%= render :layout => "labour_market/index/section", locals: {
         heading: t("labour_market.collective_agreements"),
-        subheading: "Employment terms negotiated at a sector level between employer organisations and central unions.",
+        subheading: t("labour_market.collective_agreements_subheading"),
       }  do %>
 
         <%= render :layout => "labour_market/index/section-grid" do %>
@@ -23,37 +23,14 @@
 
         <%= render partial: "labour_market/index/section-link", locals: {
           href: collective_agreements_path,
-          text: "More Collective Agreements &rarr;",
-        } %>
-
-      <% end %>
-
-      <%= render :layout => "labour_market/index/section", locals: {
-        heading: t("labour_market.local_unions"),
-        subheading: "Employee organisations representing workers within individual companies.",
-      }  do %>
-
-        <%= render :layout => "labour_market/index/section-grid" do %>
-          <% @highlighted_local_unions.each do |organisation| %>
-            <% logo = organisation_logo(organisation) %>
-            <%= render partial: "labour_market/index/section-card", locals: {
-              img: logo.url,
-              href: organisation_path(organisation),
-              label: organisation.name,
-            } %>
-          <% end %>
-        <% end %>
-
-        <%= render partial: "labour_market/index/section-link", locals: {
-          href: local_unions_path,
-          text: "More Local Unions &rarr;",
+          text: t("labour_market.collective_agreements_more"),
         } %>
 
       <% end %>
 
       <%= render :layout => "labour_market/index/section", locals: {
         heading: t("labour_market.central_unions"),
-        subheading: "National organisations that represent workers and negotiate collective agreements in particular industries and sectors.",
+        subheading: t("labour_market.central_unions_subheading"),
       }  do %>
 
         <%= render :layout => "labour_market/index/section-grid" do %>
@@ -70,16 +47,14 @@
 
       <%= render partial: "labour_market/index/section-link", locals: {
         href: central_unions_path,
-        text: "More Central Unions &rarr;",
+        text: t("labour_market.central_unions_more"),
       } %>
 
     <% end %>
 
     <% links = [
       { href: central_unions_path, text: t("labour_market.central_unions") },
-      { href: local_unions_path, text: t("labour_market.local_unions") },
       { href: collective_agreements_path, text: t("labour_market.collective_agreements") },
-      { href: employer_associations_path, text: t("labour_market.employer_associations") },
     ] %>
 
   </div>
