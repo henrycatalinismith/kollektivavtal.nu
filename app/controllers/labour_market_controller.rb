@@ -7,7 +7,7 @@ class LabourMarketController < ApplicationController
     collective_agreement_slugs = [
       "tekniktjansteavtalet",
       "motorbranschavtalet",
-      "techsverige",
+      "it-avtalet",
       "industriavtalet",
     ]
 

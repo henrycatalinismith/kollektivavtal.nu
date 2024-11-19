@@ -45,3 +45,4 @@ gem "jekyll-feed"
 gem "just-the-docs"
 
 gem "route_translator", "~> 14.2"
+gem "ruby-openai", "~> 7.1"
