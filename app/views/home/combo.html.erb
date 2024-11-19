@@ -15,6 +15,11 @@
     </script>
     <script src="https://substackapi.com/embeds/feed.js" async></script>
 
+    <%= render partial: "labour_market/index/section-link", locals: {
+      href: "https://example.org",
+      text: "Newsletter &rarr;",
+    } %>
+
   <% end %>
 
   <%= render :layout => "labour_market/index/section", locals: {
