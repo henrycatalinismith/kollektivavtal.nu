@@ -9,7 +9,7 @@ module LabourMarket::AgreementsHelper
   def render_agreement_description(agreement)
     renderer = AgreementDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
-    redcarpet.render(agreement.description_en)
+    redcarpet.render(agreement.description)
   end
 end
 

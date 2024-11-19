@@ -19,7 +19,7 @@ module LabourMarket::OrganisationsHelper
   def render_organisation_description(union)
     renderer = OrganisationDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
-    redcarpet.render(union.description_en || "")
+    redcarpet.render(union.description || "")
   end
 end
 
