@@ -1,0 +1,12 @@
+<% content_for :body do %>
+
+  <main class="mx-auto flex flex-col items-center">
+    <div class="flex flex-col gap-10 w-full px-4 lg:px-0 pt-8 max-w-5xl md:flex-row pb-8">
+      <%= yield %>
+    </div>
+  </main>
+
+  <%= render "ui/footer" %>
+<% end %>
+
+<%= render template: "layouts/application" %>

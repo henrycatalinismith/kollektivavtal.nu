@@ -50,26 +50,23 @@ links = [
       <p class="mt-2 text-sm leading-6 text-gray-600">
         <%= t("ui.footer.mailing_list.description") %>
       </p>
-      <%= form_with url: "/subscribe", html: {class: "mt-6 flex sm:max-w-md" } do |form| %>
-        <div class="flex flex-rowrounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-          <div class="flex flex-col px-3 pb-1.5 pt-2.5 ">
-            <label for="email" class="block text-xs font-medium text-gray-900">
-              <%= t("ui.footer.mailing_list.label") %>
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-              required
-              placeholder="<%= t("ui.footer.mailing_list.placeholder") %>"
-            />
-          </div>
-          <button type="submit" class="mr-2 mt-2 mb-2 flex items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 whitespace-nowrap">
-            <%= t("ui.footer.mailing_list.submit") %>
-          </button>
-        </div>
-      <% end %>
+      <div class="mt-4" id="custom-substack-embed"></div>
+       <script>
+        window.CustomSubstackWidget = {
+          substackUrl: "kollektivavtal.substack.com",
+          placeholder: "example@gmail.com",
+          buttonText: "Subscribe",
+          theme: "custom",
+          colors: {
+            primary: "#000000",
+            input: "#FFFFFF",
+            email: "#000000",
+            text: "#FFFFFF",
+          },
+        };
+      </script>
+      <script src="https://substackapi.com/widget.js" async></script>
+      
 
       <nav aria-label="<%= t("ui.footer.label") %>" class="mt-8">
         <ul class="columns-2 sm:flex sm:justify-center sm:space-x-12 flex flex-col gap-y-6">
