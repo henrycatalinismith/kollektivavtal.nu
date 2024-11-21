@@ -20,12 +20,6 @@ class Ability
       can :manage, User::Role
     end
 
-    if user.role?("mailing_list_admin")
-      can :manage, MailingList::Email
-      can :manage, MailingList::List
-      can :manage, MailingList::Subscription
-    end
-
     if user.role?("media_admin")
       can :manage, Media::Image
     end

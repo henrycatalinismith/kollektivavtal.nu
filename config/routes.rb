@@ -50,5 +50,4 @@ Rails.application.routes.draw do
         defaults: { organisation_type: :central_union }
     end
   end
-
 end

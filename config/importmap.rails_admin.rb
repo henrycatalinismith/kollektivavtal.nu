@@ -18,4 +18,3 @@ pin "@editorjs/link", to: "https://ga.jspm.io/npm:@editorjs/link@2.6.2/dist/link
 pin "@editorjs/quote", to: "https://ga.jspm.io/npm:@editorjs/quote@2.6.0/dist/quote.mjs"
 pin "@editorjs/code", to: "https://ga.jspm.io/npm:@editorjs/code@2.9.0/dist/code.mjs"
 pin "editorjs-hyperlink", to: "https://ga.jspm.io/npm:editorjs-hyperlink@1.0.6/dist/bundle.js"
-

@@ -7,7 +7,7 @@ module Blog::PostsHelper
 
   def render_blog_post(post)
     body = blog_post_body(post)
-    
+
     begin
       blob = JSON.parse(body)
     rescue JSON::ParserError
