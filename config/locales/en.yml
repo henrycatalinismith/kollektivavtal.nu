@@ -154,6 +154,8 @@ en:
         menu: Grant All Roles
       user_role_grant_to_everyone:
         menu: Grant to Everyone
+      view:
+        menu: "View"
 
   routes:
     labour-market: "labour-market"

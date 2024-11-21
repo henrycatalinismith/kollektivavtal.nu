@@ -1,19 +1,19 @@
 class MailingList::Subscription < ApplicationRecord
   belongs_to :list, class_name: "MailingList::List", foreign_key: :list_id
 
-  enum :sendgrid_status, {
-    sendgrid_pending: 0,
-    sendgrid_add_success: 1,
-    sendgrid_add_failure: 2,
-    sendgrid_delete_success: 3,
-    sendgrid_delete_failure: 4,
-  }
+  enum :sendgrid_status, [
+    :sendgrid_pending,
+    :sendgrid_add_success,
+    :sendgrid_add_failure,
+    :sendgrid_delete_success,
+    :sendgrid_delete_failure,
+  ]
 
-  enum :turnstile_status, {
-    turnstile_pending: 0,
-    turnstile_success: 1,
-    turnstile_failure: 2,
-  }
+  enum :turnstile_status, [
+    :turnstile_pending,
+    :turnstile_success,
+    :turnstile_failure,
+  ]
 
   rails_admin do
     object_label_method do

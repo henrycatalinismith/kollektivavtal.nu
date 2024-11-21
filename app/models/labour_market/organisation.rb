@@ -11,10 +11,16 @@ class LabourMarket::Organisation < ApplicationRecord
   has_many :parents, through: :child_memberships, source: :parent
   has_many :members, through: :parent_memberships, source: :child
 
-  enum organisation_type: {
-    central_union: 0,
-    employer_association: 1,
-    local_union: 2,
+  enum organisation_type: [
+    :central_union,
+    :employer_association,
+    :local_union,
+  ]
+
+  scope :without_agreements, -> {
+    left_outer_joins(:agreements)
+      .where(labour_market_agreements: { id: nil })
+      .distinct
   }
 
   include Translatable
@@ -37,6 +43,7 @@ class LabourMarket::Organisation < ApplicationRecord
     end
 
     list do
+      scopes [nil, :without_agreements]
       field :name
       field :slug
       field :created_at

@@ -21,6 +21,25 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    member :view do
+      link_icon do "fa fa-globe" end
+      visible do
+        [
+          "LabourMarket::Agreement",
+          "LabourMarket::Organisation"
+        ].include?(bindings[:abstract_model].model.name)
+      end
+      controller do
+        proc do
+          if @object.is_a?(LabourMarket::Agreement)
+            redirect_to "/collective-agreements/#{@object.slug}"
+          elsif @object.is_a?(LabourMarket::Organisation)
+            redirect_to "/unions/#{@object.slug}"
+          end
+        end
+      end
+    end
+
     member :user_account_grant_all_roles do
       link_icon do "fa fa-person" end
       visible do
