@@ -7,6 +7,12 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :memberships, class_name: "LabourMarket::AgreementMembership", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :memberships, source: :organisation
 
+  scope :without_documents, -> {
+    left_outer_joins(versions: :documents)
+      .where(labour_market_agreement_documents: { id: nil })
+      .distinct
+  }
+
   include Translatable
   translates :name
   translates :description
@@ -34,6 +40,7 @@ class LabourMarket::Agreement < ApplicationRecord
     end
 
     list do
+      scopes [nil, :without_documents]
       field :name
       field :slug
       field :created_at
