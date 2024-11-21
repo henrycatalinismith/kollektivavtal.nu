@@ -11,6 +11,16 @@ class Blog::Post < ApplicationRecord
   scope :chronological, -> { order(published_at: :asc) }
   scope :reverse_chronological, -> { order(published_at: :desc) }
 
+  rails_admin do
+    list do
+      field :title_en
+      field :slug
+      field :created_at
+      field :updated_at
+      sort_by :created_at
+    end
+  end
+
   def title
     if I18n.locale == :sv
       title_sv

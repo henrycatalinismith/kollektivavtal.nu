@@ -4,15 +4,11 @@ class User::Authorization < ApplicationRecord
 
   rails_admin do
     list do
-      configure :account do
-        sticky true
-        column_width 256
-      end
-
-      configure :role do
-        sticky true
-        column_width 256
-      end
+      field :account
+      field :role
+      field :created_at
+      field :updated_at
+      sort_by :created_at
     end
   end
 end

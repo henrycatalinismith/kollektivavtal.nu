@@ -5,10 +5,11 @@ class User::Account < ApplicationRecord
 
   rails_admin do
     list do
-      configure :email do
-        sticky true
-        column_width 256
-      end
+      field :email
+      field :roles
+      field :created_at
+      field :updated_at
+      sort_by :created_at
     end
 
     object_label_method do

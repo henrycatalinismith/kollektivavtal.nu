@@ -15,6 +15,7 @@ class Policy::Revision < ApplicationRecord
       field :title_en
       field :title_sv
       field :created_at
+      sort_by :created_at
     end
 
     edit do
