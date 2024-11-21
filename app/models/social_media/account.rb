@@ -1,15 +1,15 @@
 class SocialMedia::Account < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true
-  enum :provider, {
-    facebook: 0,
-    linkedin: 1,
-    x: 2,
-    instagram: 3,
-    tiktok: 4,
-    mastodon: 5,
-    bluesky: 6,
-  }
+  enum :provider, [
+    :facebook,
+    :linkedin,
+    :x,
+    :instagram,
+    :tiktok,
+    :mastodon,
+    :bluesky,
+  ]
 
   rails_admin do
     list do
