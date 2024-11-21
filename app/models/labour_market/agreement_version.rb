@@ -12,13 +12,13 @@ class LabourMarket::AgreementVersion < ApplicationRecord
   end
 
   rails_admin do
-    # configure :signing_year do
-    #   sticky true
-    #   column_width 32
-    # end
-    # configure :expiry_year do
-    #   sticky true
-    #   column_width 32
-    # end
+    list do
+      field :agreement
+      field :signing_year
+      field :expiry_year
+      field :created_at
+      field :updated_at
+      sort_by :created_at
+    end
   end
 end

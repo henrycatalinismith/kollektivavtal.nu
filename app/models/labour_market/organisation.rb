@@ -37,6 +37,10 @@ class LabourMarket::Organisation < ApplicationRecord
     end
 
     list do
+      field :name
+      field :slug
+      field :created_at
+      field :updated_at
       sort_by :created_at
     end
 

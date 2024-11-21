@@ -4,7 +4,12 @@ class Media::Image < ApplicationRecord
   validates :image, presence: true
 
   rails_admin do
-    field :name, :string
-    field :image, :active_storage
+    list do
+      field :image
+      field :name
+      field :created_at
+      field :updated_at
+      sort_by :created_at
+    end
   end
 end

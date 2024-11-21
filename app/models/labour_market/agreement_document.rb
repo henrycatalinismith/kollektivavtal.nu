@@ -4,4 +4,14 @@ class LabourMarket::AgreementDocument < ApplicationRecord
 
   include Translatable
   translates :name
+
+  rails_admin do
+    list do
+      field :file
+      field :name
+      field :created_at
+      field :updated_at
+      sort_by :created_at
+    end
+  end
 end

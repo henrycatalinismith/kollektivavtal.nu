@@ -33,6 +33,14 @@ class LabourMarket::Agreement < ApplicationRecord
       column_width 256
     end
 
+    list do
+      field :name
+      field :slug
+      field :created_at
+      field :updated_at
+      sort_by :created_at
+    end
+
     create do
       field :name_en
       field :name_sv

@@ -4,10 +4,11 @@ class User::Role < ApplicationRecord
 
   rails_admin do
     list do
-      configure :name do
-        sticky true
-        column_width 256
-      end
+      field :name
+      field :description
+      field :created_at
+      field :updated_at
+      sort_by :created_at
     end
   end
 end
