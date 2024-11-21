@@ -4,7 +4,7 @@ class LabourMarket::AgreementVersion < ApplicationRecord
   scope :chronological, -> { order(signing_year: :asc) }
   scope :reverse_chronological, -> { order(signing_year: :desc) }
   belongs_to :agreement, class_name: "LabourMarket::Agreement"
-  has_many :documents, class_name: "LabourMarket::AgreementDocument", dependent: :destroy, inverse_of: :version
+  has_many :documents, class_name: "LabourMarket::Document", dependent: :destroy, inverse_of: :version
 
   def name
     return if agreement.blank?

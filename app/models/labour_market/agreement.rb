@@ -9,7 +9,7 @@ class LabourMarket::Agreement < ApplicationRecord
 
   scope :without_documents, -> {
     left_outer_joins(versions: :documents)
-      .where(labour_market_agreement_documents: { id: nil })
+      .where(labour_market_documents: { id: nil })
       .distinct
   }
 
