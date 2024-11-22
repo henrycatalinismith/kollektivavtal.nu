@@ -33,6 +33,7 @@ class Ability
       can :manage, LabourMarket::Agreement
       can :manage, LabourMarket::AgreementMembership
       can :manage, LabourMarket::AgreementVersion
+      can :manage, LabourMarket::Bookmark
       can :manage, LabourMarket::Document
       can :manage, LabourMarket::Organisation
       can :manage, LabourMarket::OrganisationMembership
