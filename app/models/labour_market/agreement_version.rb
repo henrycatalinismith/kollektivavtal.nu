@@ -1,6 +1,5 @@
 class LabourMarket::AgreementVersion < ApplicationRecord
   validates :signing_year, presence: true
-  validates :expiry_year, presence: true
   scope :chronological, -> { order(signing_year: :asc) }
   scope :reverse_chronological, -> { order(signing_year: :desc) }
   belongs_to :agreement, class_name: "LabourMarket::Agreement"
@@ -8,7 +7,8 @@ class LabourMarket::AgreementVersion < ApplicationRecord
 
   def name
     return if agreement.blank?
-    "#{agreement.name} #{signing_year} - #{expiry_year}"
+    return "#{agreement.name} #{signing_year}" if expiry_year.blank?
+    return "#{agreement.name} #{signing_year} - #{expiry_year}"
   end
 
   rails_admin do

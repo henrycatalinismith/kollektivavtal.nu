@@ -13,6 +13,12 @@ class LabourMarket::Agreement < ApplicationRecord
       .distinct
   }
 
+  scope :without_organisations, -> {
+    left_outer_joins(:memberships)
+      .where(labour_market_agreement_memberships: { id: nil })
+      .distinct
+  }
+
   include Translatable
   translates :name
   translates :description
@@ -40,7 +46,11 @@ class LabourMarket::Agreement < ApplicationRecord
     end
 
     list do
-      scopes [nil, :without_documents]
+      scopes [
+        nil,
+        :without_documents,
+        :without_organisations
+      ]
       field :name
       field :slug
       field :created_at
@@ -63,6 +73,7 @@ class LabourMarket::Agreement < ApplicationRecord
       field :description_en
       field :description_sv
       field :versions
+      field :members
     end
   end
 
