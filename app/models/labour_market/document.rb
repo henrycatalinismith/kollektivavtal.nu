@@ -2,11 +2,14 @@ class LabourMarket::Document < ApplicationRecord
   belongs_to :version, class_name: "LabourMarket::AgreementVersion", foreign_key: "version_id"
   has_one_attached :file
 
+  scope :unsourced, -> { where(source_url: nil) }
+
   include Translatable
   translates :name
 
   rails_admin do
     list do
+      scopes [nil, :unsourced]
       field :file
       field :name
       field :created_at
