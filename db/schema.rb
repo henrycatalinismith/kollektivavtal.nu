@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_22_063230) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_22_202335) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -92,6 +92,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_063230) do
     t.index ["slug"], name: "index_labour_market_agreements_on_slug", unique: true
   end
 
+  create_table "labour_market_bookmarks", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+  end
+
   create_table "labour_market_documents", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -100,6 +106,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_063230) do
     t.boolean "main_document", default: false, null: false
     t.string "version_id"
     t.string "source_url"
+    t.string "source_id"
     t.index ["source_url"], name: "index_labour_market_documents_on_source_url"
     t.index ["version_id"], name: "index_labour_market_documents_on_version_id"
   end
@@ -234,6 +241,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_22_063230) do
   add_foreign_key "labour_market_agreement_memberships", "labour_market_organisations", column: "organisation_id"
   add_foreign_key "labour_market_agreement_versions", "labour_market_agreements", column: "agreement_id"
   add_foreign_key "labour_market_documents", "labour_market_agreement_versions", column: "version_id"
+  add_foreign_key "labour_market_documents", "labour_market_bookmarks", column: "source_id"
   add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "child_id"
   add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "parent_id"
   add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
