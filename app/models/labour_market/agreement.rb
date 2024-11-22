@@ -39,6 +39,13 @@ class LabourMarket::Agreement < ApplicationRecord
     end
   end
 
+  before_update :update_slug
+  def update_slug
+    if self.name_sv_changed?
+      self.slug = self.name_sv.parameterize
+    end
+  end
+
   rails_admin do
     configure :name do
       sticky true
