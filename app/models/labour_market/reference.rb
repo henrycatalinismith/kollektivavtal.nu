@@ -10,5 +10,13 @@ class LabourMarket::Reference < ApplicationRecord
     configure :referenceable do
       visible true
     end
+
+    list do
+      field :url
+      field :referenceable
+      field :created_at
+      field :updated_at
+      sort_by :created_at
+    end
   end
 end
