@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_23_080135) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_23_082759) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -245,10 +245,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_080135) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "labour_market_agreement_versions", "labour_market_agreements", column: "agreement_id"
-  add_foreign_key "labour_market_documents", "labour_market_agreement_versions", column: "version_id"
-  add_foreign_key "labour_market_documents", "labour_market_agreements", column: "agreement_id"
-  add_foreign_key "labour_market_documents", "labour_market_bookmarks", column: "source_id"
-  add_foreign_key "labour_market_documents", "labour_market_periods", column: "period_id"
   add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "child_id"
   add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "parent_id"
   add_foreign_key "labour_market_signatures", "labour_market_agreements", column: "agreement_id"

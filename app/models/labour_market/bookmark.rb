@@ -1,6 +1,10 @@
 class LabourMarket::Bookmark < ApplicationRecord
-  belongs_to :source, class_name: "LabourMarket::Document", foreign_key: "source_id", optional: true
+  has_many :documents, class_name: "LabourMarket::Document", inverse_of: :source
   validates :url, presence: true
+
+  def name
+    url
+  end
 
   rails_admin do
     list do
@@ -8,6 +12,13 @@ class LabourMarket::Bookmark < ApplicationRecord
       field :created_at
       field :updated_at
       sort_by :created_at
+    end
+
+    show do
+      field :url
+      field :documents
+      field :created_at
+      field :updated_at
     end
   end
 end
