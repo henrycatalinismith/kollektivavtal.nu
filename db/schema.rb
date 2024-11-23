@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_23_133216) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_23_134013) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -92,13 +92,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_133216) do
     t.index ["version_id"], name: "index_labour_market_documents_on_version_id"
   end
 
-  create_table "labour_market_organisation_memberships", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
+  create_table "labour_market_memberships", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "parent_id"
     t.string "child_id"
-    t.index ["child_id"], name: "index_labour_market_organisation_memberships_on_child_id"
-    t.index ["parent_id"], name: "index_labour_market_organisation_memberships_on_parent_id"
+    t.index ["child_id"], name: "index_labour_market_memberships_on_child_id"
+    t.index ["parent_id"], name: "index_labour_market_memberships_on_parent_id"
   end
 
   create_table "labour_market_organisations", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -234,8 +234,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_133216) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "child_id"
-  add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "parent_id"
+  add_foreign_key "labour_market_memberships", "labour_market_organisations", column: "child_id"
+  add_foreign_key "labour_market_memberships", "labour_market_organisations", column: "parent_id"
   add_foreign_key "labour_market_signatures", "labour_market_agreements", column: "agreement_id"
   add_foreign_key "labour_market_signatures", "labour_market_organisations", column: "organisation_id"
   add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
