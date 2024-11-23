@@ -17,7 +17,7 @@ class LabourMarket::Organisation < ApplicationRecord
     :local_union,
   ]
 
-  scope :without_agreements, -> {
+  scope :agreements_missing, -> {
     left_outer_joins(:agreements)
       .where(labour_market_agreements: { id: nil })
       .distinct
@@ -48,7 +48,7 @@ class LabourMarket::Organisation < ApplicationRecord
         :local_union,
         :central_union,
         :employer_association,
-        :without_agreements,
+        :agreements_missing,
       ]
       field :name
       field :slug

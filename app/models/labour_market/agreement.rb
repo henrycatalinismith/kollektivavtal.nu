@@ -6,8 +6,15 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :signatures, class_name: "LabourMarket::Signature", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :signatures, source: :organisation
   has_many :periods, through: :documents
+  has_many :references, as: :referenceable
 
-  scope :without_organisations, -> {
+  scope :documents_missing, -> {
+    left_outer_joins(:documents)
+      .where(labour_market_documents: { id: nil })
+      .distinct
+  }
+
+  scope :organisations_missing, -> {
     left_outer_joins(:signatures)
       .where(labour_market_signatures: { id: nil })
       .distinct
@@ -49,7 +56,8 @@ class LabourMarket::Agreement < ApplicationRecord
     list do
       scopes [
         nil,
-        :without_organisations
+        :documents_missing,
+        :organisations_missing
       ]
       field :name
       field :slug
