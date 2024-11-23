@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_23_082759) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_23_133216) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -58,16 +58,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_082759) do
     t.string "key", null: false
     t.text "value"
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
-  end
-
-  create_table "labour_market_agreement_versions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "agreement_id"
-    t.integer "signing_year"
-    t.integer "expiry_year"
-    t.index ["agreement_id", "signing_year"], name: "idx_on_agreement_id_signing_year_666f2c94c5"
-    t.index ["agreement_id"], name: "index_labour_market_agreement_versions_on_agreement_id"
   end
 
   create_table "labour_market_agreements", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -244,7 +234,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_082759) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "labour_market_agreement_versions", "labour_market_agreements", column: "agreement_id"
   add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "child_id"
   add_foreign_key "labour_market_organisation_memberships", "labour_market_organisations", column: "parent_id"
   add_foreign_key "labour_market_signatures", "labour_market_agreements", column: "agreement_id"
