@@ -1,6 +1,6 @@
 class LabourMarket::Document < ApplicationRecord
   belongs_to :version, class_name: "LabourMarket::AgreementVersion", foreign_key: "version_id"
-  belongs_to :source, class_name: "LabourMarket::Bookmark", optional: true, foreign_key: :source_id
+  belongs_to :source, class_name: "LabourMarket::Bookmark", foreign_key: "source_id"
   has_one_attached :file
 
   scope :unsourced, -> { where(source_url: nil) }
