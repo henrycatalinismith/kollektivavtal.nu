@@ -26,14 +26,14 @@
       </div>
     </section>
 
-    <% @agreement.versions.reverse_chronological.each do |version| %>
+    <% @agreement.periods.reverse_chronological.each do |period| %>
       <section class="mt-8">
         <h2 class="text-xl font-semibold text-gray-900">
-          <%= version.name %>
+          <%= period.start_year %>
         </h2>
 
         <%= render partial: "labour_market/documents/list", locals: {
-          documents: version.documents
+          documents: @agreement.documents.where(period: period),
         } %>
 
       </section>

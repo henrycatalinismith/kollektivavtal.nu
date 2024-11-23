@@ -31,11 +31,11 @@ class Ability
 
     if user.role?("labour_market_admin")
       can :manage, LabourMarket::Agreement
-      can :manage, LabourMarket::AgreementVersion
       can :manage, LabourMarket::Bookmark
       can :manage, LabourMarket::Document
       can :manage, LabourMarket::Organisation
       can :manage, LabourMarket::OrganisationMembership
+      can :manage, LabourMarket::Period
       can :manage, LabourMarket::Signature
     end
 
