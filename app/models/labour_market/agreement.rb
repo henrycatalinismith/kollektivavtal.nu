@@ -86,6 +86,7 @@ class LabourMarket::Agreement < ApplicationRecord
       field :description_en
       field :description_sv
       field :members
+      field :references
     end
   end
 

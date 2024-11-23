@@ -39,7 +39,24 @@
       </section>
     <% end %>
 
-    </section>
+    <% if @agreement.references.present? %>
+      <section class="mt-8 flex flex-col space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b-[1px] border-gray-300 border-solid">
+          <%= t("labour_market.references") %>
+        </h2>
+
+        <ol class="list-inside list-decimal text-sm">
+          <% @agreement.references.each do |reference| %>
+            <li class="text-ellipsis whitespace-nowrap overflow-hidden max-w-full">
+              <a class="text-sky-600 underline">
+                <%= reference.url %>
+              </span>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
+
   </div>
 
   <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
