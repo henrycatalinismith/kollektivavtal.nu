@@ -31,7 +31,6 @@ class Ability
 
     if user.role?("labour_market_admin")
       can :manage, LabourMarket::Agreement
-      can :manage, LabourMarket::Bookmark
       can :manage, LabourMarket::Document
       can :manage, LabourMarket::Membership
       can :manage, LabourMarket::Organisation
