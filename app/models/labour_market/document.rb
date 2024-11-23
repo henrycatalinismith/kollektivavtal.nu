@@ -3,7 +3,7 @@ class LabourMarket::Document < ApplicationRecord
   belongs_to :source, class_name: "LabourMarket::Bookmark", foreign_key: "source_id"
   has_one_attached :file
 
-  scope :unsourced, -> { where(source_url: nil) }
+  scope :unsourced, -> { where(source_id: nil) }
 
   include Translatable
   translates :name
