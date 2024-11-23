@@ -4,8 +4,8 @@ class LabourMarket::Organisation < ApplicationRecord
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_one_attached :logo
-  has_many :agreement_memberships, class_name: "LabourMarket::AgreementMembership", dependent: :destroy
-  has_many :agreements, through: :agreement_memberships
+  has_many :signatures, class_name: "LabourMarket::Signature", dependent: :destroy
+  has_many :agreements, through: :signatures
   has_many :parent_memberships, class_name: "LabourMarket::OrganisationMembership", foreign_key: :parent_id
   has_many :child_memberships, class_name: "LabourMarket::OrganisationMembership", foreign_key: :child_id
   has_many :parents, through: :child_memberships, source: :parent

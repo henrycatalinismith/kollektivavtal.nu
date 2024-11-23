@@ -4,8 +4,8 @@ class LabourMarket::Agreement < ApplicationRecord
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_many :versions, class_name: "LabourMarket::AgreementVersion", dependent: :destroy, inverse_of: :agreement
   has_many :documents, through: :versions, source: :documents
-  has_many :memberships, class_name: "LabourMarket::AgreementMembership", dependent: :destroy, inverse_of: :agreement
-  has_many :members, through: :memberships, source: :organisation
+  has_many :signatures, class_name: "LabourMarket::Signature", dependent: :destroy, inverse_of: :agreement
+  has_many :members, through: :signatures, source: :organisation
 
   scope :without_documents, -> {
     left_outer_joins(versions: :documents)
@@ -14,8 +14,8 @@ class LabourMarket::Agreement < ApplicationRecord
   }
 
   scope :without_organisations, -> {
-    left_outer_joins(:memberships)
-      .where(labour_market_agreement_memberships: { id: nil })
+    left_outer_joins(:signatures)
+      .where(labour_market_signatures: { id: nil })
       .distinct
   }
 
