@@ -20,6 +20,10 @@ class LabourMarket::Agreement < ApplicationRecord
       .distinct
   }
 
+  scope :references_missing, -> {
+    left_outer_joins(:references).where(labour_market_references: { id: nil })
+  }
+
   include Translatable
   translates :name
   translates :description
@@ -57,7 +61,8 @@ class LabourMarket::Agreement < ApplicationRecord
       scopes [
         nil,
         :documents_missing,
-        :organisations_missing
+        :organisations_missing,
+        :references_missing
       ]
       field :name
       field :slug
