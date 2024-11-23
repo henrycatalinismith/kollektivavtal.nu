@@ -5,8 +5,8 @@ class LabourMarket::AgreementsController < ApplicationController
   def index
     @agreements = LabourMarket::Agreement
       .lexicographical
-      .joins(:versions)
-      .includes(:versions)
+      .joins(:documents)
+      .includes(:documents)
   end
 
   def show

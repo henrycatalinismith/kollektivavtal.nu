@@ -26,7 +26,7 @@
       </div>
     </section>
 
-    <% @agreement.periods.reverse_chronological.each do |period| %>
+    <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
       <section class="mt-8">
         <h2 class="text-xl font-semibold text-gray-900">
           <%= period.start_year %>

@@ -1,7 +1,7 @@
 class LabourMarket::Period < ApplicationRecord
   has_many :documents, class_name: "LabourMarket::Document", foreign_key: "period_id"
 
-  scope :reverse_chronological, -> { order(created_at: :desc) }
+  scope :reverse_chronological, -> { order(start_year: :desc) }
 
   def name
     return "#{start_year}" if end_year.blank?

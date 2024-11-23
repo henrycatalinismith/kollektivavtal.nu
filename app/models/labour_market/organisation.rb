@@ -43,7 +43,13 @@ class LabourMarket::Organisation < ApplicationRecord
     end
 
     list do
-      scopes [nil, :without_agreements]
+      scopes [
+        nil,
+        :local_union,
+        :central_union,
+        :employer_association,
+        :without_agreements,
+      ]
       field :name
       field :slug
       field :created_at
