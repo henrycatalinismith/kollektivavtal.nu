@@ -48,9 +48,9 @@
         <ol class="list-inside list-decimal text-sm">
           <% @agreement.references.each do |reference| %>
             <li class="text-ellipsis whitespace-nowrap overflow-hidden max-w-full">
-              <a class="text-sky-600 underline">
+              <a class="text-sky-600 underline" href="<%= reference.url %>">
                 <%= reference.url %>
-              </span>
+              </a>
             </li>
           <% end %>
         </ol>
