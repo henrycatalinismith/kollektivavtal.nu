@@ -72,16 +72,11 @@ class LabourMarket::Agreement < ApplicationRecord
       field :slug
       field :description_en
       field :description_sv
-      field :versions
       field :members
     end
   end
 
   def to_param
     slug
-  end
-
-  def latest_version
-    versions.reverse_chronological.first
   end
 end
