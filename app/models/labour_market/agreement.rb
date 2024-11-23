@@ -2,16 +2,10 @@ class LabourMarket::Agreement < ApplicationRecord
   scope :lexicographical, -> { order(name_sv: :asc) }
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
-  has_many :versions, class_name: "LabourMarket::AgreementVersion", dependent: :destroy, inverse_of: :agreement
-  has_many :documents, through: :versions, source: :documents
+  has_many :documents, class_name: "LabourMarket::Document", dependent: :destroy, inverse_of: :agreement
   has_many :signatures, class_name: "LabourMarket::Signature", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :signatures, source: :organisation
-
-  scope :without_documents, -> {
-    left_outer_joins(versions: :documents)
-      .where(labour_market_documents: { id: nil })
-      .distinct
-  }
+  has_many :periods, through: :documents
 
   scope :without_organisations, -> {
     left_outer_joins(:signatures)
@@ -55,7 +49,6 @@ class LabourMarket::Agreement < ApplicationRecord
     list do
       scopes [
         nil,
-        :without_documents,
         :without_organisations
       ]
       field :name
