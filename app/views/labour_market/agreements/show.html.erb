@@ -1,5 +1,5 @@
-<div class="agreement">
-  <div class="agreement-head">
+<div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
+  <div class="lg:max-w-lg">
 
     <%= render partial: "ui/breadcrumbs", locals: {
       links: [
@@ -25,11 +25,9 @@
         </div>
       </div>
     </section>
-  </div>
 
-  <div class="agreement-body">
     <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
-      <section>
+      <section class="mt-8">
         <h2 class="text-xl font-semibold text-gray-900">
           <%= period.start_year %>
         </h2>
@@ -42,7 +40,7 @@
     <% end %>
 
     <% if @agreement.references.present? %>
-      <section class="flex flex-col space-y-4">
+      <section class="mt-8 flex flex-col space-y-4">
         <h2 class="text-xl font-semibold text-gray-900 border-b-[1px] border-gray-300 border-solid">
           <%= t("labour_market.references") %>
         </h2>
@@ -61,7 +59,7 @@
 
   </div>
 
-  <div class="agreement-meta">
+  <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
 
     <% file = main_attachment(@agreement) %>
     <%= render partial: "ui/profile-pic", locals: {
