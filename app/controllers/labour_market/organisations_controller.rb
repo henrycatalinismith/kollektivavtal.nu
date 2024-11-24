@@ -10,6 +10,7 @@ class LabourMarket::OrganisationsController < ApplicationController
     @letters = @organisations.map { |o| o.name[0].upcase }.uniq.sort
   end
 
+  layout "one-two-three", only: :show
   def show
     puts params.inspect
     @organisation_type = params[:organisation_type]

@@ -9,6 +9,7 @@ class LabourMarket::AgreementsController < ApplicationController
       .includes(:documents)
   end
 
+  layout "one-two-three", only: :show
   def show
     @agreement = LabourMarket::Agreement.find_by_slug(params[:id])
   end
