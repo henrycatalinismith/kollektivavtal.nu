@@ -1,5 +1,4 @@
 class LabourMarket::AgreementsController < ApplicationController
-  layout "page"
   around_action :set_locale_from_url
 
   def index
@@ -7,10 +6,11 @@ class LabourMarket::AgreementsController < ApplicationController
       .lexicographical
       .joins(:documents)
       .includes(:documents)
+  render action: "index", layout: "page"
   end
 
-  layout "one-two-three", only: :show
   def show
     @agreement = LabourMarket::Agreement.find_by_slug(params[:id])
+    render action: "show", layout: "one-two-three"
   end
 end
