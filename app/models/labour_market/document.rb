@@ -4,6 +4,8 @@ class LabourMarket::Document < ApplicationRecord
   has_many :references, as: :referenceable, inverse_of: :referenceable
   has_one_attached :file
 
+  enum document_language: [:sv, :en]
+
   scope :agreement_missing, -> { where(agreement_id: nil) }
   scope :period_missing, -> { where(period_id: nil) }
   scope :reference_missing, -> {
