@@ -141,3 +141,7 @@ sv:
     labour-market: "arbetsmarknad"
     agreements: "kollektivavtal"
     organisations: "fackforbund"
+
+  language:
+    en: Engelska
+    sv: Svenska
