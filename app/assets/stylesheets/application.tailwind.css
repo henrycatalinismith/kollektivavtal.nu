@@ -52,3 +52,51 @@
 .now {
   animation: now 2048ms forwards 2048ms 2;
 }
+
+.agreement {
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+  grid-template-areas:
+    'agreement-head'
+    'agreement-meta'
+    'agreement-body';
+  row-gap: 2rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 64rem) {
+  .agreement {
+    justify-content: flex-start; /* justify-start */
+    column-gap: 2rem; /* lg:gap-x-8 */
+    grid-template-columns: 38rem 24rem;
+    grid-template-rows: auto min-content;
+    grid-template-areas:
+      'agreement-head agreement-meta'
+      'agreement-body agreement-meta';
+  }
+}
+
+.agreement-head {
+  grid-area: agreement-head;
+  max-width: 100%;
+}
+
+.agreement-meta {
+  grid-area: agreement-meta;
+}
+
+@media (min-width: 64rem) {
+  .agreement-meta {
+    width: max-content;
+  }
+}
+
+.agreement-body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  grid-area: agreement-body;
+  max-width: 100%;
+}
