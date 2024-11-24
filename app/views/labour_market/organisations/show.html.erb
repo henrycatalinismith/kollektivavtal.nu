@@ -1,113 +1,110 @@
-<div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
-  <div class="lg:max-w-lg flex flex-col">
-
-    <% if @organisation.central_union? %>
-      <%= render partial: "ui/breadcrumbs", locals: {
-        links: [
-          { href: labour_market_path, text: t("labour_market.root") },
-          { href: central_unions_path, text: t("labour_market.central_unions") },
-        ]
-      } %>
-    <% elsif @organisation.employer_association? %>
-      <%= render partial: "ui/breadcrumbs", locals: {
-        links: [
-          { href: labour_market_path, text: t("labour_market.root") },
-          { href: employer_associations_path, text: t("labour_market.employer_associations") },
-        ]
-      } %>
-    <% elsif @organisation.local_union? %>
-      <%= render partial: "ui/breadcrumbs", locals: {
-        links: [
-          { href: labour_market_path, text: t("labour_market.root") },
-          { href: local_unions_path, text: t("labour_market.local_unions") },
-        ]
-      } %>
-    <% end %>
-
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
-      <%= @organisation.name %>
-    </h1>
-
-    <section aria-labelledby="information-heading" class="mt-8">
-      <h2 id="information-heading" class="sr-only">Information</h2>
-      <div class="prose w-full">
-        <%= render_organisation_description(@organisation).html_safe %>
-      </div>
-    </section>
-
-    <% if @organisation.local_union? and @organisation.agreements.count > 0 %>
-      <section class="flex flex-col gap-y-4 mt-16">
-        <h2 class="text-xl font-semibold text-gray-900">
-          Collective Agreement
-        </h2>
-
-        <%= render partial: "labour_market/agreements/list", locals: {
-          agreements: @organisation.agreements.first(1)
-        } %>
-
-      </section>
-    <% end %>
-
-    <% if @organisation.central_union? or @organisation.employer_association? and @organisation.agreements.count > 0 %>
-      <section class="flex flex-col gap-y-4 mt-16">
-        <h2 class="text-xl font-semibold text-gray-900">
-          <%= t("labour_market.collective_agreements") %>
-        </h2>
-
-        <%= render partial: "labour_market/agreements/list", locals: {
-          agreements: @organisation.agreements
-        } %>
-
-      </section>
-    <% end %>
-
-  </div>
-
-  <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
-    <% logo = organisation_logo(@organisation) %>
-    <%= render partial: "ui/profile-pic", locals: {
-      div: "",
-      img: "object-cover",
-      src: logo.present? ? logo.url : "https://placehold.co/512x512",
-      alt: "",
+<% content_for :one do %>
+  <% if @organisation.central_union? %>
+    <%= render partial: "ui/breadcrumbs", locals: {
+      links: [
+        { href: labour_market_path, text: t("labour_market.root") },
+        { href: central_unions_path, text: t("labour_market.central_unions") },
+      ]
     } %>
+  <% elsif @organisation.employer_association? %>
+    <%= render partial: "ui/breadcrumbs", locals: {
+      links: [
+        { href: labour_market_path, text: t("labour_market.root") },
+        { href: employer_associations_path, text: t("labour_market.employer_associations") },
+      ]
+    } %>
+  <% elsif @organisation.local_union? %>
+    <%= render partial: "ui/breadcrumbs", locals: {
+      links: [
+        { href: labour_market_path, text: t("labour_market.root") },
+        { href: local_unions_path, text: t("labour_market.local_unions") },
+      ]
+    } %>
+  <% end %>
 
-    <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
+  <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
+    <%= @organisation.name %>
+  </h1>
 
-      <% if @organisation.local_union? and !@organisation.parents.empty? %>
-       <div class="lg:px-4 py-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            <%= t("labour_market.central_union") %>
-          </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <a href="<%= central_union_path(@organisation.parents.first) %>" class="text-sky-600 underline"><%= @organisation.parents.first.name %></a>
-          </dd>
-        </div>
-      <% end %>
+  <section aria-labelledby="information-heading" class="mt-8">
+    <h2 id="information-heading" class="sr-only">Information</h2>
+    <div class="prose w-full">
+      <%= render_organisation_description(@organisation).html_safe %>
+    </div>
+  </section>
+<% end %>
 
-      <% if @organisation.website.present? %>
-        <div class="lg:px-4 py-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            <%= t("website") %>
-          </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <a href="<%= @organisation.website %>" class="text-sky-600 underline"><%= @organisation.website %></a>
-          </dd>
-        </div>
-      <% end %> 
+<% content_for :two do %>
+  <% logo = organisation_logo(@organisation) %>
+  <%= render partial: "ui/profile-pic", locals: {
+    div: "",
+    img: "object-cover",
+    src: logo.present? ? logo.url : "https://placehold.co/512x512",
+    alt: "",
+  } %>
 
-      <% if current_user and current_user.role?("labour_market_admin") %>
-        <div class="lg:px-4 py-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            Labour Market Admin
-          </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <%= link_to "Edit #{@organisation.name}", rails_admin.edit_path(model_name: 'labour_market~organisation', id: @organisation.id), class: "text-sky-600 underline" %>
-          </dd>
-        </div>
-      <% end %>
+  <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
 
-    </dl>
+    <% if @organisation.local_union? and !@organisation.parents.empty? %>
+      <div class="lg:px-4 py-4">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          <%= t("labour_market.central_union") %>
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+          <a href="<%= central_union_path(@organisation.parents.first) %>" class="text-sky-600 underline"><%= @organisation.parents.first.name %></a>
+        </dd>
+      </div>
+    <% end %>
 
-  </div>
-</div>
+    <% if @organisation.website.present? %>
+      <div class="lg:px-4 py-4">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          <%= t("website") %>
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+          <a href="<%= @organisation.website %>" class="text-sky-600 underline"><%= @organisation.website %></a>
+        </dd>
+      </div>
+    <% end %> 
+
+    <% if current_user and current_user.role?("labour_market_admin") %>
+      <div class="lg:px-4 py-4">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          Labour Market Admin
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+          <%= link_to "Edit #{@organisation.name}", rails_admin.edit_path(model_name: 'labour_market~organisation', id: @organisation.id), class: "text-sky-600 underline" %>
+        </dd>
+      </div>
+    <% end %>
+
+  </dl>
+<% end %>
+
+<% content_for :three do %>
+  <% if @organisation.local_union? and @organisation.agreements.count > 0 %>
+    <section class="flex flex-col gap-y-4 mt-16">
+      <h2 class="text-xl font-semibold text-gray-900">
+        Collective Agreement
+      </h2>
+
+      <%= render partial: "labour_market/agreements/list", locals: {
+        agreements: @organisation.agreements.first(1)
+      } %>
+
+    </section>
+  <% end %>
+
+  <% if @organisation.central_union? or @organisation.employer_association? and @organisation.agreements.count > 0 %>
+    <section class="flex flex-col gap-y-4 mt-16">
+      <h2 class="text-xl font-semibold text-gray-900">
+        <%= t("labour_market.collective_agreements") %>
+      </h2>
+
+      <%= render partial: "labour_market/agreements/list", locals: {
+        agreements: @organisation.agreements
+      } %>
+
+    </section>
+  <% end %> 
+<% end %>

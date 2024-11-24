@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 @layer components {
+  .dynamic-padding {
+    --p: calc(
+      clamp(
+        0rem,
+        calc((100vw - 16rem) / 2),
+        1rem
+      ) - clamp(
+        0rem,
+        calc((100vw - 64rem) / 2),
+        1rem
+      )
+    );
+    padding-left: var(--p);
+    padding-right: var(--p);
+  }
+
   .deck {
     @apply bg-black flex flex-col;
   }

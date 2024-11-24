@@ -1,102 +1,99 @@
-<div class="w-full max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] lg:gap-x-8 justify-start">
-  <div class="lg:max-w-lg">
+<% content_for :one do %>
+  <%= render partial: "ui/breadcrumbs", locals: {
+    links: [
+      { href: labour_market_path, text: t("labour_market.root") },
+      { href: collective_agreements_path, text: t("labour_market.collective_agreements") },
+    ]
+  } %>
 
-    <%= render partial: "ui/breadcrumbs", locals: {
-      links: [
-        { href: labour_market_path, text: t("labour_market.root") },
-        { href: collective_agreements_path, text: t("labour_market.collective_agreements") },
-      ]
-    } %>
+  <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
+    <%= @agreement.name %>
+  </h1>
 
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
-      <%= @agreement.name %>
-    </h1>
+  <section aria-labelledby="information-heading" class="mt-4">
+    <h2 id="information-heading" class="sr-only">Information</h2>
 
-    <section aria-labelledby="information-heading" class="mt-4">
-      <h2 id="information-heading" class="sr-only">Information</h2>
+    <div class="flex flex-col">
 
-      <div class="flex flex-col">
-
-      <div class="mt-4 space-y-6">
-        <div class="prose w-full">
-          <% if @agreement.description.present? %>
-            <%= render_agreement_description(@agreement).html_safe %>
-          <% end %>
-        </div>
+    <div class="mt-4 space-y-6">
+      <div class="prose w-full">
+        <% if @agreement.description.present? %>
+          <%= render_agreement_description(@agreement).html_safe %>
+        <% end %>
       </div>
+    </div>
+  </section>
+<% end %>
+
+<% content_for :two do %>
+  <% file = main_attachment(@agreement) %>
+  <%= render partial: "ui/profile-pic", locals: {
+    div: "p-2",
+    img: "object-contain",
+    src: file.present? ? file.preview(resize_to_limit: [512, 512]).url : "https://placehold.co/512x512",
+    alt: "",
+  } %>
+
+  <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
+
+    <% if @agreement.members.central_union.count > 0 %>
+      <div class="lg:px-4 py-4">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          <%= t("labour_market.central_unions") %>
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+          <ol class="flex flex-row gap-x-1 flex-wrap">
+            <%- @agreement.members.central_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
+          </ol>
+        </dd>
+      </div>
+    <% end %>
+
+    <% if current_user and current_user.role?("labour_market_admin") %>
+      <div class="lg:px-4 py-4">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          Labour Market Admin
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
+          <%= link_to "Edit #{@agreement.name}", rails_admin.edit_path(model_name: 'labour_market~agreement', id: @agreement.id), class: "text-sky-600 underline" %>
+        </dd>
+      </div>
+    <% end %>
+
+  </dl>
+<% end %>
+
+<% content_for :three do %>
+
+  <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-900">
+        <%= period.start_year %>
+      </h2>
+
+      <%= render partial: "labour_market/documents/list", locals: {
+        documents: @agreement.documents.where(period: period),
+      } %>
+
     </section>
+  <% end %>
 
-    <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
-      <section class="mt-8">
-        <h2 class="text-xl font-semibold text-gray-900">
-          <%= period.start_year %>
-        </h2>
+  <% if @agreement.references.present? %>
+    <section class="mt-8 flex flex-col space-y-4">
+      <h2 class="text-xl font-semibold text-gray-900 border-b-[1px] border-gray-300 border-solid">
+        <%= t("labour_market.references") %>
+      </h2>
 
-        <%= render partial: "labour_market/documents/list", locals: {
-          documents: @agreement.documents.where(period: period),
-        } %>
-
-      </section>
-    <% end %>
-
-    <% if @agreement.references.present? %>
-      <section class="mt-8 flex flex-col space-y-4">
-        <h2 class="text-xl font-semibold text-gray-900 border-b-[1px] border-gray-300 border-solid">
-          <%= t("labour_market.references") %>
-        </h2>
-
-        <ol class="list-inside list-decimal text-sm">
-          <% @agreement.references.each do |reference| %>
-            <li class="text-ellipsis whitespace-nowrap overflow-hidden max-w-full">
-              <a class="text-sky-600 underline" href="<%= reference.url %>">
-                <%= reference.url %>
-              </a>
-            </li>
-          <% end %>
-        </ol>
-      </section>
-    <% end %>
-
-  </div>
-
-  <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center max-w-full overflow-hidden">
-
-    <% file = main_attachment(@agreement) %>
-    <%= render partial: "ui/profile-pic", locals: {
-      div: "p-2",
-      img: "object-contain",
-      src: file.present? ? file.preview(resize_to_limit: [512, 512]).url : "https://placehold.co/512x512",
-      alt: "",
-    } %>
-
-    <dl class="divide-y divide-gray-100 max-w-full overflow-hidden">
-
-      <% if @agreement.members.central_union.count > 0 %>
-        <div class="lg:px-4 py-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            <%= t("labour_market.central_unions") %>
-          </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <ol class="flex flex-row gap-x-1 flex-wrap">
-              <%- @agreement.members.central_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
-            </ol>
-          </dd>
-        </div>
-      <% end %>
-
-      <% if current_user and current_user.role?("labour_market_admin") %>
-        <div class="lg:px-4 py-4">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            Labour Market Admin
-          </dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-            <%= link_to "Edit #{@agreement.name}", rails_admin.edit_path(model_name: 'labour_market~agreement', id: @agreement.id), class: "text-sky-600 underline" %>
-          </dd>
-        </div>
-      <% end %>
-
-    </dl>
-
-  </div>
-
-</div>
+      <ol class="list-inside list-decimal text-sm">
+        <% @agreement.references.each do |reference| %>
+          <li class="text-ellipsis whitespace-nowrap overflow-hidden max-w-full">
+            <a class="text-sky-600 underline" href="<%= reference.url %>">
+              <%= reference.url %>
+            </a>
+          </li>
+        <% end %>
+      </ol>
+    </section>
+  <% end %>
+ 
+<% end %>
