@@ -69,6 +69,9 @@
     <section class="mt-8">
       <h2 class="text-xl font-semibold text-gray-900">
         <%= period.start_year %>
+        <% if period.end_year.present? %>
+          - <%= period.end_year %>
+        <% end %>
       </h2>
 
       <%= render partial: "labour_market/documents/list", locals: {
