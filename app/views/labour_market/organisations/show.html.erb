@@ -82,29 +82,30 @@
 <% end %>
 
 <% content_for :three do %>
-  <% if @organisation.local_union? and @organisation.agreements.count > 0 %>
-    <section class="flex flex-col gap-y-4 mt-16">
-      <h2 class="text-xl font-semibold text-gray-900">
-        Collective Agreement
-      </h2>
+  <div class="flex flex-col space-y-8">
+    <% if @organisation.local_union? and @organisation.agreements.count > 0 %>
+      <section class="flex flex-col gap-y-4">
+        <h2 class="text-xl font-semibold text-gray-900">
+          Collective Agreement
+        </h2>
 
-      <%= render partial: "labour_market/agreements/list", locals: {
-        agreements: @organisation.agreements.first(1)
-      } %>
+        <%= render partial: "labour_market/agreements/list", locals: {
+          agreements: @organisation.agreements.first(1)
+        } %>
 
-    </section>
-  <% end %>
+      </section>
+    <% end %>
 
-  <% if @organisation.central_union? or @organisation.employer_association? and @organisation.agreements.count > 0 %>
-    <section class="flex flex-col gap-y-4 mt-16">
-      <h2 class="text-xl font-semibold text-gray-900">
-        <%= t("labour_market.collective_agreements") %>
-      </h2>
+    <% if @organisation.central_union? or @organisation.employer_association? and @organisation.agreements.count > 0 %>
+      <section class="flex flex-col gap-y-4">
+        <h2 class="text-xl font-semibold text-gray-900">
+          <%= t("labour_market.collective_agreements") %>
+        </h2>
 
-      <%= render partial: "labour_market/agreements/list", locals: {
-        agreements: @organisation.agreements
-      } %>
-
-    </section>
+        <%= render partial: "labour_market/agreements/list", locals: {
+          agreements: @organisation.agreements
+        } %>
+      </section>
+    </div>
   <% end %> 
 <% end %>
