@@ -65,38 +65,42 @@
 
 <% content_for :three do %>
 
-  <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
-    <section class="mt-8">
-      <h2 class="text-xl font-semibold text-gray-900">
-        <%= period.start_year %>
-        <% if period.end_year.present? %>
-          - <%= period.end_year %>
-        <% end %>
-      </h2>
+  <div class="flex flex-col space-y-8">
 
-      <%= render partial: "labour_market/documents/list", locals: {
-        documents: @agreement.documents.where(period: period),
-      } %>
+    <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900">
+          <%= period.start_year %>
+          <% if period.end_year.present? %>
+            - <%= period.end_year %>
+          <% end %>
+        </h2>
 
-    </section>
-  <% end %>
+        <%= render partial: "labour_market/documents/list", locals: {
+          documents: @agreement.documents.where(period: period),
+        } %>
 
-  <% if @agreement.references.present? %>
-    <section class="mt-8 flex flex-col space-y-4">
-      <h2 class="text-xl font-semibold text-gray-900 border-b-[1px] border-gray-300 border-solid">
-        <%= t("labour_market.references") %>
-      </h2>
+      </section>
+    <% end %>
 
-      <ol class="list-inside list-decimal text-sm">
-        <% @agreement.references.each do |reference| %>
-          <li class="text-ellipsis whitespace-nowrap overflow-hidden max-w-full">
-            <a class="text-sky-600 underline" href="<%= reference.url %>">
-              <%= reference.url %>
-            </a>
-          </li>
-        <% end %>
-      </ol>
-    </section>
+    <% if @agreement.references.present? %>
+      <section class="flex flex-col space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900 border-b-[1px] border-gray-300 border-solid">
+          <%= t("labour_market.references") %>
+        </h2>
+
+        <ol class="list-inside list-decimal text-sm">
+          <% @agreement.references.each do |reference| %>
+            <li class="text-ellipsis whitespace-nowrap overflow-hidden max-w-full">
+              <a class="text-sky-600 underline" href="<%= reference.url %>">
+                <%= reference.url %>
+              </a>
+            </li>
+          <% end %>
+        </ol>
+      </section>
+
+    </div>
   <% end %>
  
 <% end %>
