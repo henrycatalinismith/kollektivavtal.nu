@@ -34,7 +34,6 @@ class Ability
       can :manage, LabourMarket::Document
       can :manage, LabourMarket::Membership
       can :manage, LabourMarket::Organisation
-      can :manage, LabourMarket::Period
       can :manage, LabourMarket::Reference
       can :manage, LabourMarket::Signature
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_24_200903) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_25_201623) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -82,6 +82,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_24_200903) do
     t.string "agreement_id"
     t.string "period_id"
     t.integer "document_language", default: 0
+    t.integer "start_year"
+    t.integer "end_year"
+    t.index ["agreement_id", "start_year", "end_year"], name: "idx_on_agreement_id_start_year_end_year_b10f304c68"
   end
 
   create_table "labour_market_memberships", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
@@ -107,13 +110,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_24_200903) do
     t.index ["name_sv"], name: "index_labour_market_organisations_on_name_sv"
     t.index ["organisation_type"], name: "index_labour_market_organisations_on_organisation_type"
     t.index ["slug"], name: "index_labour_market_organisations_on_slug", unique: true
-  end
-
-  create_table "labour_market_periods", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "start_year", null: false
-    t.string "end_year"
   end
 
   create_table "labour_market_references", id: :string, default: -> { "ULID()" }, force: :cascade do |t|

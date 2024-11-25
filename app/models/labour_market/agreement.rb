@@ -5,7 +5,6 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :documents, class_name: "LabourMarket::Document", dependent: :destroy, inverse_of: :agreement
   has_many :signatures, class_name: "LabourMarket::Signature", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :signatures, source: :organisation
-  has_many :periods, through: :documents
   has_many :references, as: :referenceable
 
   scope :documents_missing, -> {

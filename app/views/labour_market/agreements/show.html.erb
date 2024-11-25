@@ -67,20 +67,25 @@
 
   <div class="flex flex-col space-y-8">
 
-    <% @agreement.periods.distinct.reverse_chronological.each do |period| %>
+    <% @agreement.documents.group_by {
+      |document| { start_year: document.start_year, end_year: document.end_year }
+    }
+      .sort_by { |period, _| period[:start_year] }
+      .reverse
+      .each do |period, documents| %>
+
       <section>
         <h2 class="text-xl font-semibold text-gray-900">
-          <%= period.start_year %>
-          <% if period.end_year.present? %>
-            - <%= period.end_year %>
+          <%= period[:start_year] %>
+          <% if period[:end_year].present? %>
+            - <%= period[:end_year] %>
           <% end %>
         </h2>
-
         <%= render partial: "labour_market/documents/list", locals: {
-          documents: @agreement.documents.where(period: period),
+          documents:,
         } %>
-
       </section>
+
     <% end %>
 
     <% if @agreement.references.present? %>
