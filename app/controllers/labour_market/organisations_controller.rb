@@ -16,5 +16,4 @@ class LabourMarket::OrganisationsController < ApplicationController
     @organisation = LabourMarket::Organisation.find_by_slug(params[:id])
     render action: "show", layout: "one-two-three"
   end
-
 end
