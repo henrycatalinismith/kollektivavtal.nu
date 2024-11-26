@@ -4,8 +4,8 @@ on:
       - main
 
 jobs:
-  deploy:
-    name: Deploy app
+  main:
+    name: main
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,6 +16,17 @@ jobs:
 
       - run: bundle install
       - run: bundle exec jekyll build
+
+      - run: bin/rubocop -f github
+
+      - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
+        with:
+          gcloud_service_key: ${{ secrets.GCR_SERVICE_KEY }}
+          registry: eu.gcr.io
+          project_id: kollektivavtal
+          image_name: kollektivavtal
+          image_tag: latest, ${{ github.sha }}
+          dockerfile: ./Dockerfile
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
