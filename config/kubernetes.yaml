@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: kollektivavtal
-        image: eu.gcr.io/kollektivavtal/kollektivavtal@sha256:3ac3a4044e26dce901d297906247ef2dc75cc8ce889a2d271ba0892b44d5460c
+        image: eu.gcr.io/kollektivavtal/kollektivavtal:latest
         ports:
         - containerPort: 3000
         env:
