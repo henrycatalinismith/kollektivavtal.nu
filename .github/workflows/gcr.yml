@@ -13,8 +13,8 @@ jobs:
       - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
         with:
           gcloud_service_key: ${{ secrets.GCR_SERVICE_KEY }}
-          registry: ${{ secrets.GCR_REGISTRY }}
-          project_id: ${{ secrets.GCR_PROJECT_ID }}
-          image_name: ${{ secrets.GCR_IMAGE_NAME }}
+          registry: eu.gcr.io
+          project_id: kollektivavtal
+          image_name: kollektivavtal
           image_tag: ${{ github.sha }}
           dockerfile: ./Dockerfile
