@@ -1,0 +1,16 @@
+on: workflow_dispatch
+
+jobs:
+  gcr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
+        with:
+          gcloud_service_key: ${{ secrets.GCR_SERVICE_KEY }}
+          registry: ${{ secrets.GCR_REGISTRY }}
+          project_id: ${{ secrets.GCR_PROJECT_ID }}
+          image_name: ${{ secrets.GCR_IMAGE_NAME }}
+          dockerfile: ./Dockerfile
