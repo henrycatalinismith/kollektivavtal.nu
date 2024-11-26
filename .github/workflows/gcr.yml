@@ -16,5 +16,5 @@ jobs:
           registry: eu.gcr.io
           project_id: kollektivavtal
           image_name: kollektivavtal
-          image_tag: ${{ github.sha }}
+          image_tag: latest, ${{ github.sha }}
           dockerfile: ./Dockerfile
