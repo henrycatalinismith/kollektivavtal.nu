@@ -1,0 +1,87 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: sqlite-storage-pv
+# spec:
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#     - ReadWriteMany
+#   persistentVolumeReclaimPolicy: Retain
+#   gcePersistentDisk:
+#     pdName: kollektivavtal-private
+#     fsType: ext4
+
+# ---
+
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: sqlite-storage-pvc
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   volumeName: sqlite-storage-pv
+
+# ---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kollektivavtal
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kollektivavtal
+  serviceName: kollektivavtal-service
+  template:
+    metadata:
+      labels:
+        app: kollektivavtal
+    spec:
+      containers:
+      - name: kollektivavtal
+        image: eu.gcr.io/kollektivavtal/kollektivavtal@sha256:3ac3a4044e26dce901d297906247ef2dc75cc8ce889a2d271ba0892b44d5460c
+        ports:
+        - containerPort: 3000
+        env:
+          - name: RAILS_MASTER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: rails-master-key
+                key: rails-master-key
+        # volumeMounts:
+        # - mountPath: /storage
+          # name: sqlite-storage
+        # env:
+        # - name: DATABASE_PATH
+          # value: /storage/production.sqlite3
+        # - name: GOOGLE_APPLICATION_CREDENTIALS
+          # value: /var/secrets/key.json
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      # volumes:
+      # - name: sqlite-storage
+        # persistentVolumeClaim:
+          # claimName: sqlite-storage-pvc
+      # - name: gcp-credentials
+        # secret:
+          # secretName: gcp-sa-key
+      restartPolicy: Always
+
