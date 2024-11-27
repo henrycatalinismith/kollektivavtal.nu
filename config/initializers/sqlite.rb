@@ -1,5 +1,6 @@
 require "sqlite_ulid"
 
+puts "⭐️"
 puts "Listing contents of /rails/storage"
 Dir.foreach(Rails.root.join("storage")) do |item|
   puts item
