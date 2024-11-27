@@ -1,32 +1,33 @@
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: sqlite-storage-pv
-# spec:
-#   capacity:
-#     storage: 10Gi
-#   accessModes:
-#     - ReadWriteMany
-#   persistentVolumeReclaimPolicy: Retain
-#   gcePersistentDisk:
-#     pdName: kollektivavtal-private
-#     fsType: ext4
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kollektivavtal-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  gcePersistentDisk:
+    pdName: kollektivavtal
+    fsType: ext4
+  storageClassName: standard
 
-# ---
+---
 
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: sqlite-storage-pvc
-# spec:
-#   accessModes:
-#     - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 10Gi
-#   volumeName: sqlite-storage-pv
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kollektivavtal-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ""
 
-# ---
+---
 
 apiVersion: apps/v1
 kind: StatefulSet
@@ -39,25 +40,47 @@ spec:
     matchLabels:
       app: kollektivavtal
   serviceName: kollektivavtal-service
+
   template:
     metadata:
       labels:
         app: kollektivavtal
     spec:
+      initContainers:
+      - name: init-chmod
+        image: alpine:latest
+        command:
+          - "sh"
+          - "-c"
+          - |
+            apk add --no-cache shadow && \
+            groupadd --system --gid 1000 rails && \
+            useradd --system --uid 1000 --gid 1000 rails && \
+            chown -R rails:rails /rails/storage && \
+            chmod -R 755 /rails/storage
+        volumeMounts:
+          - name: kollektivavtal-storage
+            mountPath: /rails/storage
       containers:
       - name: kollektivavtal
         image: eu.gcr.io/kollektivavtal/kollektivavtal:latest
         ports:
         - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /up
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
         env:
           - name: RAILS_MASTER_KEY
             valueFrom:
               secretKeyRef:
                 name: rails-master-key
                 key: rails-master-key
-        # volumeMounts:
-        # - mountPath: /storage
-          # name: sqlite-storage
+        volumeMounts:
+        - name: kollektivavtal-storage
+          mountPath: /rails/storage
         # env:
         # - name: DATABASE_PATH
           # value: /storage/production.sqlite3
@@ -65,23 +88,14 @@ spec:
           # value: /var/secrets/key.json
         resources:
           requests:
-            memory: "512Mi"
+            memory: "2048Mi"
             cpu: "250m"
           limits:
-            memory: "1Gi"
+            memory: "3Gi"
             cpu: "500m"
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 3000
-          initialDelaySeconds: 10
-          periodSeconds: 5
-      # volumes:
-      # - name: sqlite-storage
-        # persistentVolumeClaim:
-          # claimName: sqlite-storage-pvc
-      # - name: gcp-credentials
-        # secret:
-          # secretName: gcp-sa-key
+      volumes:
+      - name: kollektivavtal-storage
+        persistentVolumeClaim:
+          claimName: kollektivavtal-pvc
       restartPolicy: Always
 
