@@ -19,14 +19,14 @@ jobs:
 
       - run: bin/rubocop -f github
 
-      - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
-        with:
-          gcloud_service_key: ${{ secrets.GCR_SERVICE_KEY }}
-          registry: eu.gcr.io
-          project_id: kollektivavtal
-          image_name: kollektivavtal
-          image_tag: latest, ${{ github.sha }}
-          dockerfile: ./Dockerfile
+      # - uses: RafikFarhad/push-to-gcr-github-action@v5-rc1
+      #   with:
+      #     gcloud_service_key: ${{ secrets.GCR_SERVICE_KEY }}
+      #     registry: eu.gcr.io
+      #     project_id: kollektivavtal
+      #     image_name: kollektivavtal
+      #     image_tag: latest, ${{ github.sha }}
+      #     dockerfile: ./Dockerfile
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
