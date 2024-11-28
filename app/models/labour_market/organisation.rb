@@ -27,15 +27,6 @@ class LabourMarket::Organisation < ApplicationRecord
   translates :name
   translates :description
 
-  before_create :set_default_names
-  def set_default_names
-    if self.name_sv.blank? and self.name_en.present?
-      self.name_sv = self.name_en
-    elsif self.name_en.blank? and self.name_sv.present?
-      self.name_en = self.name_sv
-    end
-  end
-
   rails_admin do
     configure :name do
       sticky true
