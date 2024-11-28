@@ -1,8 +1,16 @@
 namespace :db do
   desc "Download production database"
   task download: :environment do
-    sh "gsutil cp -r 'gs://kollektivavtal-private/production.sqlite3' storage/development.sqlite3"
-    sh "gsutil cp -r 'gs://kollektivavtal-private/production.sqlite3-wal' storage/development.sqlite3-wal"
-    sh "gsutil cp -r 'gs://kollektivavtal-private/production.sqlite3-shm' storage/development.sqlite3-shm"
+    files = {
+      "production.sqlite3" => "development.sqlite3",
+      "production.sqlite3-wal" => "development.sqlite3-wal",
+      "production.sqlite3-shm" => "development.sqlite3-shm"
+    }
+    files.each do |source, destination|
+      exists = system("gsutil ls 'gs://kollektivavtal-private/#{source}'")
+      if exists
+        sh "gsutil cp -r 'gs://kollektivavtal-private/#{source}' storage/#{destination}"
+      end
+    end
   end
 end
