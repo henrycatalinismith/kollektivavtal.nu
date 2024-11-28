@@ -11,7 +11,7 @@ rm production.sqlite3
 rm production.sqlite3-shm
 rm production.sqlite3-wal
 
-for zip_file in db.*.zip; do
+for zip_file in kollektivavtal.db.*.zip; do
   mv "$zip_file" "/Volumes/Samsung/kollektivavtal"
 done
 
