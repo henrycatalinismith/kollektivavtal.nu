@@ -12,7 +12,20 @@ module Translatable
   end
 
   def translation_for(attribute)
-    read_attribute("#{attribute}_#{I18n.locale}") ||
-    read_attribute("#{attribute}_#{I18n.default_locale}")
+    available_locales = I18n.available_locales
+    sorted_locales = available_locales.sort_by { |locale|
+      case locale
+      when I18n.locale
+        0
+      when I18n.default_locale
+        1
+      else
+        2
+      end
+    }
+    available_locales.each do |locale|
+      value = read_attribute("#{attribute}_#{locale}")
+      return value if value.present?
+    end
   end
 end
