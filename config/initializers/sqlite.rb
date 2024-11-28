@@ -1,12 +1,5 @@
 require "sqlite_ulid"
 
-puts "⭐️"
-puts "Listing contents of /rails/storage"
-Dir.foreach(Rails.root.join("storage")) do |item|
-  puts item
-end
-puts "End of listing contents of /rails/storage"
-
 module UlidExtension
   def configure_connection
     super
