@@ -27,5 +27,6 @@ module Translatable
       value = read_attribute("#{attribute}_#{locale}")
       return value if value.present?
     end
+    return ""
   end
 end
