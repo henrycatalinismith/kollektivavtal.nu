@@ -26,6 +26,7 @@ class LabourMarket::Agreement < ApplicationRecord
   include Translatable
   translates :name
   translates :description
+  translates :scope
 
   before_create :set_slug
   def set_slug
@@ -67,6 +68,8 @@ class LabourMarket::Agreement < ApplicationRecord
       field :slug
       field :description_en
       field :description_sv
+      field :scope_en
+      field :scope_sv
       field :references
     end
 
@@ -76,6 +79,8 @@ class LabourMarket::Agreement < ApplicationRecord
       field :slug
       field :description_en
       field :description_sv
+      field :scope_en
+      field :scope_sv
       field :members
       field :references
     end

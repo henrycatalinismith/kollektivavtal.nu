@@ -1,0 +1,38 @@
+<table class="min-w-full divide-y divide-gray-300">
+  <thead>
+    <tr>
+      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 sr-only">Name</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200 bg-white">
+
+    <% agreements.each do |agreement| %>
+      <tr class="">
+        <td class="py-5 pl-4 pr-3 text-sm sm:pl-0">
+          <div class="flex items-center">
+            <div class="aspect-[707/1000] shrink-0 border-slate-200 border-2">
+              <% file = main_attachment(agreement) %>
+              <% if file.present? %>
+                <%= image_tag file.preview(resize_to_limit: [64, 64]) %>
+              <% else %>
+                <%= image_tag "https://placehold.co/64x64" %>
+              <% end %>
+            </div>
+            <div class="ml-4">
+              <div class="font-medium text-gray-900">
+                <a href="<%= collective_agreement_path(agreement) %>" class="underline text-sky-600">
+                  <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
+                  <%= agreement.name %>
+                </a>
+              </div>
+              <div class="mt-1 text-gray-500">
+                <%= agreement.scope_en %>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
