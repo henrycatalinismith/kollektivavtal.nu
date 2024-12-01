@@ -1,7 +1,7 @@
 module LabourMarket::AgreementsHelper
   def agreement_name(agreement)
     if I18n.locale == :sv
-      return agreement.name_sv
+      return agreement.agreement_name
     end
     translation = agreement.translations.find {
       |t| t.agreement_name? and t.translation_language == I18n.locale.to_s
@@ -9,12 +9,12 @@ module LabourMarket::AgreementsHelper
     if translation.present?
       return translation.text
     end
-    return agreement.name_sv
+    return agreement.agreement_name
   end
 
   def agreement_scope(agreement)
     if I18n.locale == :sv
-      return agreement.scope_sv
+      return agreement.agreement_scope
     end
     translation = agreement.translations.find {
       |t| t.agreement_scope? and t.translation_language == I18n.locale.to_s
@@ -22,12 +22,12 @@ module LabourMarket::AgreementsHelper
     if translation.present?
       return translation.translation_text
     end
-    return agreement.scope_sv
+    return agreement.agreement_scope
   end
 
   def agreement_description(agreement)
     if I18n.locale == :sv
-      return agreement.description_sv
+      return agreement.agreement_description
     end
     translation = agreement.translations.find {
       |t| t.agreement_description? and t.translation_language == I18n.locale.to_s
@@ -35,7 +35,7 @@ module LabourMarket::AgreementsHelper
     if translation.present?
       return translation.translation_text
     end
-    return agreement.description_sv
+    return agreement.agreement_description
   end
 
   def main_attachment(agreement)
@@ -48,7 +48,9 @@ module LabourMarket::AgreementsHelper
   def render_agreement_description(agreement)
     renderer = AgreementDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
-    redcarpet.render(agreement_description(agreement))
+    markdown = agreement_description(agreement)
+    return redcarpet.render(agreement_description(agreement)) if markdown.present?
+    return ""
   end
 end
 

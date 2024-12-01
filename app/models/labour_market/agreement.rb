@@ -1,5 +1,5 @@
 class LabourMarket::Agreement < ApplicationRecord
-  scope :lexicographical, -> { order(name_sv: :asc) }
+  scope :lexicographical, -> { order(agreement_name: :asc) }
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_many :documents, class_name: "LabourMarket::Document", dependent: :destroy, inverse_of: :agreement
@@ -32,23 +32,18 @@ class LabourMarket::Agreement < ApplicationRecord
   before_create :set_slug
   def set_slug
     if self.slug.blank?
-      self.slug = self.name_sv.parameterize
+      self.agreement_slug = self.agreement_name.parameterize
     end
   end
 
   before_update :update_slug
   def update_slug
-    if self.name_sv_changed?
-      self.slug = self.name_sv.parameterize
+    if self.agreement_name_changed?
+      self.agreement_slug = self.agreement_name.parameterize
     end
   end
 
   rails_admin do
-    configure :name do
-      sticky true
-      column_width 256
-    end
-
     list do
       scopes [
         nil,
@@ -56,38 +51,32 @@ class LabourMarket::Agreement < ApplicationRecord
         :organisations_missing,
         :references_missing
       ]
-      field :name
-      field :slug
+      field :agreement_name
+      field :agreement_slug
       field :created_at
       field :updated_at
       sort_by :created_at
     end
 
     create do
-      field :name_en
-      field :name_sv
-      field :slug
-      field :description_en
-      field :description_sv
-      field :scope_en
-      field :scope_sv
+      field :agreement_name
+      field :agreement_slug
+      field :agreement_description
+      field :agreement_scope
       field :references
     end
 
     edit do
-      field :name_en
-      field :name_sv
-      field :slug
-      field :description_en
-      field :description_sv
-      field :scope_en
-      field :scope_sv
+      field :agreement_name
+      field :agreement_slug
+      field :agreement_description
+      field :agreement_scope
       field :members
       field :references
     end
   end
 
   def to_param
-    slug
+    agreement_slug
   end
 end
