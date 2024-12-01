@@ -4,13 +4,9 @@ Rails.application.routes.draw do
   root "home#index"
   get "/landing" => "home#landing"
   get "/combo" => "home#combo"
-  get "/subscribed" => "mailing_list/subscriptions#created"
 
-  post "subscribe" => "mailing_list/subscriptions#create"
   get "up" => "rails/health#show", as: :rails_health_check
   get "health" => "rails/health#show", as: :rails_health_check_2
-
-  get "created" => "mailing_list/subscriptions#created"
 
   devise_for :users, {
     class_name: "User::Account",

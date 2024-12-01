@@ -90,16 +90,6 @@ sv:
       show:
         archive: Alla inlägg
 
-  mailing_list:
-    subscriptions:
-      created:
-        title: Du är prenumererad!
-        body: |
-          Tack för att du prenumererar på vår e-postlista. Vi kommer att hålla dig uppdaterad om våra framsteg.
-
-          Vi använder även e-postlistan för att mäta intresset för projektet. Så dela denna sida med någon annan som kan vara intresserad.
-        share: Dela
-
   policy:
     privacy: Integritetspolicy
 
