@@ -1,5 +1,5 @@
 
-class LabourMarketController < ApplicationController
+class LabourMarket::IndexController < ApplicationController
   layout "page"
   around_action :set_locale_from_url
 
