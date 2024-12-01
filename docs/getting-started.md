@@ -69,17 +69,6 @@ Once you have yarn working you need to run it once to get the various npm packag
 yarn install
 ```
 
-## Create `.env` file
-
-Create a file called `.env` in the root of the git repository and then copy and paste the following into it.
-
-```yaml
-CLOUDFLARE_TURNSTILE_SITE_KEY="1x00000000000000000000AA"
-CLOUDFLARE_TURNSTILE_SECRET_KEY="1x0000000000000000000000000000000AA"
-```
-
-You can [read more about the values in this `.env` file](/environment-variables.html) if you're curious. But you can also just carry this step out mechanically and move on.
-
 ## Run database migrations
 
 This gets your SQLite database (found in `storage/development.sqlite3`) updated with the correct schema.

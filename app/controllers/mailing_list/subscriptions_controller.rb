@@ -6,12 +6,6 @@ class MailingList::SubscriptionsController < ApplicationController
       sendgrid_status = :sendgrid_pending
       turnstile_status = :turnstile_pending
 
-      if cloudflare_turnstile_ok?
-        turnstile_status = :turnstile_success
-      else
-        turnstile_status = :turnstile_failure
-      end
-
       if turnstile_status == :turnstile_success and Flipper.enabled?(:mailing_list_subscriptions_create_sendgrid, current_user)
         begin
           sg = SendGrid::API.new(api_key: ENV["SENDGRID_API_KEY"])
