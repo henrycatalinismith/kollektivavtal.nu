@@ -1,4 +1,17 @@
 module LabourMarket::OrganisationsHelper
+  def organisation_description(organisation)
+    if I18n.locale == :sv
+      return organisation.description_sv
+    end
+    translation = organisation.translations.find {
+      |t| t.organisation_description? and t.translation_language == I18n.locale.to_s
+    }
+    if translation.present?
+      return translation.translation_text
+    end
+    return organisation.description_sv
+  end
+
   def organisation_path(organisation)
     return central_union_path(organisation) if organisation.central_union?
     return employer_association_path(organisation) if organisation.employer_association?
@@ -19,7 +32,7 @@ module LabourMarket::OrganisationsHelper
   def render_organisation_description(union)
     renderer = OrganisationDescriptionRenderer.new()
     redcarpet = Redcarpet::Markdown.new(renderer, tables: true)
-    redcarpet.render(union.description || "")
+    redcarpet.render(organisation_description(union) || "")
   end
 end
 

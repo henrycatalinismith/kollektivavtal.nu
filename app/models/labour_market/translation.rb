@@ -17,6 +17,8 @@ class LabourMarket::Translation < ApplicationRecord
     :agreement_name,
     :agreement_description,
     :agreement_scope,
+    :organisation_name,
+    :organisation_description,
   ]
 
   rails_admin do
