@@ -10,7 +10,7 @@ class LabourMarket::AgreementsController < ApplicationController
   end
 
   def show
-    @agreement = LabourMarket::Agreement.find_by_slug(params[:id])
+    @agreement = LabourMarket::Agreement.find_by_agreement_slug(params[:id])
     render action: "show", layout: "one-two-three"
   end
 end

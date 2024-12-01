@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_01_200009) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_01_210907) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -63,16 +63,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_200009) do
   create_table "labour_market_agreements", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name_sv", null: false
-    t.string "slug"
-    t.text "description_en"
-    t.string "name_en"
-    t.text "description_sv"
-    t.text "scope_en"
-    t.text "scope_sv"
-    t.index ["name_en"], name: "index_labour_market_agreements_on_name_en"
-    t.index ["name_sv"], name: "index_labour_market_agreements_on_name_sv"
-    t.index ["slug"], name: "index_labour_market_agreements_on_slug", unique: true
+    t.string "agreement_name", null: false
+    t.string "agreement_slug"
+    t.text "agreement_description"
+    t.text "agreement_scope"
+    t.index ["agreement_name"], name: "index_labour_market_agreements_on_agreement_name"
+    t.index ["agreement_slug"], name: "index_labour_market_agreements_on_agreement_slug", unique: true
   end
 
   create_table "labour_market_documents", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
