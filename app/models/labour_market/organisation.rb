@@ -10,6 +10,7 @@ class LabourMarket::Organisation < ApplicationRecord
   has_many :child_memberships, class_name: "LabourMarket::Membership", foreign_key: :child_id
   has_many :parents, through: :child_memberships, source: :parent
   has_many :members, through: :parent_memberships, source: :child
+  has_many :translations, as: :translatable
 
   enum organisation_type: [
     :central_union,
