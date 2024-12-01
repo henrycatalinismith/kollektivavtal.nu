@@ -22,11 +22,11 @@
               <div class="font-medium text-gray-900">
                 <a href="<%= collective_agreement_path(agreement) %>" class="underline text-sky-600">
                   <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
-                  <%= agreement.name %>
+                  <%= agreement_name(agreement) %>
                 </a>
               </div>
               <div class="mt-1 text-gray-500">
-                <%= agreement.scope_en %>
+                <%= agreement_scope(agreement) %>
               </div>
             </div>
           </div>

@@ -36,6 +36,7 @@ class Ability
       can :manage, LabourMarket::Organisation
       can :manage, LabourMarket::Reference
       can :manage, LabourMarket::Signature
+      can :manage, LabourMarket::Translation
     end
 
     if user.role?("social_media_admin")
