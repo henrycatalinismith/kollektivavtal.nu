@@ -6,6 +6,7 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :signatures, class_name: "LabourMarket::Signature", dependent: :destroy, inverse_of: :agreement
   has_many :members, through: :signatures, source: :organisation
   has_many :references, as: :referenceable
+  has_many :translations, as: :translatable
 
   scope :documents_missing, -> {
     left_outer_joins(:documents)
