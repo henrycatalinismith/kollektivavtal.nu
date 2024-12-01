@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_30_052500) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_01_161206) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -131,42 +131,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_30_052500) do
     t.index ["organisation_id"], name: "index_labour_market_signatures_on_organisation_id"
   end
 
-  create_table "mailing_list_emails", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "sent_at"
-    t.string "list_id"
-    t.string "subject_en"
-    t.string "subject_sv"
-    t.string "markdown_en"
-    t.string "markdown_sv"
-    t.index ["list_id"], name: "index_mailing_list_emails_on_list_id"
-  end
-
-  create_table "mailing_list_lists", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.string "sendgrid_id", null: false
-    t.string "segment_id_en"
-    t.string "segment_id_sv"
-    t.string "segment_id_testers"
-    t.index ["name"], name: "index_mailing_list_lists_on_name", unique: true
-  end
-
-  create_table "mailing_list_subscriptions", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email"
-    t.integer "sendgrid_status"
-    t.string "ip_address"
-    t.string "user_agent"
-    t.string "accept_language"
-    t.integer "turnstile_status"
-    t.string "list_id"
-    t.index ["list_id"], name: "index_mailing_list_subscriptions_on_list_id"
-  end
-
   create_table "media_images", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -236,8 +200,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_30_052500) do
   add_foreign_key "labour_market_memberships", "labour_market_organisations", column: "parent_id"
   add_foreign_key "labour_market_signatures", "labour_market_agreements", column: "agreement_id"
   add_foreign_key "labour_market_signatures", "labour_market_organisations", column: "organisation_id"
-  add_foreign_key "mailing_list_emails", "mailing_list_lists", column: "list_id"
-  add_foreign_key "mailing_list_subscriptions", "mailing_list_lists", column: "list_id"
   add_foreign_key "policy_revisions", "policy_documents", column: "document_id"
   add_foreign_key "user_authorizations", "user_accounts", column: "account_id"
   add_foreign_key "user_authorizations", "user_roles", column: "role_id"
