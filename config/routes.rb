@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get "/opinion/unions-are-good-actually" => "magazine/documents#show", as: :magazine_document
 
   localized do
-    get "labour-market" => "labour_market#index", as: :labour_market
+    get "labour-market" => "labour_market/index#index", as: :labour_market
 
     scope module: "labour_market" do
       resources :agreements,
