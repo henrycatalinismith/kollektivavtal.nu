@@ -21,6 +21,6 @@ class LabourMarket::IndexController < ApplicationController
     ]
 
     @highlighted_central_unions = LabourMarket::Organisation
-      .where(slug: central_union_slugs)
+      .where(organisation_slug: central_union_slugs)
   end
 end

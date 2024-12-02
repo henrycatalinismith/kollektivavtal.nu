@@ -40,7 +40,7 @@ class LabourMarket::Agreement < ApplicationRecord
 
   before_create :set_slug
   def set_slug
-    if self.slug.blank?
+    if self.agreement_slug.blank?
       self.agreement_slug = self.agreement_name.parameterize
     end
   end
@@ -53,6 +53,10 @@ class LabourMarket::Agreement < ApplicationRecord
   end
 
   rails_admin do
+    object_label_method do
+      :agreement_name
+    end
+
     list do
       scopes [
         nil,
