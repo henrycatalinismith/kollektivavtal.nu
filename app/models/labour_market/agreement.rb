@@ -24,11 +24,6 @@ class LabourMarket::Agreement < ApplicationRecord
     left_outer_joins(:references).where(labour_market_references: { id: nil })
   }
 
-  include Translatable
-  translates :name
-  translates :description
-  translates :scope
-
   before_create :set_slug
   def set_slug
     if self.slug.blank?

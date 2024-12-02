@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_01_210907) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_01_215532) do
 # Could not dump table "active_storage_attachments" because of following StandardError
 #   Unknown type 'uuid' for column 'record_id'
 
@@ -96,17 +96,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_210907) do
   create_table "labour_market_organisations", id: :string, default: -> { "ULID()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name_sv", null: false
-    t.string "slug"
-    t.text "description_en"
+    t.string "organisation_name", null: false
+    t.string "organisation_slug"
     t.string "website"
     t.integer "organisation_type"
-    t.string "name_en"
-    t.text "description_sv"
-    t.index ["name_en"], name: "index_labour_market_organisations_on_name_en"
-    t.index ["name_sv"], name: "index_labour_market_organisations_on_name_sv"
+    t.text "organisation_description"
+    t.index ["organisation_name"], name: "index_labour_market_organisations_on_organisation_name"
+    t.index ["organisation_slug"], name: "index_labour_market_organisations_on_organisation_slug", unique: true
     t.index ["organisation_type"], name: "index_labour_market_organisations_on_organisation_type"
-    t.index ["slug"], name: "index_labour_market_organisations_on_slug", unique: true
   end
 
   create_table "labour_market_references", id: :string, default: -> { "ULID()" }, force: :cascade do |t|

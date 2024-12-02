@@ -24,6 +24,6 @@ class HomeController < ApplicationController
 
     @highlighted_collective_agreements = LabourMarket::Agreement
       .where(slug: collective_agreement_slugs)
-      .sort_by { |a| collective_agreement_slugs.index(a.slug) }
+      .sort_by { |a| collective_agreement_slugs.index(a.agreement_slug) }
   end
 end

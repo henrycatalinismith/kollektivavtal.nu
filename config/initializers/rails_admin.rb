@@ -32,9 +32,9 @@ RailsAdmin.config do |config|
       controller do
         proc do
           if @object.is_a?(LabourMarket::Agreement)
-            redirect_to "/collective-agreements/#{@object.slug}"
+            redirect_to "/collective-agreements/#{@object.agreement_slug}"
           elsif @object.is_a?(LabourMarket::Organisation)
-            redirect_to "/unions/#{@object.slug}"
+            redirect_to "/unions/#{@object.organisation_slug}"
           end
         end
       end

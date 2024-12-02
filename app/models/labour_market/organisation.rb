@@ -1,6 +1,6 @@
 class LabourMarket::Organisation < ApplicationRecord
-  validates :name, presence: true
-  validates :slug, presence: true, uniqueness: true
+  validates :organisation_name, presence: true
+  validates :organisation_slug, presence: true, uniqueness: true
   scope :chronological, -> { order(created_at: :asc) }
   scope :reverse_chronological, -> { order(created_at: :desc) }
   has_one_attached :logo
@@ -25,11 +25,11 @@ class LabourMarket::Organisation < ApplicationRecord
   }
 
   include Translatable
-  translates :name
+  translates :organisation_name
   translates :description
 
   rails_admin do
-    configure :name do
+    configure :organisation_name do
       sticky true
       column_width 256
     end
@@ -42,30 +42,26 @@ class LabourMarket::Organisation < ApplicationRecord
         :employer_association,
         :agreements_missing,
       ]
-      field :name
-      field :slug
+      field :organisation_name
+      field :organisation_slug
       field :created_at
       field :updated_at
       sort_by :created_at
     end
 
     create do
-      field :name_en
-      field :name_sv
-      field :slug
-      field :description_en
-      field :description_sv
+      field :organisation_name
+      field :organisation_slug
+      field :organisation_description
       field :organisation_type
       field :website
       field :logo
     end
 
     edit do
-      field :name_en
-      field :name_sv
-      field :slug
-      field :description_en
-      field :description_sv
+      field :organisation_name
+      field :organisation_slug
+      field :organisation_description
       field :organisation_type
       field :website
       field :logo
@@ -73,6 +69,6 @@ class LabourMarket::Organisation < ApplicationRecord
   end
 
   def to_param
-    slug
+    organisation_slug
   end
 end
