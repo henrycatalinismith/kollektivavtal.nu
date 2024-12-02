@@ -11,8 +11,8 @@ class LabourMarket::IndexController < ApplicationController
     ]
 
     @highlighted_collective_agreements = LabourMarket::Agreement
-      .where(slug: collective_agreement_slugs)
-      .sort_by { |a| collective_agreement_slugs.index(a.slug) }
+      .where(agreement_slug: collective_agreement_slugs)
+      .sort_by { |a| collective_agreement_slugs.index(a.agreement_slug) }
 
     central_union_slugs = [
       "if-metall",
@@ -22,6 +22,5 @@ class LabourMarket::IndexController < ApplicationController
 
     @highlighted_central_unions = LabourMarket::Organisation
       .where(slug: central_union_slugs)
-      .sort_by { |a| central_union_slugs.index(a.slug) }
   end
 end

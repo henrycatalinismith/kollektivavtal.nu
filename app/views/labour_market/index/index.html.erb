@@ -18,7 +18,7 @@
               img: file.preview(resize_to_limit: [512, 512]).url,
               img_class: "object-cover",
               href: collective_agreement_path(agreement),
-              label: agreement.name,
+              label: agreement.agreement_name,
             } %>
           <% end %>
         <% end %>
@@ -43,7 +43,7 @@
               img: logo.url,
               img_class: "object-contain",
               href: organisation_path(organisation),
-            label: organisation.name,
+            label: organisation.organisation_name,
           } %>
         <% end %>
 
@@ -55,7 +55,14 @@
       } %>
 
     <% end %>
-
+al: "labour_market/index/section-card", locals: {
+              article: "aspect-square",
+              img: logo.url,
+              img_class: "object-contain",
+              href: organisation_path(organisation),
+            label: organisation.organisation_name,
+          } %>
+        <% end %>
     <% links = [
       { href: central_unions_path, text: t("labour_market.central_unions") },
       { href: collective_agreements_path, text: t("labour_market.collective_agreements") },

@@ -7,7 +7,7 @@ class LabourMarket::DumpToYamlJob < ApplicationJob
     collective_agreements = LabourMarket::Agreement.all
 
     central_unions.each do |central_union|
-      slug = central_union.slug.strip.downcase
+      slug = central_union.organisation_slug.strip.downcase
       dir = "#{path}/fackförbund/#{slug}"
       filename = "#{dir}/#{slug}.md"
       props = {
@@ -37,7 +37,7 @@ class LabourMarket::DumpToYamlJob < ApplicationJob
     end
 
     collective_agreements.each do |collective_agreement|
-      slug = collective_agreement.slug.strip.downcase
+      slug = collective_agreement.agreement_slug.strip.downcase
       dir = "#{path}/kollektivavtal/#{slug}"
       filename = "#{dir}/#{slug}.md"
       props = {
