@@ -41,7 +41,13 @@
         </dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
           <ol class="flex flex-row gap-x-1 flex-wrap">
-            <%- @agreement.members.central_union.each do |signatory| -%><li class="inline after:content-[','] last:after:content-none"><a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.name %></a></li><%- end -%>
+            <%- @agreement.members.central_union.each do |signatory| -%>
+              <li class="inline after:content-[','] last:after:content-none">
+                <a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline">
+                  <%= signatory.organisation_name %>
+                </a>
+              </li>
+            <%- end -%>
           </ol>
         </dd>
       </div>
@@ -53,7 +59,7 @@
           Labour Market Admin
         </dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
-          <%= link_to "Edit #{@agreement.name}", rails_admin.edit_path(model_name: 'labour_market~agreement', id: @agreement.id), class: "text-sky-600 underline" %>
+          <%= link_to "Edit #{@agreement.agreement_name}", rails_admin.edit_path(model_name: 'labour_market~agreement', id: @agreement.id), class: "text-sky-600 underline" %>
         </dd>
       </div>
     <% end %>
@@ -66,7 +72,7 @@
   <div class="flex flex-col space-y-8">
 
     <% @agreement.documents.group_by {
-      |document| { start_year: document.start_year, end_year: document.end_year }
+      |document| { start_year: document.document_start_year, end_year: document.document_end_year }
     }
       .sort_by { |period, _| period[:start_year] }
       .reverse

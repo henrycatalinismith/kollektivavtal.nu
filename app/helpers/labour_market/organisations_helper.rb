@@ -1,7 +1,7 @@
 module LabourMarket::OrganisationsHelper
   def organisation_description(organisation)
     if I18n.locale == :sv
-      return organisation.description_sv
+      return organisation.organisation_description
     end
     translation = organisation.translations.find {
       |t| t.organisation_description? and t.translation_language == I18n.locale.to_s
@@ -9,7 +9,7 @@ module LabourMarket::OrganisationsHelper
     if translation.present?
       return translation.translation_text
     end
-    return organisation.description_sv
+    return organisation.organisation_description
   end
 
   def organisation_path(organisation)

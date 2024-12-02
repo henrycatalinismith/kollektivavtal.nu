@@ -24,10 +24,6 @@ class LabourMarket::Organisation < ApplicationRecord
       .distinct
   }
 
-  include Translatable
-  translates :organisation_name
-  translates :description
-
   rails_admin do
     configure :organisation_name do
       sticky true
