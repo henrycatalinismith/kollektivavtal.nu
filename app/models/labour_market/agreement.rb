@@ -89,6 +89,7 @@ class LabourMarket::Agreement < ApplicationRecord
       field :agreement_scope
       field :members
       field :references
+      field :translations
     end
   end
 
