@@ -17,10 +17,11 @@ class LabourMarket::Document < ApplicationRecord
       .where(labour_market_translations: { id: nil })
   }
 
-  include Translatable
-  translates :name
-
   rails_admin do
+    object_label_method do
+      :document_name
+    end
+
     list do
       scopes [
         nil,
