@@ -7,7 +7,7 @@ module LabourMarket::AgreementsHelper
       |t| t.agreement_name? and t.translation_language == I18n.locale.to_s
     }
     if translation.present?
-      return translation.text
+      return translation.translation_text
     end
     return agreement.agreement_name
   end

@@ -4,6 +4,13 @@ class LabourMarket::Translation < ApplicationRecord
     optional: true,
     inverse_of: :translations
 
+  after_initialize :init
+  def init
+    self.translation_status ||= :translation_fresh
+    self.translation_language ||= :en
+  end
+
+
   enum translation_language: [
     :en,
   ]

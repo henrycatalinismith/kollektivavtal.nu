@@ -2,15 +2,37 @@ class LabourMarket::AgreementsController < ApplicationController
   around_action :set_locale_from_url
 
   def index
-    @agreements = LabourMarket::Agreement
-      .lexicographical
-      .joins(:documents)
-      .includes(:documents)
-  render action: "index", layout: "page"
+    if I18n.locale == :sv
+      @agreements = LabourMarket::Agreement
+        .lexicographical
+        .joins(:documents)
+        .includes(:documents)
+    else
+      @agreements = LabourMarket::Agreement
+        .joins(:documents)
+        .includes(:documents)
+        .joins(:translations)
+        .includes(:translations)
+        .where(labour_market_translations: { translation_language: I18n.locale.to_s })
+      @agreements = @agreements.sort_by do |agreement|
+        translation = agreement.translations.find { |t| t.agreement_name? }
+        if translation.present?
+          translation.translation_text || agreement.agreement_name
+        else
+          agreement.agreement_name
+        end
+      end
+    end
+    render action: "index", layout: "page"
   end
 
   def show
-    @agreement = LabourMarket::Agreement.find_by_agreement_slug(params[:id])
+    @agreement = LabourMarket::Agreement
+      .joins(:documents)
+      .includes(:documents)
+      .joins(:translations)
+      .includes(:translations)
+      .find_by_agreement_slug(params[:id])
     render action: "show", layout: "one-two-three"
   end
 end
