@@ -8,6 +8,14 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :references, as: :referenceable
   has_many :translations, as: :translatable
 
+  scope :description_missing, -> {
+    where(agreement_description: [nil, ""])
+  }
+
+  scope :scope_missing, -> {
+    where(agreement_scope: [nil, ""])
+  }
+
   scope :documents_missing, -> {
     left_outer_joins(:documents)
       .where(labour_market_documents: { id: nil })
@@ -48,6 +56,8 @@ class LabourMarket::Agreement < ApplicationRecord
     list do
       scopes [
         nil,
+        :description_missing,
+        :scope_missing,
         :documents_missing,
         :organisations_missing,
         :references_missing,
