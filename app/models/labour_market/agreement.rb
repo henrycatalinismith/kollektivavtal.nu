@@ -21,7 +21,13 @@ class LabourMarket::Agreement < ApplicationRecord
   }
 
   scope :references_missing, -> {
-    left_outer_joins(:references).where(labour_market_references: { id: nil })
+    left_outer_joins(:references)
+      .where(labour_market_references: { id: nil })
+  }
+
+  scope :translations_missing, -> {
+    left_outer_joins(:translations)
+      .where(labour_market_translations: { id: nil })
   }
 
   before_create :set_slug
@@ -44,7 +50,8 @@ class LabourMarket::Agreement < ApplicationRecord
         nil,
         :documents_missing,
         :organisations_missing,
-        :references_missing
+        :references_missing,
+        :translations_missing,
       ]
       field :agreement_name
       field :agreement_slug

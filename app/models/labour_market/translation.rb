@@ -17,11 +17,48 @@ class LabourMarket::Translation < ApplicationRecord
     :agreement_name,
     :agreement_description,
     :agreement_scope,
+    :document_name,
     :organisation_name,
     :organisation_description,
   ]
 
+  scope :agreement_names, -> {
+    where(translation_type: :agreement_name)
+  }
+
+  scope :agreement_descriptions, -> {
+    where(translation_type: :agreement_description)
+  }
+
+  scope :agreement_scopes, -> {
+    where(translation_type: :agreement_scope)
+  }
+
+  scope :document_names, -> {
+    where(translation_type: :document_name)
+  }
+
+  scope :organisation_names, -> {
+    where(translation_type: :organisation_name)
+  }
+
+  scope :organisation_descriptions, -> {
+    where(translation_type: :organisation_description)
+  }
+
   rails_admin do
+    list do
+      scopes [
+        nil,
+        :agreement_names,
+        :agreement_descriptions,
+        :agreement_scopes,
+        :document_names,
+        :organisation_names,
+        :organisation_descriptions,
+      ]
+    end
+
     object_label_method do
       :translation_text
     end
