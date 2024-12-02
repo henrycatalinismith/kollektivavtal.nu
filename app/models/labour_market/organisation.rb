@@ -25,6 +25,10 @@ class LabourMarket::Organisation < ApplicationRecord
   }
 
   rails_admin do
+    object_label_method do
+      :organisation_name
+    end
+
     configure :organisation_name do
       sticky true
       column_width 256
