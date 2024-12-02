@@ -17,7 +17,7 @@
         <td class="group relative whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
           <a href="<%= rails_blob_url(document.file) %>" class="font-medium flex flex-col">
             <span class="absolute -inset-x-0 -inset-y-0 -z-20"></span>
-            <span class="underline text-sky-600"><%= document.name %></span>
+            <span class="underline text-sky-600"><%= document.document_name %></span>
             <span class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
               <%= t("language.#{document.document_language}") %>,
               <%= document.file.filename.extension.upcase %>,
