@@ -30,7 +30,7 @@ class LabourMarket::Document < ApplicationRecord
         :translations_missing,
       ]
       field :file
-      field :name
+      field :document_name
       field :created_at
       field :updated_at
       sort_by :created_at
