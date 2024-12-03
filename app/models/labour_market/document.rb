@@ -41,6 +41,7 @@ class LabourMarket::Document < ApplicationRecord
       field :document_language
       field :document_start_year
       field :document_end_year
+      field :file
       field :references
       field :main_document
       field :agreement
@@ -51,6 +52,7 @@ class LabourMarket::Document < ApplicationRecord
       field :document_language
       field :document_start_year
       field :document_end_year
+      field :file
       field :references
       field :main_document
       field :agreement
