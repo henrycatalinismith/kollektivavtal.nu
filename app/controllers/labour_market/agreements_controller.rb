@@ -28,11 +28,12 @@ class LabourMarket::AgreementsController < ApplicationController
 
   def show
     @agreement = LabourMarket::Agreement
-      .joins(:documents)
-      .includes(:documents)
-      .joins(:translations)
-      .includes(:translations)
+      .left_outer_joins(:documents, :translations)
+      .includes(:documents, :translations)
       .find_by_agreement_slug(params[:id])
+    if @agreement.blank?
+      raise ActiveRecord::RecordNotFound
+    end
     render action: "show", layout: "one-two-three"
   end
 end
