@@ -8,6 +8,11 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :references, as: :referenceable
   has_many :translations, as: :translatable
 
+  enum agreement_visibility: [
+    :agreement_hidden,
+    :agreement_public,
+  ]
+
   scope :description_missing, -> {
     where(agreement_description: [nil, ""])
   }
@@ -66,6 +71,8 @@ class LabourMarket::Agreement < ApplicationRecord
         :organisations_missing,
         :references_missing,
         :translations_missing,
+        :agreement_hidden,
+        :agreement_public,
       ]
       field :agreement_name
       field :agreement_slug
@@ -79,6 +86,7 @@ class LabourMarket::Agreement < ApplicationRecord
       field :agreement_slug
       field :agreement_description
       field :agreement_scope
+      field :agreement_visibility
       field :references
     end
 
@@ -87,6 +95,7 @@ class LabourMarket::Agreement < ApplicationRecord
       field :agreement_slug
       field :agreement_description
       field :agreement_scope
+      field :agreement_visibility
       field :members
       field :references
       field :translations
