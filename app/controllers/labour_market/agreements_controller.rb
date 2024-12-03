@@ -4,6 +4,7 @@ class LabourMarket::AgreementsController < ApplicationController
   def index
     if I18n.locale == :sv
       @agreements = LabourMarket::Agreement
+        .agreement_public
         .lexicographical
         .joins(:documents)
         .includes(:documents)
