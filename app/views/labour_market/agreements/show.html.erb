@@ -53,11 +53,7 @@
         <dd class="mt-1 text-sm leading-6 text-gray-700 max-w-full overflow-hidden">
           <ol class="flex flex-row gap-x-1 flex-wrap">
             <%- @agreement.members.central_union.each do |signatory| -%>
-              <li class="inline after:content-[','] last:after:content-none">
-                <a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline">
-                  <%= signatory.organisation_name %>
-                </a>
-              </li>
+              <li class="inline after:content-[','] last:after:content-none"><a href="<%= central_union_path(signatory) %>" class="text-sky-600 underline"><%= signatory.organisation_name %></a></li>
             <%- end -%>
           </ol>
         </dd>
