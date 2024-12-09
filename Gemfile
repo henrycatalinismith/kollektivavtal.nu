@@ -31,7 +31,7 @@ gem "google-cloud-storage", "~> 1.53", require: false
 gem "http_accept_language"
 gem "image_processing", "~> 1.0"
 gem "importmap-rails", "~> 2.0"
-gem "rails_admin", "~> 3.0"
+gem "rails_admin", "~> 3.3"
 gem "rails_cloudflare_turnstile"
 gem "redcarpet", "~> 3.6"
 gem "sendgrid-ruby"
