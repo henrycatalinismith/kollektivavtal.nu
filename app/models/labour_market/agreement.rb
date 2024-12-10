@@ -179,7 +179,29 @@ class LabourMarket::Agreement < ApplicationRecord
       field :agreement_scope
       field :agreement_visibility
       field :members
-      field :references
+
+      field :references do
+        pretty_value do
+          bindings[:view].content_tag(:ul) {
+            value.map do |field|
+              bindings[:view].content_tag(:li) {
+                "[#{
+                  bindings[:view].content_tag(:a,
+                    style: "font-family: monospace",
+                    href: "/admin/labour_market~reference/#{field.id}"
+                  ) { field.id[0..4] }}]
+                #{
+                  bindings[:view].content_tag(:a,
+                    # style: "font-family: monospace",
+                    href: field.url
+                  ) { field.url }
+                }".html_safe
+              }.html_safe
+            end.join.html_safe
+          }.html_safe
+        end
+      end
+
       field :translations
     end
   end
