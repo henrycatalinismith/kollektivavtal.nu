@@ -1,27 +1,25 @@
 <div class="w-full grid lg:gap-x-8 justify-start">
-  <div class="">
 
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-      <%= t("labour_market.root") %>
-    </h1>
+  <%= render partial: "ui/breadcrumbs", locals: {
+    links: [
+      { href: labour_market_path, text: t("labour_market.root") },
+    ]
+  } %>
+
+  <div class="flex flex-col gap-y-4">
+    <%= render partial: "ui/heading-plus-subheading", locals: {
+      heading: t("labour_market.root"),
+      subheading: t("labour_market.root_subheading")
+    } %>
 
     <%= render :layout => "labour_market/index/section", locals: {
       heading: t("labour_market.collective_agreements"),
       subheading: t("labour_market.collective_agreements_subheading"),
     }  do %>
 
-      <%= render :layout => "labour_market/index/section-grid" do %>
-        <% @highlighted_collective_agreements.each do |agreement| %>
-          <% file = main_attachment(agreement) %>
-          <%= render partial: "labour_market/index/section-card", locals: {
-            article: "aspect-[707/1000]",
-            img: file.preview(resize_to_limit: [512, 512]).url,
-            img_class: "object-cover",
-            href: collective_agreement_path(agreement),
-            label: agreement.agreement_name,
-          } %>
-        <% end %>
-      <% end %>
+      <%= render partial: "labour_market/agreements/list2", locals: {
+        agreements: @highlighted_collective_agreements
+      } %>
 
       <%= render partial: "labour_market/index/section-link", locals: {
         href: collective_agreements_path,
@@ -35,18 +33,9 @@
       subheading: t("labour_market.central_unions_subheading"),
     }  do %>
 
-      <%= render :layout => "labour_market/index/section-grid" do %>
-        <% @highlighted_central_unions.each do |organisation| %>
-          <% logo = organisation_logo(organisation) %>
-          <%= render partial: "labour_market/index/section-card", locals: {
-            article: "aspect-square",
-            img: logo.url,
-            img_class: "object-contain",
-            href: organisation_path(organisation),
-            label: organisation.organisation_name,
-          } %>
-        <% end %>
-      <% end %>
+      <%= render partial: "labour_market/organisations/list", locals: {
+        organisations: @highlighted_central_unions,
+      } %>
 
       <%= render partial: "labour_market/index/section-link", locals: {
         href: central_unions_path,

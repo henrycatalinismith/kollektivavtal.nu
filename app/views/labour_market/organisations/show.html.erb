@@ -22,16 +22,11 @@
     } %>
   <% end %>
 
-  <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
-    <%= @organisation.organisation_name %>
-  </h1>
+  <%= render partial: "ui/heading-plus-subheading", locals: {
+    heading: @organisation.organisation_name,
+    subheading: render_organisation_description(@organisation).html_safe,
+  } %>
 
-  <section aria-labelledby="information-heading" class="mt-8">
-    <h2 id="information-heading" class="sr-only">Information</h2>
-    <div class="prose w-full">
-      <%= render_organisation_description(@organisation).html_safe %>
-    </div>
-  </section>
 <% end %>
 
 <% content_for :two do %>

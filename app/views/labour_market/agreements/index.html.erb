@@ -1,16 +1,21 @@
-<div class="w-full lg:grid lg:max-w-7xl lg:grid-cols-[1fr_max-content] justify-start">
-  <div class="flex flex-col">
+<div class="flex flex-col">
+
+  <%= render partial: "ui/breadcrumbs", locals: {
+    links: [
+      { href: labour_market_path, text: t("labour_market.root") },
+    ]
+  } %>
+
+  <div class="flex flex-col gap-y-8">
 
     <%= render partial: "ui/heading-plus-subheading", locals: {
       heading: t("labour_market.collective_agreements"),
       subheading: t("labour_market.collective_agreements_subheading")
     } %>
 
-    <div class="mt-8 flow-root">
-      <%= render partial: "labour_market/agreements/list2", locals: {
-        agreements: @agreements
-      } %>
-    </div>
+    <%= render partial: "labour_market/agreements/list2", locals: {
+      agreements: @agreements
+    } %>
 
   </div>
 

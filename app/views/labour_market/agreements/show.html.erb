@@ -1,4 +1,5 @@
 <% content_for :one do %>
+
   <%= render partial: "ui/breadcrumbs", locals: {
     links: [
       { href: labour_market_path, text: t("labour_market.root") },
@@ -6,32 +7,28 @@
     ]
   } %>
 
-  <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4">
-    <% if I18n.locale == :sv %>
-      <%= @agreement.agreement_name %>
-    <% else %>
-      <% translation = @agreement.translations.find {
+  <%= render partial: "ui/heading-plus-subheading", locals: {
+    heading: if I18n.locale == :sv
+      @agreement.agreement_name
+    else
+      translation = @agreement.translations.find {
         |t| t.agreement_name? and t.translation_language == I18n.locale.to_s
-      } %>
-      <% if translation.present? %>
-        <%= translation.translation_text %>
-      <% else %>
-        <%= @agreement.agreement_name %>
-      <% end %>
-    <% end %>
-  </h1>
+      }
+      if translation.present?
+        translation.translation_text
+      else
+        @agreement.agreement_name
+      end
+    end,
+    subheading: render_agreement_description(@agreement).html_safe,
+  } %>
 
-  <section aria-labelledby="information-heading" class="mt-4">
-    <h2 id="information-heading" class="sr-only">Information</h2>
+  <% if I18n.locale == :sv and false %>
+    <a hreflang="en" rel="alternate" class="underline text-sky-600" href="<%= url_for(locale: "en") %>">
+      lopl
+    </a>
+  <% end %>
 
-    <div class="flex flex-col">
-
-    <div class="mt-4 space-y-6">
-      <div class="prose w-full">
-        <%= render_agreement_description(@agreement).html_safe %>
-      </div>
-    </div>
-  </section>
 <% end %>
 
 <% content_for :two do %>

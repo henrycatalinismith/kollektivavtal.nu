@@ -44,4 +44,8 @@ class OrganisationDescriptionRenderer < Redcarpet::Render::HTML
   def link(href, title, text)
     %(<a class="text-blue-700 underline" href="#{href}">#{text}</a>)
   end
+
+  def paragraph(text)
+    "#{text}"
+  end
 end
