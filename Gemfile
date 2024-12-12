@@ -27,7 +27,7 @@ gem "flipper", "~> 1.3"
 gem "flipper-ui", "~> 1.3"
 gem "flipper-active_record", "~> 1.3"
 gem "front_matter_parser"
-gem "google-cloud-storage", "~> 1.53", require: false
+gem "google-cloud-storage", "~> 1.54", require: false
 gem "http_accept_language"
 gem "image_processing", "~> 1.0"
 gem "importmap-rails", "~> 2.0"
