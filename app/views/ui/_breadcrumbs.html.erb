@@ -1,5 +1,7 @@
-<nav aria-label="Breadcrumb">
-  <ol role="list" class="flex items-center space-x-2">
+<nav aria-label="Breadcrumb" class="pb-8">
+  <ol role="list" class="flex items-center space-x-2 h-4">
+
+    <% links.unshift({ text: 'Home', href: '/' }) %>
 
     <% links.each do |link| %>
       <li>

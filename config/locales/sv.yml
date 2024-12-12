@@ -96,6 +96,7 @@ sv:
   
   labour_market:
     root: Arbetsmarknad
+    root_subheading: Arbetsmarknaden i Sverige regleras av kollektivavtal som förhandlas mellan arbetsgivarorganisationer och centrala fackförbund.
     central_union: Fackförbund
     central_unions: Fackförbund
     central_unions_subheading: Nationella organisationer som representerar arbetstagare och förhandlar kollektivavtal inom särskilda branscher och sektorer.

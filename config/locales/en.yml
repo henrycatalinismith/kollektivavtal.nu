@@ -64,6 +64,7 @@ en:
   
   labour_market:
     root: Labour Market
+    root_subheading: The labour market in Sweden is regulated by collective agreements negotiated between employer organisations and central unions.
     central_union: Union
     central_unions: Unions
     central_unions_subheading: National organisations that represent workers and negotiate collective agreements in particular industries and sectors.

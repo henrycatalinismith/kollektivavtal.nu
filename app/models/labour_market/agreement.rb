@@ -173,12 +173,17 @@ class LabourMarket::Agreement < ApplicationRecord
             end.join.html_safe
           }.html_safe
         end
+
+        visible do
+          bindings[:object].agreement_complete? == false
+        end
       end
 
       field :agreement_description
       field :agreement_scope
       field :agreement_visibility
       field :members
+      field :documents
 
       field :references do
         pretty_value do
