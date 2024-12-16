@@ -94,7 +94,6 @@ RailsAdmin.config do |config|
         end
       end
     end
-
   end
 
   module RailsAdmin
