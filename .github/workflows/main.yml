@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends
-          sudo apt-get install --no-install-recommends -y openssh-client gnupg curl libjemalloc2 sqlite3 imagemagick libvips libcairo2 libcairo2-dev libgirepository1.0-dev libpoppler-glib-dev poppler-util
+          sudo apt-get install --no-install-recommends -y openssh-client gnupg curl libjemalloc2 sqlite3 imagemagick libvips libcairo2 libcairo2-dev libgirepository1.0-dev libpoppler-glib-dev poppler-utils
 
       - uses: ruby/setup-ruby@v1
         with:
