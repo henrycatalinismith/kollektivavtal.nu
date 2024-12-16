@@ -100,6 +100,12 @@ en:
     actions:
       add_2023:
         menu: "2023-2025"
+      agreement_stub_translations:
+        menu: "Stub Translations"
+      document_stub_translations:
+        menu: "Stub Translations"
+      organisation_stub_translations:
+        menu: "Stub Translations"
       user_account_grant_all_roles:
         menu: Grant All Roles
       user_role_grant_to_everyone:

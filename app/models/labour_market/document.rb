@@ -22,6 +22,27 @@ class LabourMarket::Document < ApplicationRecord
       :document_name
     end
 
+    show do
+      configure :translations do
+        pretty_value do
+          bindings[:view].content_tag(:ul) {
+            value.map do |field|
+              bindings[:view].content_tag(:li) {
+                "[#{
+                  bindings[:view].content_tag(:a,
+                    style: "font-family: monospace",
+                    href: "/admin/labour_market~translation/#{field.id}"
+                  ) { field.translation_type }}]
+                #{
+                  bindings[:view].content_tag(:span) { field.translation_text }
+                }".html_safe
+              }.html_safe
+            end.join.html_safe
+          }.html_safe
+        end
+      end
+    end
+
     list do
       scopes [
         nil,

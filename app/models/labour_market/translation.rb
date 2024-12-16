@@ -94,7 +94,7 @@ class LabourMarket::Translation < ApplicationRecord
 
   before_save :refresh_status
   def refresh_status
-    if translation_text_changed? && [:translation_missing, :translation_stale].include?(translation_status)
+    if self.translation_text_changed? && (self.translation_missing? || self.translation_stale?)
       self.translation_status = :translation_fresh
     end
   end
