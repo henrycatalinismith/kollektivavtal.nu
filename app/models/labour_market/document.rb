@@ -23,6 +23,7 @@ class LabourMarket::Document < ApplicationRecord
     end
 
     show do
+
       configure :translations do
         pretty_value do
           bindings[:view].content_tag(:ul) {
