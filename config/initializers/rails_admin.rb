@@ -81,6 +81,20 @@ RailsAdmin.config do |config|
         end
       end
     end
+
+    member :send_email do
+      link_icon do "fa fa-envelope" end
+      visible do
+        bindings[:abstract_model].model.name == "LabourMarket::Agreement"
+      end
+      controller do
+        proc do
+          LabourMarket::AgreementStubTranslationsJob.perform_later(@object.id)
+          redirect_to back_or_index, notice: "job queued"
+        end
+      end
+    end
+
   end
 
   module RailsAdmin
