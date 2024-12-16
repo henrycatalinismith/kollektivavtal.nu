@@ -227,7 +227,6 @@ class LabourMarket::Agreement < ApplicationRecord
           }.html_safe
         end
       end
-
     end
   end
 
