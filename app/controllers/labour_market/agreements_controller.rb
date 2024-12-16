@@ -10,6 +10,7 @@ class LabourMarket::AgreementsController < ApplicationController
         .includes(:documents)
     else
       @agreements = LabourMarket::Agreement
+        .agreement_public
         .joins(:documents)
         .includes(:documents)
         .joins(:translations)
