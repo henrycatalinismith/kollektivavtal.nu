@@ -12,7 +12,7 @@
       @agreement.agreement_name
     else
       translation = @agreement.translations.find {
-        |t| t.agreement_name? and t.translation_language == I18n.locale.to_s
+        |t| t.agreement_name? and t.translation_language == I18n.locale.to_s and (t.translation_fresh? or t.translation_stale?)
       }
       if translation.present?
         translation.translation_text

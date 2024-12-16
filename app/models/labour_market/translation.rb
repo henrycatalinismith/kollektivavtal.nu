@@ -18,6 +18,7 @@ class LabourMarket::Translation < ApplicationRecord
   enum translation_status: [
     :translation_fresh,
     :translation_stale,
+    :translation_missing,
   ]
 
   enum translation_type: [
