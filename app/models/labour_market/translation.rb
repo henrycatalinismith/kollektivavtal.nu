@@ -91,4 +91,11 @@ class LabourMarket::Translation < ApplicationRecord
       sort_by :created_at
     end
   end
+
+  before_save :refresh_status
+  def refresh_status
+    if translation_text_changed? && [:translation_missing, :translation_stale].include?(translation_status)
+      self.translation_status = :translation_fresh
+    end
+  end
 end
