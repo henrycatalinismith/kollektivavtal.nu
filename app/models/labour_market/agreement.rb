@@ -185,6 +185,25 @@ class LabourMarket::Agreement < ApplicationRecord
       field :members
       field :documents
 
+      configure :documents do
+        pretty_value do
+          bindings[:view].content_tag(:ul) {
+            value.map do |field|
+              bindings[:view].content_tag(:li) {
+                "[#{
+                  bindings[:view].content_tag(:a,
+                    style: "font-family: monospace",
+                    href: "/admin/labour_market~document/#{field.id}"
+                  ) { field.id[0..7] }}]
+                #{
+                  bindings[:view].content_tag(:span) { field.document_name }
+                }".html_safe
+              }.html_safe
+            end.join.html_safe
+          }.html_safe
+        end
+      end
+
       field :references do
         pretty_value do
           bindings[:view].content_tag(:ul) {
