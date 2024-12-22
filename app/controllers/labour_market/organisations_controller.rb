@@ -14,6 +14,7 @@ class LabourMarket::OrganisationsController < ApplicationController
     puts params.inspect
     @organisation_type = params[:organisation_type]
     @organisation = LabourMarket::Organisation.find_by_organisation_slug(params[:id])
+    @agreements = @organisation.agreements.agreement_public
     render action: "show", layout: "one-two-three"
   end
 end
