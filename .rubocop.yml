@@ -107,3 +107,6 @@ Layout/EmptyLinesAroundBlockBody:
 Layout/CaseIndentation:
   Enabled: true
   EnforcedStyle: end
+
+Rails/EnumSyntax:
+  Enabled: true

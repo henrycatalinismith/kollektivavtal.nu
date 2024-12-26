@@ -12,7 +12,7 @@ class LabourMarket::Organisation < ApplicationRecord
   has_many :members, through: :parent_memberships, source: :child
   has_many :translations, as: :translatable
 
-  enum organisation_type: [
+  enum :organisation_type, [
     :central_union,
     :employer_association,
     :local_union,

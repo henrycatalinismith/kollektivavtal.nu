@@ -4,7 +4,7 @@ class LabourMarket::Document < ApplicationRecord
   has_many :translations, as: :translatable
   has_one_attached :file
 
-  enum document_language: [:sv, :en]
+  enum :document_language, [:sv, :en]
 
   scope :agreement_missing, -> { where(agreement_id: nil) }
   scope :reference_missing, -> {
