@@ -11,17 +11,17 @@ class LabourMarket::Translation < ApplicationRecord
   end
 
 
-  enum translation_language: [
+  enum :translation_language, [
     :en,
   ]
 
-  enum translation_status: [
+  enum :translation_status, [
     :translation_fresh,
     :translation_stale,
     :translation_missing,
   ]
 
-  enum translation_type: [
+  enum :translation_type, [
     :agreement_name,
     :agreement_description,
     :agreement_scope,

@@ -8,7 +8,7 @@ class LabourMarket::Agreement < ApplicationRecord
   has_many :references, as: :referenceable
   has_many :translations, as: :translatable
 
-  enum agreement_visibility: [
+  enum :agreement_visibility, [
     :agreement_hidden,
     :agreement_public,
   ]
