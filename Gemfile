@@ -15,7 +15,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop"
-  gem "rubocop-rails", "~> 2.24"
+  gem "rubocop-rails", "~> 2.28"
 end
 
 gem "bcrypt", "~> 3.1"
