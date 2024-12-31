@@ -21,7 +21,6 @@ jobs:
           bundler-cache: true
 
       - run: bundle install
-      - run: bundle exec jekyll build
 
       - run: bin/rubocop -f github
 
@@ -29,11 +28,3 @@ jobs:
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: kollektivavtal/kollektivavtal.github.io
-          force_orphan: true
-          publish_branch: main
-          publish_dir: ./_site
