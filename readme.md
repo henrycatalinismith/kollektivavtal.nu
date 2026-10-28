@@ -4,4 +4,4 @@ Rails project exploring some kind of information hub about the Swedish model of 
 
 ## License
 
-[AGPL-3.0](https://codeberg.org/henrycatalinismith/kollektivavtal.nu/src/branch/main/license)
+[AGPL-3.0](https://github.com/henrycatalinismith/kollektivavtal.nu/blob/main/license)
